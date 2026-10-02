@@ -37,7 +37,7 @@ There is no automated browser test suite yet, so every change to a cursor or to 
 ## Adding a cursor
 
 1. **Write the component** in `components/cursors/<name>.tsx`. Start from the closest existing cursor.
-2. **Register it** in `registry.json`: `name`, `type: "registry:component"`, `title`, a one-line `description`, `categories` (reuse an existing one if it fits), and both files with their targets:
+2. **Register it** in `registry.json`: `name`, `type: "registry:component"`, `title`, a one-line `description`, `categories` (reuse an existing one if it fits), your `author` credit, and the file with its target:
 
    ```json
    {
@@ -46,6 +46,7 @@ There is no automated browser test suite yet, so every change to a cursor or to 
      "title": "Orbit",
      "categories": ["Followers"],
      "description": "One sentence on what it does and how it reacts to hover and press.",
+     "author": "Your Name <https://github.com/your-handle>",
      "files": [
        { "path": "components/cursors/orbit.tsx", "type": "registry:component", "target": "@components/cursors/orbit.tsx" }
      ],
@@ -54,6 +55,7 @@ There is no automated browser test suite yet, so every change to a cursor or to 
    ```
 
    The order of items in `registry.json` sets the cursor numbers, and the first five appear on the home page.
+   `author` is the shadcn registry's own field. Your cursor's page shows it as "Contributed by", linked to the URL in the angle brackets, and it travels with the installed registry item. Leave out the URL to show just your name.
    React to hover through `pointer.hover` and to press through `pointer.down`, and skip motion of its own when `pointer.reduced` is set.
 3. **Give it a preview:**
    - add the component to the `components` map in `app/catalog.tsx`;

@@ -287,6 +287,9 @@ A Hairline-bordered figure on translucent Warm Edge; a mono-label caption bar wi
 - **Sidebar index:** From `lg` on every cursor and hook page, in order: "All cursors" in the control style (underlined on hover); each registry category as a mono group label over its entries (15px titles); then a "Hooks" group whose entries are set in 13px mono. Entries are Soft Ink and turn Ink on hover. The current entry is marked by the 16px registration mark hung in the gutter to its left, never by an underline; current cursor and hook entries also turn Ink.
 - **Cursor-to-cursor:** 44px circular Ink-outlined arrow buttons that fill Ink on hover in 0.1s, beside the neighbor's title.
 
+### Credit Line
+The last row of a cursor page, between Source and the pager: a hairline rule, 32px of padding, and two ends. On a contributed cursor, the left reads "Contributed by" in the mono label, then the contributor's name as a 22px title, underlined and linked to their profile. On the maintainer's own cursors, the left is a soft-ink note instead: "Made a cursor of your own? Contributed cursors carry their maker's name on their page." The right is always "Contribute a cursor" with an arrow, linking to CONTRIBUTING.md. On phones the two ends stack.
+
 ### Seal Stamp
 A 128px (144px from `sm`) Periwinkle Seal disc with a mono text ring turning once every 25s linear and a centered out-arrow. It lifts 4px over 0.6s on the annual ease when hovered. Under reduced motion it stands still. One per view, hung off a registered frame's corner: today only the home hero preview's lower-left.
 

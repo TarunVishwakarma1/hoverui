@@ -68,6 +68,7 @@ export function Section() {
                 runtimePlatform: "React",
                 license: "https://opensource.org/licenses/MIT",
                 codeRepository: GITHUB,
+                ...(cursor.author && { author: { "@type": "Person", name: cursor.author.name, url: cursor.author.url } }),
               },
               {
                 "@type": "BreadcrumbList",
@@ -160,6 +161,27 @@ export function Section() {
             hook, which has its own source and API.
           </p>
         </Row>
+
+        {/* The credit line: who made this cursor, if someone other than the maintainer did, and the way in for the next one. */}
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-t border-hairline py-8">
+          {cursor.author ? (
+            <p className="flex flex-wrap items-baseline gap-x-3">
+              <span className="mono-label text-ink-soft">Contributed by</span>
+              {cursor.author.url ? (
+                <a href={cursor.author.url} className="text-[22px] leading-7 tracking-[-0.01em] underline decoration-1 underline-offset-4 hover:decoration-2">
+                  {cursor.author.name}
+                </a>
+              ) : (
+                <span className="text-[22px] leading-7 tracking-[-0.01em]">{cursor.author.name}</span>
+              )}
+            </p>
+          ) : (
+            <p className="max-w-[46ch] text-[15px] leading-[22px] text-ink-soft">Made a cursor of your own? Contributed cursors carry their maker&apos;s name on their page.</p>
+          )}
+          <a href={`${GITHUB}/blob/main/CONTRIBUTING.md`} className="-my-0.5 flex shrink-0 items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+            Contribute a cursor <Arrow />
+          </a>
+        </div>
 
         <nav aria-label="More cursors" className="flex items-center justify-between gap-6 border-t border-hairline pt-8">
           {[

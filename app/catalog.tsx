@@ -182,8 +182,12 @@ export function classNameDoc(name: string) {
 export const cursors = registry.items.filter((item) => item.type === "registry:component").map((item) => {
   const Base = components[item.name];
   const tone = ownColors.has(item.name) ? undefined : cursorTone;
+  // A contributor's credit: the registry's own `author` field, written "Name <https://github.com/handle>".
+  // The maintainer's cursors leave it out, so they carry no credit line.
+  const by = /^(.+?)\s*(?:<([^>]+)>)?$/.exec(((item as { author?: string }).author ?? "").trim());
   return {
     name: item.name,
+    author: by ? { name: by[1], url: by[2] } : null,
     title: item.title,
     description: item.description,
     files: item.files.map((f) => f.path),

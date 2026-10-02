@@ -6,6 +6,10 @@ Changes to the installable cursors and the `useCursor` hook are listed first in 
 
 ## [Unreleased]
 
+### Added
+
+- Contributor credit: a cursor's registry item can carry the shadcn `author` field ("Name <https://github.com/handle>"), shown at the foot of its page as "Contributed by" with a link to the contributor, and in the page's structured data. Every cursor page ends with a "Contribute a cursor" link to CONTRIBUTING.md.
+
 ## [0.2.0] - 2026-10-02
 
 ### Added

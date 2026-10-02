@@ -231,7 +231,7 @@ Cursors depend on the published hook (`https://hoverui.fun/r/use-cursor.json`). 
 
 ## Contributing
 
-Ideas for new cursors, bug reports and pull requests are welcome: [open an issue](https://github.com/TarunVishwakarma1/hoverui/issues/new/choose). Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request; [CHANGELOG.md](CHANGELOG.md) records what changed in each release.
+Ideas for new cursors, bug reports and pull requests are welcome: [open an issue](https://github.com/TarunVishwakarma1/hoverui/issues/new/choose). A cursor you contribute carries your name on its page. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request; [CHANGELOG.md](CHANGELOG.md) records what changed in each release.
 
 ## License
 

@@ -76,7 +76,7 @@ Next.js 16 App Router, React 19, Tailwind CSS v4, Bun. Every route is statically
 
 This module turns `registry.json` into what the pages render:
 
-- **`cursors`:** name, title, description, category, files and a `Cursor` component. The site shows no cursor numbers; only the README's table numbers them, in registry order.
+- **`cursors`:** name, title, description, category, files, `author` and a `Cursor` component. `author` comes from the registry item's `author` field ("Name <url>"), set only on contributed cursors; their page shows it as "Contributed by" and in its `SoftwareSourceCode` structured data. The site shows no cursor numbers; only the README's table numbers them, in registry order.
 - **`categories`:** the cursors grouped by category, in registry order.
 - **`featured`:** the first five.
 - **`Scene`** (`app/scenes.tsx`): each cursor drawn at rest, engaged with a small target (`data-resting`). Gallery tiles show it on touch and before a pointer arrives; it fades while the live cursor is active. Scenes are server components, so they can render a cursor's `<Name>Art` but not call functions or read arrays from a `"use client"` module.
