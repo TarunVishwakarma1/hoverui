@@ -157,16 +157,13 @@ export function Code({ title, code }: { title: string; code: string }) {
   );
 }
 
-/** The credits line under a preview: number, name, what it does, how to get it. */
+/** The credits line under a preview: name, what it does, how to get it. */
 export function CursorCredits({ cursor, install = true, className = "" }: { cursor: CursorData; install?: boolean; className?: string }) {
   return (
     <div className={`mt-8 flex min-w-0 flex-col gap-4 border-t border-hairline pt-4 ${className}`}>
       <div className="flex items-baseline justify-between gap-6">
-        <h3 className="flex items-baseline gap-3 text-[22px] leading-7 tracking-[-0.01em]">
-          {cursor.title}
-          <span className="mono-label text-ink-soft">{cursor.number}</span>
-        </h3>
-        <Link href={`/cursors/${cursor.name}`} className="flex shrink-0 items-center gap-2 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+        <h3 className="text-[22px] leading-7 tracking-[-0.01em]">{cursor.title}</h3>
+        <Link href={`/cursors/${cursor.name}`} className="-my-0.5 flex shrink-0 items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
           View<span className="sr-only"> {cursor.title}</span> cursor <Arrow />
         </Link>
       </div>
@@ -189,14 +186,14 @@ export function SiteBar() {
         <nav aria-label="Main" className="flex items-center gap-7">
           <NavLink
             href="/cursors"
-            className="mono-label text-ink-soft hover:text-ink [&[aria-current]]:text-ink [&[aria-current]]:underline [&[aria-current]]:underline-offset-[6px]"
+            className="mono-label py-1 text-ink-soft hover:text-ink [&[aria-current]]:text-ink [&[aria-current]]:underline [&[aria-current]]:underline-offset-[6px]"
           >
             Cursors
           </NavLink>
-          <Link href="/#placement" className="mono-label hidden text-ink-soft hover:text-ink sm:inline">
+          <Link href="/#placement" className="mono-label hidden py-1 text-ink-soft hover:text-ink sm:inline">
             Placement
           </Link>
-          <a href={GITHUB} className="mono-label hidden text-ink-soft hover:text-ink sm:inline">
+          <a href={GITHUB} className="mono-label hidden py-1 text-ink-soft hover:text-ink sm:inline">
             GitHub
           </a>
         </nav>

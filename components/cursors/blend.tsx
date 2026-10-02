@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { INTERACTIVE, cursorRoot, useCursor } from "@/hooks/use-cursor";
+import { cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** A disc that inverts whatever is beneath it and grows over interactive elements. */
 export function BlendCursor({ className = "" }: { className?: string }) {
@@ -10,7 +10,7 @@ export function BlendCursor({ className = "" }: { className?: string }) {
     const d = disc.current;
     d.x += (p.x - d.x) * p.ease(18);
     d.y += (p.y - d.y) * p.ease(18);
-    d.scale += ((p.down ? 0.8 : p.target?.closest(INTERACTIVE) ? 2.5 : 1) - d.scale) * p.ease(14);
+    d.scale += ((p.down ? 0.8 : p.hover ? 2.5 : 1) - d.scale) * p.ease(14);
     (el.firstChild as HTMLElement).style.transform = `translate(${d.x}px, ${d.y}px) scale(${d.scale})`;
   });
 

@@ -54,9 +54,11 @@ There is no automated browser test suite yet, so every change to a cursor or to 
    ```
 
    The order of items in `registry.json` sets the cursor numbers, and the first five appear on the home page.
-3. **Give it a preview** in `app/catalog.tsx`:
-   - add the component to the `cursors` map;
-   - add a `Specimen` branch with a composition that shows the cursor at its best, plus a resting drawing of the cursor marked `data-resting` (shown on touch and before a pointer arrives);
+   React to hover through `pointer.hover` and to press through `pointer.down`, and skip motion of its own when `pointer.reduced` is set.
+3. **Give it a preview:**
+   - add the component to the `components` map in `app/catalog.tsx`;
+   - add a `Scene` in `app/scenes.tsx`: the cursor drawn at rest, engaged with a small target. The generic `Specimen` uses it on the cursor's page, so a custom `Specimen` branch is optional;
+   - if it carries its own colors, add it to `ownColors` so the site doesn't invert it;
    - add any `data-*` attributes it reads to `attributes`.
 4. **Check it by hand** with `bun dev`, on its own page and in the list at `/cursors`:
    - [ ] It follows a mouse, reacts to links and buttons, and reacts to press.

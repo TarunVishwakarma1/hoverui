@@ -29,7 +29,7 @@
         "Followers"
       ],
       "title": "Trail",
-      "description": "A tapering chain of dots, each chasing the one ahead.",
+      "description": "A tapering chain of dots, each chasing the one ahead. The head swells over anything clickable.",
       "files": [
         {
           "path": "components/cursors/trail.tsx",
@@ -45,7 +45,7 @@
       "name": "blend",
       "type": "registry:component",
       "categories": [
-        "Inverting"
+        "Lenses"
       ],
       "title": "Blend",
       "description": "Inverts whatever is beneath it. Grows over anything clickable.",
@@ -92,6 +92,1051 @@
           "path": "components/cursors/register.tsx",
           "type": "registry:component",
           "target": "@components/cursors/register.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "offset",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Offset",
+      "description": "Cyan, magenta and yellow rings that slip out of register as you move. Over a control they grow and misregister.",
+      "files": [
+        {
+          "path": "components/cursors/offset.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/offset.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "ribbon",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Ribbon",
+      "description": "A rainbow ribbon drawn by your path. It fattens and cycles faster over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/ribbon.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/ribbon.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "confetti",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Confetti",
+      "description": "Sheds confetti as you move, pops a little over each control, and throws a handful on click.",
+      "files": [
+        {
+          "path": "components/cursors/confetti.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/confetti.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "comet",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Comet",
+      "description": "A bright head whose tail stretches out as you speed up. It swells inside a faint coma over controls.",
+      "files": [
+        {
+          "path": "components/cursors/comet.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/comet.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "orbit",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Orbit",
+      "description": "A moon circling the pointer. Its orbit widens over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/orbit.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/orbit.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "rocket",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Rocket",
+      "description": "The nose is the pointer. It turns to face where you go; the engine roars over controls and cuts on press.",
+      "files": [
+        {
+          "path": "components/cursors/rocket.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/rocket.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "astronaut",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Astronaut",
+      "description": "Drifts behind the pointer on a slack tether, bobbing in zero gravity. Reels itself in over controls.",
+      "files": [
+        {
+          "path": "components/cursors/astronaut.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/astronaut.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "ghost",
+      "type": "registry:component",
+      "categories": [
+        "Halloween"
+      ],
+      "title": "Ghost",
+      "description": "Haunts the pointer: floats a little behind, bobs and leans. Swoops in and swells over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/ghost.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/ghost.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "spider",
+      "type": "registry:component",
+      "categories": [
+        "Halloween"
+      ],
+      "title": "Spider",
+      "description": "Drops on a thread from the top of its area and sways as you move. Swells and scuttles over controls.",
+      "files": [
+        {
+          "path": "components/cursors/spider.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/spider.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "flashlight",
+      "type": "registry:component",
+      "categories": [
+        "Halloween"
+      ],
+      "title": "Flashlight",
+      "description": "Darkens its area except for a pool of light at the pointer, wider over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/flashlight.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/flashlight.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "gear",
+      "type": "registry:component",
+      "categories": [
+        "Mechanical"
+      ],
+      "title": "Gear",
+      "description": "A gear that rolls as you travel. Over anything clickable, a second gear meshes in.",
+      "files": [
+        {
+          "path": "components/cursors/gear.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/gear.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "readout",
+      "type": "registry:component",
+      "categories": [
+        "Mechanical"
+      ],
+      "title": "Readout",
+      "description": "A drafting crosshair with live coordinates. Over a control, it reads the tag and size.",
+      "files": [
+        {
+          "path": "components/cursors/readout.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/readout.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "googly",
+      "type": "registry:component",
+      "categories": [
+        "Weird"
+      ],
+      "title": "Googly",
+      "description": "A pair of googly eyes trailing the pointer, pupils sloshing. They go wide over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/googly.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/googly.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "jelly",
+      "type": "registry:component",
+      "categories": [
+        "Weird"
+      ],
+      "title": "Jelly",
+      "description": "A soft blob that stretches along your motion and wobbles back. Swells over controls, squashes on press.",
+      "files": [
+        {
+          "path": "components/cursors/jelly.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/jelly.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "frame",
+      "type": "registry:component",
+      "categories": [
+        "Marks"
+      ],
+      "title": "Frame",
+      "description": "Viewfinder corners around the pointer that snap to frame whatever clickable thing you hover.",
+      "files": [
+        {
+          "path": "components/cursors/frame.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/frame.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "magnet",
+      "type": "registry:component",
+      "categories": [
+        "Followers"
+      ],
+      "title": "Magnet",
+      "description": "A dot with a pull: over anything clickable, the control leans toward the pointer and the dot settles between them.",
+      "files": [
+        {
+          "path": "components/cursors/magnet.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/magnet.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "glass",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Glass",
+      "description": "A lens of frosted glass that blurs whatever it passes over. Widens over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/glass.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/glass.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "glow",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Glow",
+      "description": "A wide, soft glow drifting after the pointer through shifting color. Gathers tight over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/glow.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/glow.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "neon",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Neon",
+      "description": "A humming neon tube that stutters now and then. Swells and switches color over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/neon.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/neon.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "sparkle",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Sparkle",
+      "description": "Stars twinkle out along your path, keep coming over controls, and burst in a ring on click.",
+      "files": [
+        {
+          "path": "components/cursors/sparkle.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/sparkle.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "splat",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Splat",
+      "description": "A loaded brush: every click leaves a fading splat of paint, each a new color.",
+      "files": [
+        {
+          "path": "components/cursors/splat.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/splat.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "ufo",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "UFO",
+      "description": "A saucer hovering above the pointer. Over anything clickable, it lowers a tractor beam onto it.",
+      "files": [
+        {
+          "path": "components/cursors/ufo.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/ufo.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "constellation",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Constellation",
+      "description": "Draws a constellation as you move, star by star, fading out behind you. A click sets a bright one.",
+      "files": [
+        {
+          "path": "components/cursors/constellation.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/constellation.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "bat",
+      "type": "registry:component",
+      "categories": [
+        "Halloween"
+      ],
+      "title": "Bat",
+      "description": "Flits about beside the pointer. Over anything clickable, it folds its wings and hangs upside down.",
+      "files": [
+        {
+          "path": "components/cursors/bat.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/bat.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "pumpkin",
+      "type": "registry:component",
+      "categories": [
+        "Halloween"
+      ],
+      "title": "Pumpkin",
+      "description": "A jack-o'-lantern at the pointer's side. It creeps closer and its face lights up over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/pumpkin.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/pumpkin.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "candle",
+      "type": "registry:component",
+      "categories": [
+        "Halloween"
+      ],
+      "title": "Candle",
+      "description": "The pointer is a flame: it leans away from your motion, flares over controls and gutters on press.",
+      "files": [
+        {
+          "path": "components/cursors/candle.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/candle.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "compass",
+      "type": "registry:component",
+      "categories": [
+        "Mechanical"
+      ],
+      "title": "Compass",
+      "description": "The needle swings to your heading, overshoots, and settles north. It spins over anything clickable.",
+      "files": [
+        {
+          "path": "components/cursors/compass.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/compass.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "clock",
+      "type": "registry:component",
+      "categories": [
+        "Mechanical"
+      ],
+      "title": "Clock",
+      "description": "Keeps your visitor's real time. The hands race forward over controls and wind back on press.",
+      "files": [
+        {
+          "path": "components/cursors/clock.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/clock.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "radar",
+      "type": "registry:component",
+      "categories": [
+        "Mechanical"
+      ],
+      "title": "Radar",
+      "description": "A scope sweeping round the pointer. Over a control, it sweeps faster and pings a contact on it.",
+      "files": [
+        {
+          "path": "components/cursors/radar.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/radar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "doodle",
+      "type": "registry:component",
+      "categories": [
+        "Weird"
+      ],
+      "title": "Doodle",
+      "description": "A hand-drawn loop whose line boils. Over anything clickable, it scribbles a circle around it.",
+      "files": [
+        {
+          "path": "components/cursors/doodle.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/doodle.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "fly",
+      "type": "registry:component",
+      "categories": [
+        "Weird"
+      ],
+      "title": "Fly",
+      "description": "Buzzes around the pointer, lands on anything clickable, and gets shooed off by a click.",
+      "files": [
+        {
+          "path": "components/cursors/fly.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/fly.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "classic",
+      "type": "registry:component",
+      "categories": [
+        "Retro"
+      ],
+      "title": "Classic",
+      "description": "The 1-bit desktop arrow, pixel for pixel: a pointing hand over controls, the hourglass while you press.",
+      "files": [
+        {
+          "path": "components/cursors/classic.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/classic.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "chomp",
+      "type": "registry:component",
+      "categories": [
+        "Retro"
+      ],
+      "title": "Chomp",
+      "description": "An arcade chomper that faces your way and eats as it goes. Gobbles controls; snaps shut on press.",
+      "files": [
+        {
+          "path": "components/cursors/chomp.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/chomp.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "matrix",
+      "type": "registry:component",
+      "categories": [
+        "Retro"
+      ],
+      "title": "Matrix",
+      "description": "Green code rains off your path, pours over anything clickable, and bursts on click.",
+      "files": [
+        {
+          "path": "components/cursors/matrix.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/matrix.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "cloud",
+      "type": "registry:component",
+      "categories": [
+        "Weather"
+      ],
+      "title": "Cloud",
+      "description": "A little cloud over the pointer. It drizzles over controls and pours while you press.",
+      "files": [
+        {
+          "path": "components/cursors/cloud.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/cloud.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "zap",
+      "type": "registry:component",
+      "categories": [
+        "Weather"
+      ],
+      "title": "Zap",
+      "description": "An electric spark that crackles over controls. A click calls down lightning from the top of its area.",
+      "files": [
+        {
+          "path": "components/cursors/zap.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/zap.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "snow",
+      "type": "registry:component",
+      "categories": [
+        "Weather"
+      ],
+      "title": "Snow",
+      "description": "Snowflakes drift off your path. A flurry gathers over controls; a click blows out a gust.",
+      "files": [
+        {
+          "path": "components/cursors/snow.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/snow.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "balloon",
+      "type": "registry:component",
+      "categories": [
+        "Toys"
+      ],
+      "title": "Balloon",
+      "description": "A balloon on a string, tugging up and swaying as you move. Puffs up over controls; a click pops it.",
+      "files": [
+        {
+          "path": "components/cursors/balloon.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/balloon.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "yoyo",
+      "type": "registry:component",
+      "categories": [
+        "Toys"
+      ],
+      "title": "Yo-yo",
+      "description": "Swings on its string below the pointer. Press to throw it down to sleep; let go to reel it back.",
+      "files": [
+        {
+          "path": "components/cursors/yoyo.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/yoyo.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "bubbles",
+      "type": "registry:component",
+      "categories": [
+        "Ocean"
+      ],
+      "title": "Bubbles",
+      "description": "Bubbles rise off your path and pop. They stream out over controls; a click pops them all.",
+      "files": [
+        {
+          "path": "components/cursors/bubbles.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/bubbles.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "fish",
+      "type": "registry:component",
+      "categories": [
+        "Ocean"
+      ],
+      "title": "Fish",
+      "description": "A goldfish that follows and waits just short of the pointer. It nibbles controls and darts off on click.",
+      "files": [
+        {
+          "path": "components/cursors/fish.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/fish.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "jellyfish",
+      "type": "registry:component",
+      "categories": [
+        "Ocean"
+      ],
+      "title": "Jellyfish",
+      "description": "Drifts after the pointer in pulses, tentacles trailing. Glows over controls, clenches on press.",
+      "files": [
+        {
+          "path": "components/cursors/jellyfish.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/jellyfish.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "ripple",
+      "type": "registry:component",
+      "categories": [
+        "Ocean"
+      ],
+      "title": "Ripple",
+      "description": "A faint wake as you move, rings spreading from every click, and a ring breathing over controls.",
+      "files": [
+        {
+          "path": "components/cursors/ripple.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/ripple.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "stamp",
+      "type": "registry:component",
+      "categories": [
+        "Marks"
+      ],
+      "title": "Stamp",
+      "description": "A rubber stamp that lifts over controls and leaves a fading inked seal on every click.",
+      "files": [
+        {
+          "path": "components/cursors/stamp.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/stamp.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "caret",
+      "type": "registry:component",
+      "categories": [
+        "Marks"
+      ],
+      "title": "Caret",
+      "description": "A text caret sized to the line beneath it that blinks when you stop. A block caret over controls.",
+      "files": [
+        {
+          "path": "components/cursors/caret.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/caret.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:component",
+      "categories": [
+        "Labels"
+      ],
+      "title": "Tooltip",
+      "description": "A tooltip that rises over anything clickable, reading its label or text. No markup needed.",
+      "files": [
+        {
+          "path": "components/cursors/tooltip.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/tooltip.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "peek",
+      "type": "registry:component",
+      "categories": [
+        "Labels"
+      ],
+      "title": "Peek",
+      "description": "Shows where a link goes before you click it: the path for links on your site, the host for others.",
+      "files": [
+        {
+          "path": "components/cursors/peek.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/peek.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "focus",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Focus",
+      "description": "Blurs its area except a sharp circle at the pointer, like a shallow depth of field. Opens up over controls.",
+      "files": [
+        {
+          "path": "components/cursors/focus.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/focus.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "goggles",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Goggles",
+      "description": "Night-vision goggles that turn whatever they pass over green. They gain up over controls; a click flashes them.",
+      "files": [
+        {
+          "path": "components/cursors/goggles.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/goggles.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "dice",
+      "type": "registry:component",
+      "categories": [
+        "Toys"
+      ],
+      "title": "Dice",
+      "description": "A die that tumbles as you move, lands on six over anything clickable, and rolls while you press.",
+      "files": [
+        {
+          "path": "components/cursors/dice.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/dice.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "plane",
+      "type": "registry:component",
+      "categories": [
+        "Toys"
+      ],
+      "title": "Plane",
+      "description": "A paper plane that glides after the pointer and banks into its turns. It circles controls; a click throws it.",
+      "files": [
+        {
+          "path": "components/cursors/plane.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/plane.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "snake",
+      "type": "registry:component",
+      "categories": [
+        "Retro"
+      ],
+      "title": "Snake",
+      "description": "The phone-game snake, chasing the pointer square by square. It grows over controls and speeds up on press.",
+      "files": [
+        {
+          "path": "components/cursors/snake.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/snake.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "pixel",
+      "type": "registry:component",
+      "categories": [
+        "Retro"
+      ],
+      "title": "Pixel",
+      "description": "A pixel cursor on an 8px grid with a stepped, fading trail. Over controls it draws a blinking selection.",
+      "files": [
+        {
+          "path": "components/cursors/pixel.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/pixel.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "sun",
+      "type": "registry:component",
+      "categories": [
+        "Weather"
+      ],
+      "title": "Sun",
+      "description": "A sun whose rays turn slowly. They stretch and spin over anything clickable; a press brings an eclipse.",
+      "files": [
+        {
+          "path": "components/cursors/sun.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/sun.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "tornado",
+      "type": "registry:component",
+      "categories": [
+        "Weather"
+      ],
+      "title": "Tornado",
+      "description": "A twister whose funnel sways and leans behind your motion. It towers over controls and whips round on press.",
+      "files": [
+        {
+          "path": "components/cursors/tornado.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/tornado.tsx"
         }
       ],
       "registryDependencies": [

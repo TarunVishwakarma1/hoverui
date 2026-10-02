@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { INTERACTIVE, cursorRoot, useCursor } from "@/hooks/use-cursor";
+import { cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** Exact dot + lagging ring that swells over interactive elements and squeezes on press. */
 export function RingCursor({ className = "" }: { className?: string }) {
@@ -11,7 +11,7 @@ export function RingCursor({ className = "" }: { className?: string }) {
     const [circle, dot] = el.children as HTMLCollectionOf<HTMLElement>;
     r.x += (p.x - r.x) * p.ease(12);
     r.y += (p.y - r.y) * p.ease(12);
-    r.scale += ((p.down ? 0.7 : p.target?.closest(INTERACTIVE) ? 1.8 : 1) - r.scale) * p.ease(16);
+    r.scale += ((p.down ? 0.7 : p.hover ? 1.8 : 1) - r.scale) * p.ease(16);
     circle.style.transform = `translate(${r.x}px, ${r.y}px) scale(${r.scale})`;
     dot.style.transform = `translate(${p.x}px, ${p.y}px)`;
   });

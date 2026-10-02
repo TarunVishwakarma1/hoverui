@@ -3,7 +3,7 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { attributes, getCursor, cursors, Specimen } from "../../../catalog";
+import { attributes, classNameDoc, cursors, getCursor, Specimen } from "../../../catalog";
 import { Arrow, Code, GITHUB, Install, JsonLd, Preview, Row, SITE, Words, siteOpenGraph } from "../../../ui";
 
 export const dynamicParams = false;
@@ -47,12 +47,7 @@ export function Section() {
   );
 }`;
   const props: [string, string][] = [
-    [
-      "className",
-      cursor.name === "label"
-        ? "Colors the dot and pill through currentColor, e.g. text-pink-500. The pill's words switch to black or white to stay readable."
-        : "Colors the cursor through currentColor, e.g. text-pink-500. To read on any background, pass text-white mix-blend-difference, as this site does.",
-    ],
+    ["className", classNameDoc(cursor.name)],
     ...(attributes[cursor.name] ?? []),
   ];
 
@@ -111,9 +106,8 @@ export function Section() {
               <cursor.Cursor />
               <Specimen name={cursor.name} />
             </Preview>
-            <dl className="mt-8 grid grid-cols-2 gap-x-6 border-t border-hairline sm:grid-cols-5">
+            <dl className="mt-8 grid grid-cols-2 gap-x-6 border-t border-hairline sm:grid-cols-4">
               {[
-                ["No.", cursor.number],
                 ["Kind", cursor.category],
                 ["Hook", "useCursor"],
                 ["Dependencies", "None"],
@@ -183,10 +177,7 @@ export function Section() {
                   <Arrow to={to as "left" | "right"} />
                 </span>
                 <span className="sr-only">{label as string} cursor:</span>
-                <span className="flex items-baseline gap-3">
-                  <span className="text-[22px] leading-7 tracking-[-0.01em]">{target.title}</span>
-                  <span className="mono-label text-ink-soft">{target.number}</span>
-                </span>
+                <span className="text-[22px] leading-7 tracking-[-0.01em]">{target.title}</span>
               </Link>
             );
           })}

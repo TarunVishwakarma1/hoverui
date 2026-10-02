@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { INTERACTIVE, cursorRoot, useCursor } from "@/hooks/use-cursor";
+import { cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** A printer's registration mark: exact crosshair, a trailing ring that opens and fills over anything clickable. */
 export function RegisterCursor({ className = "" }: { className?: string }) {
@@ -9,7 +9,7 @@ export function RegisterCursor({ className = "" }: { className?: string }) {
   const ref = useCursor((p, el) => {
     const r = ring.current;
     const [cross, circle] = el.children as HTMLCollectionOf<HTMLElement>;
-    const hot = !!p.target?.closest(INTERACTIVE);
+    const hot = !!p.hover;
     r.x += (p.x - r.x) * p.ease(22);
     r.y += (p.y - r.y) * p.ease(22);
     r.scale += ((p.down ? 1.4 : hot ? 2.4 : 1) - r.scale) * p.ease(16);

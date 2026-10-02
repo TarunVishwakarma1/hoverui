@@ -3,7 +3,7 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { cursors, getHook, hooks } from "../../../catalog";
+import { categories, getHook, hooks } from "../../../catalog";
 import { Code, GITHUB, Install, JsonLd, Row, SITE, siteOpenGraph } from "../../../ui";
 
 export const dynamicParams = false;
@@ -45,9 +45,12 @@ export function DotCursor({ className = "" }: { className?: string }) {
 const api: [string, string][] = [
   ["useCursor(frame)", "Returns a ref for your cursor's root element. That element's parent becomes the cursor area: the native cursor hides there, and frame(pointer, element) runs every animation frame while a mouse is inside."],
   ["pointer.x, pointer.y", "The pointer position in viewport pixels."],
-  ["pointer.down", "True while a mouse button is held."],
-  ["pointer.target", "The element under the pointer, for hover effects: pointer.target?.closest(INTERACTIVE)."],
+  ["pointer.down", "True while the main mouse button is held."],
+  ["pointer.target", "The element under the pointer."],
+  ["pointer.hover", "The clickable element under the pointer (anything matching INTERACTIVE) inside the cursor's area, or null: if (pointer.hover) grow(). A link wrapping the whole area doesn't count."],
   ["pointer.ease(speed)", "A frame-rate independent smoothing factor: pos += (pointer.x - pos) * pointer.ease(12). Returns 1 on entry and under reduced motion, so cursors snap instead of trailing."],
+  ["pointer.dt", "Seconds since the last frame, for springs, particles and anything time-based. 0 on the frame the pointer enters."],
+  ["pointer.reduced", "True when the visitor prefers reduced motion: skip anything that moves on its own, like bobbing, spinning or trails."],
   ["cursorRoot", "Tailwind classes for the root: fixed, pointer-events-none, hidden until the pointer is inside the area."],
   ["INTERACTIVE", "The selector cursors treat as hover targets."],
 ];
@@ -103,16 +106,22 @@ export default async function HookPage({ params }: PageProps<"/hooks/[name]">) {
       </div>
 
       <Row title="Used by">
-        <ul className="flex flex-wrap gap-x-8 gap-y-3">
-          {cursors.map((c) => (
-            <li key={c.name}>
-              <Link href={`/cursors/${c.name}`} className="flex items-baseline gap-3 hover:underline hover:underline-offset-4">
-                <span className="text-[22px] leading-7 tracking-[-0.01em]">{c.title}</span>
-                <span className="mono-label text-ink-soft">{c.number}</span>
-              </Link>
-            </li>
+        <div className="columns-2 gap-x-8 sm:columns-3 xl:columns-4">
+          {categories.map((group) => (
+            <div key={group.id} className="mb-6 break-inside-avoid">
+              <p className="mono-label text-ink-soft">{group.name}</p>
+              <ul className="mt-2 flex flex-col">
+                {group.cursors.map((c) => (
+                  <li key={c.name}>
+                    <Link href={`/cursors/${c.name}`} className="block text-[15px] leading-6 hover:underline hover:underline-offset-4">
+                      {c.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </Row>
 
       <Row title="Your own cursor">

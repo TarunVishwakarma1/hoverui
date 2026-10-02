@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore, type ComponentProps } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ComponentProps } from "react";
 
 export function CopyButton({ text, className = "" }: { text: string; className?: string }) {
   const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
@@ -77,5 +77,13 @@ export function NavLink(props: ComponentProps<typeof Link>) {
   const path = usePathname();
   const href = String(props.href);
   const current = path === href ? "page" : path.startsWith(`${href}/`) ? "true" : undefined;
-  return <Link {...props} aria-current={current} />;
+  const ref = useRef<HTMLAnchorElement>(null);
+  // In a long scrolling index, bring the current entry into view (the nav box only, never the page).
+  useEffect(() => {
+    const box = ref.current?.closest("nav");
+    if (current !== "page" || !ref.current || !box) return;
+    const [r, b] = [ref.current.getBoundingClientRect(), box.getBoundingClientRect()];
+    if (r.top < b.top || r.bottom > b.bottom) box.scrollTop += r.top - b.top - b.height / 2;
+  }, [current]);
+  return <Link {...props} ref={ref} aria-current={current} />;
 }

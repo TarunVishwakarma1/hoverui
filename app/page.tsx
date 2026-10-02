@@ -63,17 +63,14 @@ export default function Home() {
 
       <nav aria-label="Featured cursors" className={container}>
         <ol className="grid border-t border-hairline sm:grid-cols-2 lg:grid-cols-5">
-          {/* Below lg the hero's own credit sits right above this row, so cursor 01 is listed only on wide screens. */}
+          {/* Below lg the hero's own credit sits right above this row, so the first cursor is listed only on wide screens. */}
           {featured.map((p, i) => (
             <li
               key={p.name}
               className={`border-b border-dashed border-hairline sm:max-lg:odd:border-l sm:max-lg:odd:pl-6 lg:border-b-0 lg:border-l lg:px-6 lg:first:border-l-0 lg:first:pl-0 ${i === 0 ? "max-lg:hidden" : ""}`}
             >
               <Link href={`/cursors/${p.name}`} className="group flex h-full flex-col gap-2 py-6 sm:pr-6">
-                <span className="flex items-baseline justify-between gap-3">
-                  <span className="text-[22px] leading-7 tracking-[-0.01em] group-hover:underline group-hover:underline-offset-4">{p.title}</span>
-                  <span className="mono-label text-ink-soft">{p.number}</span>
-                </span>
+                <span className="text-[22px] leading-7 tracking-[-0.01em] group-hover:underline group-hover:underline-offset-4">{p.title}</span>
                 <span className="text-[15px] leading-[22px] text-ink-soft">
                   <Words text={p.description} />
                 </span>

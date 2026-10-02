@@ -41,15 +41,17 @@ Every cursor is a small client component that renders an `aria-hidden`, `pointer
 - **The area is the parent element.** On mount, the cursor's parent gets `data-cursor-area`. A style tag injected once hides the native cursor inside every area.
 - **Gating.** Nothing attaches unless the device has a fine, hovering pointer: `(hover: hover) and (pointer: fine)`.
 - **Events.**
-  - `pointermove` and `pointerover` set the position and the element under the pointer. `pointerover` matters: scrolling under a still pointer fires boundary events but no move.
+  - `pointermove` and `pointerover` set the position, the element under the pointer and `pointer.hover`. `pointerover` matters: scrolling under a still pointer fires boundary events but no move. Touch pointers are ignored, so a touchscreen laptop's taps never wake the mouse cursor.
   - `pointerleave` deactivates the cursor.
-  - `pointerdown` and `pointerup` track the press.
+  - `pointerdown` (main button only) and `pointerup` track the press; window `blur` releases it. A right-click opens a menu that swallows its `pointerup`, which is why only the main button counts.
+- **Hover.** `pointer.hover` is the closest `INTERACTIVE` element above the target, but only if it sits inside the area. A link that wraps the whole area, like a gallery tile, is not a hover inside it. Cursors read `pointer.hover` instead of walking the DOM themselves.
 - **Nesting.** On each event, a cursor is active only if the closest `[data-cursor-area]` above the target is its own area, so the innermost cursor wins and outer cursors hand over.
 - **The frame loop.** `requestAnimationFrame` runs only while the cursor is active. Each frame calls `frame(pointer, element)`. Cursors write `transform` directly on their elements; nothing per frame goes through React state.
 - **Smoothing.** `pointer.ease(speed)` returns `1 - exp(-speed * dt)`, which is frame-rate independent. It returns `1` (snap) on the first frame after entering and always under `prefers-reduced-motion`.
+- **Time.** `pointer.dt` is the seconds since the last frame (capped at 0.1, and 0 on the entry frame) for springs, particles and anything time-based. `pointer.reduced` tells a cursor to skip motion of its own: trails collapse, particles stop, bobbing and spinning hold still.
 - **Visibility.** The root toggles `data-active`, which fades it in and out over 150ms (`cursorRoot` classes).
 
-A cursor's own look is whatever its frame callback draws: Ring lerps a ring behind an exact dot, Trail chains fourteen followers, Blend scales a difference-blended disc, Label reads `data-cursor-label` into a pill, and Register pairs an exact crosshair with an opening ring.
+A cursor's own look is whatever its frame callback draws: Ring lerps a ring behind an exact dot, Trail chains fourteen followers, Blend scales a difference-blended disc, Label reads `data-cursor-label` into a pill, and Register pairs an exact crosshair with an opening ring. The drawn cursors also export their artwork as `<Name>Art` (or `StampMark`), which the site reuses for the resting drawings. One cursor reaches outside its overlay: Magnet sets the hovered control's inline `translate` and releases it with a Web Animation when the pointer leaves it.
 
 ### Known limits
 
@@ -63,7 +65,7 @@ Next.js 16 App Router, React 19, Tailwind CSS v4, Bun. Every route is statically
 | Route | File | Notes |
 | --- | --- | --- |
 | `/` | `app/page.tsx` | The first five cursors (`featured`), the placement demo, the global Register cursor. |
-| `/cursors` | `app/(docs)/cursors/page.tsx` | A gallery of live preview tiles, one per cursor: each wears its cursor on hover, shows a resting `Scene` otherwise, and opens its page. |
+| `/cursors` | `app/(docs)/cursors/page.tsx` | A gallery of live preview tiles in one section per category (`#<category>` anchors, linked from the sidebar): each tile wears its cursor on hover, shows a resting `Scene` otherwise, and opens its page. |
 | `/cursors/[name]` | `app/(docs)/cursors/[name]/page.tsx` | `generateStaticParams` from the registry, `dynamicParams = false`. Source files are read from disk at build time. |
 | `/hooks/[name]` | `app/(docs)/hooks/[name]/page.tsx` | One page per `registry:hook` item: install, the cursors that use it, a custom-cursor example, API and source. |
 | docs layout | `app/(docs)/layout.tsx` | The sidebar beside every `/cursors` and `/hooks` page (from `lg`): cursors grouped by `categories`, then Hooks; `NavLink` marks the current entry with the registration mark. The `(docs)` route group adds no URL segment. |
@@ -74,11 +76,12 @@ Next.js 16 App Router, React 19, Tailwind CSS v4, Bun. Every route is statically
 
 This module turns `registry.json` into what the pages render:
 
-- **`cursors`:** number, title, description, category, files and a `Cursor` component.
+- **`cursors`:** name, title, description, category, files and a `Cursor` component. The site shows no cursor numbers; only the README's table numbers them, in registry order.
 - **`categories`:** the cursors grouped by category, in registry order.
 - **`featured`:** the first five.
-- **`Specimen`:** the composition authored inside each preview, plus a resting geometric drawing of the cursor (`data-resting`). The drawing shows on touch and before a pointer arrives, and fades while the live cursor is active.
-- **`cursorTone`:** the site mounts its cursors with `text-white mix-blend-difference`, so they read over paper and over ink-filled hover states in both themes. Label is the exception: its pill carries words, so it stays opaque.
+- **`Scene`** (`app/scenes.tsx`): each cursor drawn at rest, engaged with a small target (`data-resting`). Gallery tiles show it on touch and before a pointer arrives; it fades while the live cursor is active. Scenes are server components, so they can render a cursor's `<Name>Art` but not call functions or read arrays from a `"use client"` module.
+- **`Specimen`:** the composition inside each cursor page's preview. Ring, Trail, Blend, Label and Register have their own; every other cursor gets its `Scene`, a line of copy, a button to hover and press, and a link back to the gallery.
+- **`cursorTone`:** the site mounts its cursors with `text-white mix-blend-difference`, so they read over paper and over ink-filled hover states in both themes. The exceptions keep their own colors: Label's pill carries words, the colorful and drawn cursors would turn to negatives, and Flashlight's dark would become a glare.
 
 ### Theming
 

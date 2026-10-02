@@ -29,8 +29,8 @@ Cursors only, and scoped by placement: drop a cursor inside any element and it o
 
 ## Capabilities and Constraints
 
-- Cursors shipped: Ring, Trail, Blend, Label, Register (`components/cursors/`), grouped in `registry.json` by `categories` (Followers, Inverting, Labels, Marks). Every cursor depends on the `useCursor` hook (registry item `use-cursor`, `hooks/use-cursor.ts`).
-- The site is built to hold 20 to 30 cursors: section navigation in the sticky bar, a gallery at `/cursors`, and a sidebar index grouped by kind beside every `/cursors` page.
+- Cursors shipped (60, `components/cursors/`), grouped in `registry.json` by `categories`: Followers (Ring, Trail, Magnet); Lenses (Blend, Glass, Focus, Goggles); Labels (Label, Tooltip, Peek); Marks (Register, Frame, Stamp, Caret); Colorful (Offset, Ribbon, Confetti, Glow, Neon, Sparkle, Splat); Space (Comet, Orbit, Rocket, Astronaut, UFO, Constellation); Halloween (Ghost, Spider, Flashlight, Bat, Pumpkin, Candle); Mechanical (Gear, Readout, Compass, Clock, Radar); Weird (Googly, Jelly, Doodle, Fly); Retro (Classic, Chomp, Matrix, Snake, Pixel); Weather (Cloud, Zap, Snow, Sun, Tornado); Toys (Balloon, Yo-yo, Dice, Plane); Ocean (Bubbles, Fish, Jellyfish, Ripple). Every cursor depends on the `useCursor` hook (registry item `use-cursor`, `hooks/use-cursor.ts`).
+- The site is built to hold dozens of cursors: section navigation in the sticky bar, a gallery at `/cursors`, and a sidebar index grouped by kind beside every `/cursors` page.
 - Known limit relevant to the Mixer: two cursors in one element share the area attribute, so unmounting one switches the other off.
 - Zero runtime dependencies beyond React 19; requires Tailwind v4 classes in the consumer project.
 - Cursors render nothing interactive (`aria-hidden`, `pointer-events-none`), activate only on `(hover: hover) and (pointer: fine)`, snap instead of easing under `prefers-reduced-motion`.
@@ -47,7 +47,7 @@ Cursors only, and scoped by placement: drop a cursor inside any element and it o
 
 ## Evidence on Hand
 
-Five working cursor components and the live demos the site itself provides. No testimonials, user counts, GitHub stars, download numbers or company logos exist; never fabricate them.
+60 working cursor components and the live demos the site itself provides. No testimonials, user counts, GitHub stars, download numbers or company logos exist; never fabricate them.
 
 ## Product Principles
 
