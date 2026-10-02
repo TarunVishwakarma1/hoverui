@@ -6,6 +6,8 @@ Changes to the installable cursors and the `useCursor` hook are listed first in 
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-02
+
 ### Added
 
 - Fifty-five cursors, for 60 in all, in 13 categories:
