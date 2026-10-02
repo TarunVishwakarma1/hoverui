@@ -4,7 +4,7 @@
   --color-paper: #f5f4f6;
   --color-paper-warm: #faf6f5;
   --color-paper-cool: #eef3ef;
-  --color-plate: #ebeaee;
+  --color-preview: #ebeaee;
   --color-ink: #16181a;
   --color-ink-soft: #55585c;
   --color-hairline: #c9c7c4;
@@ -15,6 +15,23 @@
 @theme inline {
   --font-sans: var(--font-host);
   --font-mono: var(--font-fragment);
+}
+
+/*
+ * Black-stock edition: the same annual reprinted on black uncoated stock. Warm white ink, previews one step
+ * lighter than the sheet, the seal deepened so ink still reads on it. Each light-mode contrast is mirrored.
+ * The head script in app/layout.tsx sets data-theme before first paint.
+ */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #131315;
+  --color-paper-warm: #1a1719;
+  --color-paper-cool: #121815;
+  --color-preview: #1d1d21;
+  --color-ink: #e9e8e4;
+  --color-ink-soft: #9b9994;
+  --color-hairline: #3a3a40;
+  --color-seal: #363962;
 }
 
 /* No custom cursor here: the exact inverse of use-cursor's own gate. */
@@ -101,11 +118,11 @@ pre {
   font-feature-settings: "liga" 0, "calt" 0;
 }
 
-/* A plate's resting specimen steps aside while its live cursor is inside. */
+/* A preview's resting specimen steps aside while its live cursor is inside. */
 [data-resting] {
   transition: opacity 150ms var(--ease-annual);
 }
-[data-plate]:has(> [data-active]) [data-resting] {
+[data-preview]:has(> [data-active]) [data-resting] {
   opacity: 0;
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { cursorRoot, useCursor } from "./use-cursor";
+import { cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 const DOTS = 14;
 

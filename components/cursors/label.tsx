@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { cursorRoot, useCursor } from "./use-cursor";
+import { cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** A dot that morphs into a pill showing the hovered element's `data-cursor-label`. */
 export function LabelCursor({ className = "" }: { className?: string }) {

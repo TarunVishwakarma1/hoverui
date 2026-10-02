@@ -6,51 +6,111 @@
     {
       "name": "ring",
       "type": "registry:component",
+      "categories": [
+        "Followers"
+      ],
       "title": "Ring",
       "description": "Exact dot, lagging ring. Swells on links, squeezes on click.",
       "files": [
-        { "path": "components/cursors/ring.tsx", "type": "registry:component", "target": "@components/cursors/ring.tsx" },
-        { "path": "components/cursors/use-cursor.ts", "type": "registry:hook", "target": "@components/cursors/use-cursor.ts" }
+        {
+          "path": "components/cursors/ring.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/ring.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
       ]
     },
     {
       "name": "trail",
       "type": "registry:component",
+      "categories": [
+        "Followers"
+      ],
       "title": "Trail",
       "description": "A tapering chain of dots, each chasing the one ahead.",
       "files": [
-        { "path": "components/cursors/trail.tsx", "type": "registry:component", "target": "@components/cursors/trail.tsx" },
-        { "path": "components/cursors/use-cursor.ts", "type": "registry:hook", "target": "@components/cursors/use-cursor.ts" }
+        {
+          "path": "components/cursors/trail.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/trail.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
       ]
     },
     {
       "name": "blend",
       "type": "registry:component",
+      "categories": [
+        "Inverting"
+      ],
       "title": "Blend",
       "description": "Inverts whatever is beneath it. Grows over anything clickable.",
       "files": [
-        { "path": "components/cursors/blend.tsx", "type": "registry:component", "target": "@components/cursors/blend.tsx" },
-        { "path": "components/cursors/use-cursor.ts", "type": "registry:hook", "target": "@components/cursors/use-cursor.ts" }
+        {
+          "path": "components/cursors/blend.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/blend.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
       ]
     },
     {
       "name": "label",
       "type": "registry:component",
+      "categories": [
+        "Labels"
+      ],
       "title": "Label",
       "description": "Morphs into a pill reading the hovered element's data-cursor-label.",
       "files": [
-        { "path": "components/cursors/label.tsx", "type": "registry:component", "target": "@components/cursors/label.tsx" },
-        { "path": "components/cursors/use-cursor.ts", "type": "registry:hook", "target": "@components/cursors/use-cursor.ts" }
+        {
+          "path": "components/cursors/label.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/label.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
       ]
     },
     {
       "name": "register",
       "type": "registry:component",
+      "categories": [
+        "Marks"
+      ],
       "title": "Register",
       "description": "A printer's registration mark. Exact crosshair; the ring opens and fills over anything clickable.",
       "files": [
-        { "path": "components/cursors/register.tsx", "type": "registry:component", "target": "@components/cursors/register.tsx" },
-        { "path": "components/cursors/use-cursor.ts", "type": "registry:hook", "target": "@components/cursors/use-cursor.ts" }
+        {
+          "path": "components/cursors/register.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/register.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ]
+    },
+    {
+      "name": "use-cursor",
+      "type": "registry:hook",
+      "title": "useCursor",
+      "description": "The cursor engine every hover-ui cursor runs on: turns its parent element into a cursor area and calls your frame function while a mouse is inside.",
+      "categories": [
+        "Hooks"
+      ],
+      "files": [
+        {
+          "path": "hooks/use-cursor.ts",
+          "type": "registry:hook"
+        }
       ]
     }
   ]

@@ -1,15 +1,56 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
-import { CopyButton, NavLink } from "./client";
-import { plates, type PlateData } from "./plates";
+import { CopyButton, InstallLink, NavLink, ThemeToggle } from "./client";
+import registry from "@/registry.json";
+import type { CursorData } from "./catalog";
 
-export const SITE = "https://hoverui.fun";
+export const SITE = registry.homepage;
+export const GITHUB = "https://github.com/TarunVishwakarma1/hoverui";
+
+/**
+ * Open Graph fields every page shares. A page that sets its own openGraph replaces the layout's whole
+ * object, so the share card is listed here rather than as an app/opengraph-image file only the root would get.
+ */
+export const siteOpenGraph = {
+  type: "website",
+  siteName: "hover-ui",
+  locale: "en_US",
+  images: { url: "/og.png", width: 1200, height: 630, alt: "hover-ui: cursor components for React. Every cursor owns the element you drop it in." },
+} as const;
+
+/** A docs section: heading in four columns, content in eight. */
+export function Row({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="grid grid-cols-1 gap-x-10 gap-y-6 border-t border-hairline py-12 lg:grid-cols-12">
+      <h2 className="text-[28px] leading-8 tracking-[-0.02em] lg:col-span-4">{title}</h2>
+      <div className="flex min-w-0 flex-col gap-5 lg:col-span-8">{children}</div>
+    </section>
+  );
+}
+
+/** A cursor description with any data attribute it names set as unbreakable code. */
+export function Words({ text }: { text: string }) {
+  return text.split(/(data-[a-z-]+)/).map((part, i) =>
+    i % 2 ? (
+      <code key={i} className="font-mono text-[0.9em] whitespace-nowrap">
+        {part}
+      </code>
+    ) : (
+      part
+    ),
+  );
+}
+
+/** Structured data for search engines; `<` is escaped so no string can close the script tag. */
+export function JsonLd({ data }: { data: Record<string, unknown> }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
+}
 export const installCommand = (name: string) => `npx shadcn@latest add ${SITE}/r/${name}.json`;
 
 export const container = "mx-auto w-full max-w-[1440px] px-6 sm:px-10";
 export const h2 = "text-[clamp(2.25rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.02em] text-balance";
 
-/** Printer's registration mark: the hotspot of every cursor, and the corner of every plate. */
+/** Printer's registration mark: the hotspot of every cursor, and the corner of every preview. */
 export function Mark({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden className={`size-6 shrink-0 ${className}`}>
@@ -31,25 +72,27 @@ export function Arrow({ to = "right", className = "" }: { to?: keyof typeof arro
   );
 }
 
-/** A live, registered plate. The cursor passed in owns the inner surface. */
-export function Plate({
+/** A live, registered preview. The cursor passed in owns the inner surface. */
+export function Preview({
   children,
   className = "",
-  surface = "bg-plate",
+  surface = "bg-preview",
+  touchNote = true,
 }: {
   children: ReactNode;
   className?: string;
   surface?: string;
+  touchNote?: boolean;
 }) {
   return (
     <div className={`relative ${className}`}>
       {["-left-[22px] -top-[22px]", "-right-[22px] -top-[22px]", "-bottom-[22px] -left-[22px]", "-bottom-[22px] -right-[22px]"].map((pos) => (
         <Mark key={pos} className={`absolute text-ink ${pos}`} />
       ))}
-      <div data-plate className={`relative h-full ${surface}`}>
+      <div data-preview className={`relative h-full ${surface}`}>
         {children}
-        {/* Set in the top margin between the registration marks, clear of whatever the plate holds. */}
-        <p className="mono-label absolute right-8 -top-7 hidden text-ink-soft cursorless:block">Needs a mouse</p>
+        {/* Set in the top margin between the registration marks, clear of whatever the preview holds. */}
+        {touchNote && <p className="mono-label absolute right-8 -top-7 hidden text-ink-soft cursorless:block">Needs a mouse</p>}
       </div>
     </div>
   );
@@ -114,21 +157,23 @@ export function Code({ title, code }: { title: string; code: string }) {
   );
 }
 
-/** The credits line under a plate: number, name, what it does, how to get it. */
-export function PlateCredits({ plate, install = true, className = "" }: { plate: PlateData; install?: boolean; className?: string }) {
+/** The credits line under a preview: number, name, what it does, how to get it. */
+export function CursorCredits({ cursor, install = true, className = "" }: { cursor: CursorData; install?: boolean; className?: string }) {
   return (
     <div className={`mt-8 flex min-w-0 flex-col gap-4 border-t border-hairline pt-4 ${className}`}>
       <div className="flex items-baseline justify-between gap-6">
         <h3 className="flex items-baseline gap-3 text-[22px] leading-7 tracking-[-0.01em]">
-          {plate.title}
-          <span className="mono-label text-ink-soft">{plate.number}</span>
+          {cursor.title}
+          <span className="mono-label text-ink-soft">{cursor.number}</span>
         </h3>
-        <Link href={`/plates/${plate.name}`} className="flex shrink-0 items-center gap-2 text-[15px] leading-5 hover:underline hover:underline-offset-4">
-          View plate <Arrow />
+        <Link href={`/cursors/${cursor.name}`} className="flex shrink-0 items-center gap-2 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+          View<span className="sr-only"> {cursor.title}</span> cursor <Arrow />
         </Link>
       </div>
-      <p className="max-w-[52ch] text-[15px] leading-[22px] text-ink-soft">{plate.description}</p>
-      {install && <Install name={plate.name} quiet />}
+      <p className="max-w-[52ch] text-[15px] leading-[22px] text-ink-soft">
+        <Words text={cursor.description} />
+      </p>
+      {install && <Install name={cursor.name} quiet />}
     </div>
   );
 }
@@ -136,25 +181,29 @@ export function PlateCredits({ plate, install = true, className = "" }: { plate:
 export function SiteBar() {
   return (
     <header className="sticky top-0 z-40 border-b border-hairline bg-paper">
-      <div className={`${container} flex h-18 items-center gap-10`}>
+      <div className={`${container} flex h-18 items-center gap-6 sm:gap-10`}>
         <Link href="/" className="flex items-center gap-2.5 tracking-[-0.01em]">
           <Mark className="size-5" />
           hover-ui
         </Link>
-        <nav aria-label="Plates" className="hidden flex-1 items-center gap-7 lg:flex">
-          {plates.map((p) => (
-            <NavLink
-              key={p.name}
-              href={`/plates/${p.name}`}
-              className="mono-label text-ink-soft hover:text-ink aria-[current=page]:text-ink aria-[current=page]:underline aria-[current=page]:underline-offset-[6px]"
-            >
-              {p.number} {p.title}
-            </NavLink>
-          ))}
+        <nav aria-label="Main" className="flex items-center gap-7">
+          <NavLink
+            href="/cursors"
+            className="mono-label text-ink-soft hover:text-ink [&[aria-current]]:text-ink [&[aria-current]]:underline [&[aria-current]]:underline-offset-[6px]"
+          >
+            Cursors
+          </NavLink>
+          <Link href="/#placement" className="mono-label hidden text-ink-soft hover:text-ink sm:inline">
+            Placement
+          </Link>
+          <a href={GITHUB} className="mono-label hidden text-ink-soft hover:text-ink sm:inline">
+            GitHub
+          </a>
         </nav>
-        <Link href="/#install" className="btn-secondary ml-auto">
-          Install
-        </Link>
+        <div className="ml-auto flex items-center gap-3">
+          <ThemeToggle />
+          <InstallLink className="btn-secondary">Install</InstallLink>
+        </div>
       </div>
     </header>
   );

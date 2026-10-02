@@ -1,0 +1,42 @@
+name: New cursor or change
+description: Propose a new cursor, or a change to how an existing one looks or behaves.
+title: "[Cursor]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Good cursor ideas make the pointer more expressive without hiding where it is. Describe the effect first; implementation details can wait.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is this?
+      options:
+        - A new cursor
+        - A change to an existing cursor
+        - A change to the shared hook (affects every cursor)
+        - A Cursor Mixer idea (combining cursors; planned paid feature)
+    validations:
+      required: true
+  - type: textarea
+    id: effect
+    attributes:
+      label: What should it do?
+      description: How it looks and moves at rest, over links and buttons, and when pressed.
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: Where would you use it?
+      description: The kind of page or section it is for (portfolio hero, case study gallery, product page...).
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Links, videos or sketches of the effect, if you have them.
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Pointer precision and reduced motion
+      description: Where is the exact hit point while this cursor is showing, and what should it do under prefers-reduced-motion?

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { INTERACTIVE, cursorRoot, useCursor } from "./use-cursor";
+import { INTERACTIVE, cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** A disc that inverts whatever is beneath it and grows over interactive elements. */
 export function BlendCursor({ className = "" }: { className?: string }) {

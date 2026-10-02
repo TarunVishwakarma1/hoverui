@@ -1,0 +1,71 @@
+name: Bug report
+description: A cursor, the shared hook, the install, or the site does not work as described.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Cursors depend heavily on the browser, the input device and the surrounding CSS, so the environment details below are what make a bug fixable.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - A cursor in my project
+        - The shared use-cursor hook
+        - Installing with the shadcn CLI
+        - The hoverui.fun site
+    validations:
+      required: true
+  - type: dropdown
+    id: cursor
+    attributes:
+      label: Which cursor?
+      multiple: true
+      options:
+        - Ring
+        - Trail
+        - Blend
+        - Label
+        - Register
+        - Not cursor-specific
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected to see instead. A screen recording helps a lot for motion bugs.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Where the cursor is placed (which element, nested or not) and what you do with the pointer.
+      placeholder: |
+        1. Put <TrailCursor /> inside a section with overflow: hidden
+        2. Scroll the page with the mouse held still
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, OS and input device
+      placeholder: Chrome 141, macOS 26, trackpad
+    validations:
+      required: true
+  - type: input
+    id: stack
+    attributes:
+      label: React, framework and Tailwind versions
+      placeholder: React 19.2, Next.js 16.3, Tailwind 4.3
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I reinstalled the cursor from the registry, so my copy of the files is current.
+        - label: I checked whether an ancestor with a transform, filter or contain set is involved (a known limit of fixed positioning).

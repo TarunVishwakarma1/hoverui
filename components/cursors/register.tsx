@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { INTERACTIVE, cursorRoot, useCursor } from "./use-cursor";
+import { INTERACTIVE, cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** A printer's registration mark: exact crosshair, a trailing ring that opens and fills over anything clickable. */
 export function RegisterCursor({ className = "" }: { className?: string }) {

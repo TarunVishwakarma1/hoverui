@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { INTERACTIVE, cursorRoot, useCursor } from "./use-cursor";
+import { INTERACTIVE, cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** Exact dot + lagging ring that swells over interactive elements and squeezes on press. */
 export function RingCursor({ className = "" }: { className?: string }) {
