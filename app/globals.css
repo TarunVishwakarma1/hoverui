@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-paper: #f5f4f6;
+  --color-paper-warm: #faf6f5;
+  --color-paper-cool: #eef3ef;
+  --color-plate: #ebeaee;
+  --color-ink: #16181a;
+  --color-ink-soft: #55585c;
+  --color-hairline: #c9c7c4;
+  --color-seal: #dcddf3;
+  --ease-annual: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-host);
+  --font-mono: var(--font-fragment);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* No custom cursor here: the exact inverse of use-cursor's own gate. */
+@custom-variant cursorless (@media not ((hover: hover) and (pointer: fine)));
+
+/* Controls are set in the grotesque, sentence case; mono stays for credits, data and code. */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 9px 16px;
+  font-size: 15px;
+  line-height: 20px;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
   }
 }
 
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-ink);
+  padding: 9px 16px;
+  font-size: 15px;
+  line-height: 20px;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+  }
+}
+
+@utility text-display {
+  font-size: clamp(3rem, 6.4vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* The sheet: near-white uncoated stock that drifts warm at one corner and cool at the other. */
+html {
+  color-scheme: light;
+  scrollbar-color: var(--color-hairline) transparent;
+  caret-color: var(--color-ink);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(70rem 50rem at 0% 0%, var(--color-paper-warm), transparent 70%),
+    radial-gradient(70rem 50rem at 100% 100%, var(--color-paper-cool), transparent 70%),
+    var(--color-paper);
+  color: var(--color-ink);
+  font-size: 17px;
+  line-height: 24px;
+}
+
+::selection {
+  background: var(--color-seal);
+  color: var(--color-ink);
+}
+
+/* Source on screen must read exactly as it copies. */
+code,
+pre {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* A plate's resting specimen steps aside while its live cursor is inside. */
+[data-resting] {
+  transition: opacity 150ms var(--ease-annual);
+}
+[data-plate]:has(> [data-active]) [data-resting] {
+  opacity: 0;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-ink);
+  outline-offset: 3px;
 }
