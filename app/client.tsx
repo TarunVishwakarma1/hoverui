@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { createContext, Suspense, use, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ComponentProps, type ReactNode } from "react";
+import { createContext, lazy, Suspense, use, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ComponentProps, type ReactNode } from "react";
 
-export function CopyButton({ text, className = "" }: { text: string; className?: string }) {
+export function CopyButton({ text, label = "Copy", className = "" }: { text: string; label?: string; className?: string }) {
   const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
   const copy = async () => {
     try {
@@ -18,7 +18,7 @@ export function CopyButton({ text, className = "" }: { text: string; className?:
 
   return (
     <button type="button" onClick={copy} className={`shrink-0 px-4 text-[15px] leading-5 ${className}`}>
-      <span aria-live="polite">{state === "copied" ? "Copied" : state === "failed" ? "Select to copy" : "Copy"}</span>
+      <span aria-live="polite">{state === "copied" ? "Copied" : state === "failed" ? "Select to copy" : label}</span>
     </button>
   );
 }
@@ -92,7 +92,7 @@ export function NavLink(props: ComponentProps<typeof Link>) {
 const STOP = new Set("a an and any are as at be by each every for from in into is it its of on or over so the their then they this to under up with you your".split(" "));
 
 /** Lowercase words without accents, punctuation or filler, so "Yo-yo", "yo yo" and "YO-YO" read the same. */
-const searchWords = (text: string) =>
+export const searchWords = (text: string) =>
   text
     .toLowerCase()
     .normalize("NFD")
@@ -107,7 +107,7 @@ const sameWord = (w: string, t: string) => w === t || w === `${t}s` || w === `${
  * The names a search finds. Whole words win: "rain" finds Cloud and Matrix, not every rainbow. Only when no cursor has
  * them all as words does a term count as the start of a word, so a half-typed "spoo" already finds the spooky ones.
  */
-const searchFind = (index: { name: string; words: string[] }[], terms: string[]) => {
+export const searchFind = (index: { name: string; words: string[] }[], terms: string[]) => {
   const whole = index.filter((c) => terms.every((t) => c.words.some((w) => sameWord(w, t))));
   return (whole.length ? whole : index.filter((c) => terms.every((t) => c.words.some((w) => w.startsWith(t))))).map((c) => c.name);
 };
@@ -131,9 +131,9 @@ function QueryFromAddress({ onQuery }: { onQuery: (q: string) => void }) {
 }
 
 /**
- * The all-cursors search: a field that filters the gallery beneath it by name, category, description or keyword as you
- * type. It keeps the search in the address (?q=), focuses on "/", clears on Escape, and sticks under the bar once the
- * page scrolls. The gallery stays server-rendered; sections and tiles read what to show from context.
+ * The all-cursors filter: a field that narrows the gallery beneath it by name, category, description or keyword as you
+ * type. It keeps the search in the address (?q=), clears on Escape, and sticks under the bar once the page scrolls.
+ * The gallery stays server-rendered; sections and tiles read what to show from context.
  */
 export function CursorSearch({ index, children }: { index: { name: string; text: string }[]; children: ReactNode }) {
   const [query, setQuery] = useState("");
@@ -156,13 +156,6 @@ export function CursorSearch({ index, children }: { index: { name: string; text:
   };
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const t = e.target as HTMLElement;
-      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey || t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
-      e.preventDefault();
-      field.current?.focus();
-    };
-    addEventListener("keydown", onKey);
     // A sidebar category link aims at a section the search may be hiding: clear it first, so there is somewhere to go.
     const onClick = (e: MouseEvent) => {
       if ((e.target as Element).closest?.("a")?.getAttribute("href")?.startsWith("/cursors#")) search("");
@@ -172,7 +165,6 @@ export function CursorSearch({ index, children }: { index: { name: string; text:
     const observer = new IntersectionObserver(([entry]) => setStuck(!entry.isIntersecting), { rootMargin: "-73px 0px 0px 0px" });
     if (edge.current) observer.observe(edge.current);
     return () => {
-      removeEventListener("keydown", onKey);
       removeEventListener("click", onClick, true);
       observer.disconnect();
     };
@@ -191,23 +183,20 @@ export function CursorSearch({ index, children }: { index: { name: string; text:
         className="sticky top-18 z-30 -mt-px border-b border-transparent pt-3 pb-6 data-stuck:border-hairline data-stuck:bg-paper data-stuck:pb-3"
       >
         <label className="relative flex h-12 max-w-xl items-center border border-ink has-[input:focus-visible]:outline-1 has-[input:focus-visible]:outline-offset-3 has-[input:focus-visible]:outline-ink">
-          <svg viewBox="0 0 24 24" aria-hidden className="pointer-events-none absolute left-4 size-[18px]">
-            <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.25" />
-            <path d="m15.5 15.5 5 5" stroke="currentColor" strokeWidth="1.25" />
-          </svg>
+          <Magnifier className="pointer-events-none absolute left-4 size-[18px]" />
           <input
             ref={field}
             type="search"
             value={query}
             onChange={(e) => search(e.target.value)}
             onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), search(""))}
-            aria-label="Search cursors"
-            placeholder="Search by name, mood or thing"
+            aria-label="Filter cursors"
+            placeholder="Filter by name, mood or thing"
             autoComplete="off"
             spellCheck={false}
             className="h-full min-w-0 flex-1 bg-transparent pr-3 pl-11 text-[15px] placeholder:text-ink-soft focus-visible:outline-none! [&::-webkit-search-cancel-button]:appearance-none"
           />
-          {query ? (
+          {query && (
             <>
               <span aria-hidden className="mono-label shrink-0 text-ink-soft">
                 {count} of {index.length}
@@ -216,10 +205,6 @@ export function CursorSearch({ index, children }: { index: { name: string; text:
                 Clear
               </button>
             </>
-          ) : (
-            <kbd aria-hidden className="mono-label mr-4 shrink-0 border border-hairline px-1.5 text-ink-soft cursorless:hidden">
-              /
-            </kbd>
           )}
         </label>
         <p aria-live="polite" className="sr-only">
@@ -267,4 +252,156 @@ export function SearchSection({ id, title, names, children }: { id: string; titl
 export function SearchItem({ name, children }: { name: string; children: ReactNode }) {
   const shown = use(Shown);
   return <li hidden={!!shown && !shown.has(name)}>{children}</li>;
+}
+
+/** The search glyph: a lens and its handle in the site's 1.25px stroke. */
+export function Magnifier({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className}>
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.25" />
+      <path d="m15.5 15.5 5 5" stroke="currentColor" strokeWidth="1.25" />
+    </svg>
+  );
+}
+
+/** The results panel, with every cursor in it: fetched the first time someone reaches for the search, not with every page. */
+const SearchPanel = lazy(() => import("./search"));
+
+/**
+ * The search in the bar, on every page: a field from lg, a square button below it that opens the field over the bar.
+ * Focus or type and a panel drops beneath the bar with the matches and, beside them, the highlighted cursor live.
+ * "/" or ⌘K reaches it from anywhere; Escape clears, then closes.
+ */
+export function SiteSearch() {
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const now = usePathname();
+  const [path, setPath] = useState(now);
+  const [wanted, setWanted] = useState(false);
+  const field = useRef<HTMLInputElement>(null);
+  const root = useRef<HTMLDivElement>(null);
+  // Arriving somewhere new closes the search behind you.
+  if (now !== path) {
+    setPath(now);
+    setOpen(false);
+    setQuery("");
+  }
+  const reach = () => {
+    setWanted(true);
+    setOpen(true);
+  };
+  const close = () => {
+    setOpen(false);
+    field.current?.blur();
+  };
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      const typing = t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName);
+      if ((e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey)) {
+        e.preventDefault();
+        setWanted(true);
+        setOpen(true);
+        field.current?.focus();
+      }
+    };
+    const onDown = (e: PointerEvent) => !root.current?.contains(e.target as Node) && setOpen(false);
+    addEventListener("keydown", onKey);
+    addEventListener("pointerdown", onDown);
+    return () => {
+      removeEventListener("keydown", onKey);
+      removeEventListener("pointerdown", onDown);
+    };
+  }, []);
+
+  return (
+    <div ref={root} className="flex items-center" onPointerEnter={() => setWanted(true)}>
+      <button
+        type="button"
+        onClick={() => (reach(), requestAnimationFrame(() => field.current?.focus()))}
+        aria-label="Search cursors"
+        className="flex size-10 shrink-0 items-center justify-center border border-ink transition-colors duration-100 hover:bg-ink hover:text-paper lg:hidden"
+      >
+        <Magnifier className="size-[18px]" />
+      </button>
+      {/* Below lg the field opens over the whole bar row; from lg it sits in it. */}
+      <label
+        data-open={open || undefined}
+        className="relative hidden h-10 items-center border border-ink bg-paper has-[input:focus-visible]:outline-1 has-[input:focus-visible]:outline-offset-3 has-[input:focus-visible]:outline-ink data-open:max-lg:absolute data-open:max-lg:inset-x-6 data-open:max-lg:top-4 data-open:max-lg:z-10 data-open:max-lg:flex sm:data-open:max-lg:inset-x-10 lg:flex lg:w-60 xl:w-72"
+      >
+        <Magnifier className="pointer-events-none absolute left-3 size-[18px]" />
+        <input
+          ref={field}
+          type="search"
+          role="combobox"
+          aria-expanded={open}
+          aria-controls="site-search-results"
+          aria-autocomplete="list"
+          aria-label="Search cursors"
+          placeholder="Search cursors"
+          autoComplete="off"
+          spellCheck={false}
+          value={query}
+          onFocus={reach}
+          onChange={(e) => (setQuery(e.target.value), reach())}
+          onKeyDown={(e) => {
+            if (e.key !== "Escape") return;
+            e.preventDefault();
+            if (query) setQuery("");
+            else close();
+          }}
+          className="h-full min-w-0 flex-1 bg-transparent pr-2 pl-10 text-[15px] placeholder:text-ink-soft focus-visible:outline-none! [&::-webkit-search-cancel-button]:appearance-none"
+        />
+        {open ? (
+          <button type="button" onClick={close} className="h-full shrink-0 px-3 text-[15px] text-ink-soft hover:text-ink lg:hidden">
+            Close
+          </button>
+        ) : null}
+        <kbd aria-hidden className="mono-label mr-2.5 hidden shrink-0 border border-hairline px-1.5 text-ink-soft lg:block cursorless:hidden">
+          /
+        </kbd>
+      </label>
+      {wanted && open && (
+        <Suspense
+          fallback={
+            <div className="fixed inset-x-0 top-18 mx-auto border border-ink bg-paper px-5 py-4 md:top-21 md:w-[min(60rem,calc(100vw-48px))]">
+              <p className="mono-label text-ink-soft">Fetching the cursors</p>
+            </div>
+          }
+        >
+          <SearchPanel query={query} setQuery={setQuery} field={field} onPick={() => (setOpen(false), setQuery(""))} />
+        </Suspense>
+      )}
+    </div>
+  );
+}
+
+/** A long file shown to its first screenful, fading out, with a control to unfold the rest. Short ones show whole. */
+export function Fold({ lines, children }: { lines: number; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const top = useRef<HTMLDivElement>(null);
+  if (lines <= 32) return children;
+  return (
+    <>
+      <div ref={top} className={open ? "" : "max-h-160 overflow-hidden mask-b-from-70%"}>
+        {children}
+      </div>
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => {
+          setOpen(!open);
+          // Folding back from far down the file would leave you lost in the page below it.
+          if (open) top.current?.scrollIntoView({ block: "nearest" });
+        }}
+        className="flex w-full items-center justify-between gap-4 border-t border-hairline px-5 py-3 text-left text-[15px] leading-5 transition-colors duration-100 hover:bg-ink hover:text-paper"
+      >
+        {open ? "Fold the file" : `Show all ${lines} lines`}
+        <span aria-hidden className="mono-label">
+          {open ? "−" : "+"}
+        </span>
+      </button>
+    </>
+  );
 }

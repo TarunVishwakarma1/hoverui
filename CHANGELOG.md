@@ -21,7 +21,9 @@ Changes to the installable cursors and the `useCursor` hook are listed first in 
   - Laser (Toys): the pointer is a laser dot that a cat chases. It creeps up, wiggles and pounces, bats at controls, and curls up to nap when you stop.
   - Fireworks (Colorful): hold to pack a shell and let go to launch it from the bottom of the area; it bursts at the pointer as a peony, a ring, a gold willow or a crackle, in turn. Entering a control pops a ring of sparks, and a sparkler fizzes while you stay.
 - `IDEAS.md`: the backlog of cursors to build next, open to contributors.
-- Search on the all-cursors page: find a cursor by its name, category, description or keywords ("spooky", "ship", "rain"), with whole words ranked over word starts. It sticks under the bar as you scroll, focuses on "/", clears on Escape, and keeps the search in the address (`?q=`) so it can be shared. Each registry item carries a few search keywords in `meta.keywords`.
+- Search in the bar on every page: a field from `lg` and a button below it, reached from anywhere with "/" or ⌘K. It finds any cursor or hook by name, category, description or keywords (whole words ranked first), marks the matched part of each title, and shows the highlighted cursor live beside the results, so it can be tried, opened or copied without leaving the page. Each registry item carries a few search keywords in `meta.keywords`.
+- A filter on the all-cursors page that narrows the gallery in place; it sticks under the bar as you scroll and keeps the filter in the address (`?q=`).
+- Long source files on cursor and hook pages fold to their first screenful, with "Show all N lines" to open the rest.
 - Contributor credit: a cursor's registry item can carry the shadcn `author` field ("Name <https://github.com/handle>"), shown at the foot of its page as "Contributed by" with a link to the contributor, and in the page's structured data. Every cursor page ends with a "Contribute a cursor" link to CONTRIBUTING.md.
 
 ## [0.2.0] - 2026-10-02

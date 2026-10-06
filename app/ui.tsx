@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
-import { CopyButton, InstallLink, NavLink, ThemeToggle } from "./client";
+import { CopyButton, Fold, InstallLink, NavLink, SiteSearch, ThemeToggle } from "./client";
 import registry from "@/registry.json";
 import type { CursorData } from "./catalog";
 
@@ -150,9 +150,11 @@ export function Code({ title, code }: { title: string; code: string }) {
         <span className="mono-label truncate px-4 py-3">{title}</span>
         <CopyButton text={code} className="self-stretch border-l border-hairline hover:bg-ink hover:text-paper" />
       </figcaption>
-      <pre className="p-5 font-mono text-[13px] leading-5 whitespace-pre-wrap [overflow-wrap:anywhere]">
-        <code>{code}</code>
-      </pre>
+      <Fold lines={code.trimEnd().split("\n").length}>
+        <pre className="p-5 font-mono text-[13px] leading-5 whitespace-pre-wrap [overflow-wrap:anywhere]">
+          <code>{code}</code>
+        </pre>
+      </Fold>
     </figure>
   );
 }
@@ -198,8 +200,9 @@ export function SiteBar() {
           </a>
         </nav>
         <div className="ml-auto flex items-center gap-3">
+          <SiteSearch />
           <ThemeToggle />
-          <InstallLink className="btn-secondary">Install</InstallLink>
+          <InstallLink className="btn-secondary max-sm:hidden">Install</InstallLink>
         </div>
       </div>
     </header>

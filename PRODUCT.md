@@ -24,7 +24,7 @@ Cursors only, and scoped by placement: drop a cursor inside any element and it o
 
 - Visitors arrive on desktop with a mouse or trackpad; the product is only felt with a fine pointer. Touch visitors must still be able to browse, read source and copy install commands.
 - Install path: `npx shadcn@latest add https://hoverui.fun/r/<name>.json`. The cursor lands in the user's `components/cursors/`; its registry dependency, the `useCursor` hook, lands once in their hooks folder (`@/hooks/use-cursor.ts`). The hook also installs on its own (`/r/use-cursor.json`) for writing custom cursors.
-- Site routes: `/` (featured cursors), `/cursors` (a gallery of live preview tiles with a search by name, mood or thing), `/cursors/<name>` (one cursor: preview, install, usage, props, source), `/hooks/<name>` (one hook: install, API, source). The site says "cursors" everywhere: it is the word visitors use and search for.
+- Site routes: `/` (featured cursors), `/cursors` (a gallery of live preview tiles with a filter by name, mood or thing), `/cursors/<name>` (one cursor: preview, install, usage, props, source), `/hooks/<name>` (one hook: install, API, source). A search in the sticky bar on every page finds any cursor or hook by name, mood or thing and previews the highlighted cursor live. The site says "cursors" everywhere: it is the word visitors use and search for.
 - Registry source of truth: `registry.json`; `shadcn build` emits `public/r/*.json` on `dev`/`build`.
 
 ## Capabilities and Constraints
