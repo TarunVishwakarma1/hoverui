@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { AstronautArt } from "@/components/cursors/astronaut";
 import { BalloonArt } from "@/components/cursors/balloon";
 import { BatArt } from "@/components/cursors/bat";
+import { BlackHoleArt } from "@/components/cursors/black-hole";
 import { CandleArt } from "@/components/cursors/candle";
 import { ChompArt } from "@/components/cursors/chomp";
 import { ClassicArt } from "@/components/cursors/classic";
@@ -10,21 +11,29 @@ import { CloudArt } from "@/components/cursors/cloud";
 import { CompassArt } from "@/components/cursors/compass";
 import { DiceArt } from "@/components/cursors/dice";
 import { DoodleArt } from "@/components/cursors/doodle";
+import { ElementArt } from "@/components/cursors/element";
 import { FishArt } from "@/components/cursors/fish";
 import { FlyArt } from "@/components/cursors/fly";
+import { CreatureArt, GalleyArt } from "@/components/cursors/galley";
 import { GearArt } from "@/components/cursors/gear";
 import { GhostArt } from "@/components/cursors/ghost";
 import { JellyfishArt } from "@/components/cursors/jellyfish";
+import { CatArt } from "@/components/cursors/laser";
+import { MagnifierArt } from "@/components/cursors/magnifier";
 import { PlaneArt } from "@/components/cursors/plane";
 import { PumpkinArt } from "@/components/cursors/pumpkin";
 import { RocketArt } from "@/components/cursors/rocket";
+import { RuneArt, RunesArt } from "@/components/cursors/rune";
+import { SaberArt } from "@/components/cursors/saber";
 import { SnowflakeArt } from "@/components/cursors/snow";
 import { SparkleArt } from "@/components/cursors/sparkle";
 import { SpiderArt } from "@/components/cursors/spider";
 import { SplatArt } from "@/components/cursors/splat";
 import { StampMark } from "@/components/cursors/stamp";
 import { SunArt } from "@/components/cursors/sun";
+import { TopArt } from "@/components/cursors/top";
 import { UfoArt } from "@/components/cursors/ufo";
+import { WandArt } from "@/components/cursors/wand";
 import { YoyoArt } from "@/components/cursors/yoyo";
 
 const KANA = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ0123456789";
@@ -531,6 +540,104 @@ export function Scene({ name }: { name: string }) {
           />
         ))}
         <span className="absolute top-[44px] size-2 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    "black-hole": (
+      <>
+        <span className="absolute size-40 -translate-1/2 rounded-full bg-[radial-gradient(circle,rgb(255_150_60/0.45),transparent_65%)]" />
+        <BlackHoleArt className="absolute h-[60px] w-24 -translate-1/2 -rotate-8" />
+        {[[-40, 8], [30, 10], [52, -2]].map(([x, y]) => (
+          <span key={x} className="absolute size-1 -translate-1/2 rounded-full bg-[#ffd08a] shadow-[0_0_4px_#ff9a3c]" style={{ left: x, top: y }} />
+        ))}
+        <span className="absolute top-[34px] left-[70px] size-2 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    top: (
+      <>
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="absolute -translate-1/2 border border-ink"
+            style={{ width: 96 + i * 36, height: 56 + i * 30, top: 4, opacity: 0.5 - i * 0.15, rotate: `${(i % 2 ? 1 : -1) * (1 + i * 2)}deg` }}
+          />
+        ))}
+        <span className="absolute top-[42px] h-2 w-16 -translate-1/2 rounded-[50%] bg-ink/15" />
+        <TopArt className="absolute top-[42px] h-24 w-[74px] origin-bottom -translate-x-1/2 -translate-y-full rotate-9" />
+      </>
+    ),
+    rune: (
+      <>
+        <RunesArt className="absolute size-32 -translate-1/2" />
+        <RuneArt className="absolute size-12 -translate-1/2" />
+        <span className="absolute top-[-34px] left-[-34px] size-2 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    galley: (
+      <>
+        <svg className="absolute size-px overflow-visible">
+          <path d="M-96 30c12-5 20 5 32 0s20 5 32 0 20 5 32 0 20 5 32 0 20 5 32 0 20 5 32 0" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.45" />
+        </svg>
+        <GalleyArt className="absolute left-[-20px] h-[76px] w-[120px] -translate-1/2 -rotate-3" />
+        <CreatureArt kind="gorgon" className="absolute top-[30px] left-[78px] size-14 -translate-x-1/2 -translate-y-full" />
+        <span className="absolute top-[-34px] left-[30px] size-2 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    element: (
+      <>
+        <span className="absolute flex -translate-1/2 items-center gap-1 rounded-md bg-ink p-1 pr-2 text-paper">
+          <span className="relative">
+            <ElementArt number={49} symbol="In" name="Indium" />
+            <span className="absolute top-1/2 left-1/2 h-[15px] w-11 -translate-1/2 -rotate-[26deg] rounded-[50%] border border-[#7dffb0]/60" />
+            <span className="absolute top-[22px] left-[-6px] size-1.5 rounded-full bg-[#7dffb0] shadow-[0_0_4px_#7dffb0]" />
+          </span>
+          <span className="text-sm leading-none font-medium">stall</span>
+        </span>
+        <span className="absolute top-[-40px] left-[-52px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    saber: (
+      <span className="absolute top-[52px] left-[-16px]" style={{ rotate: "24deg" }}>
+        <span className="absolute bottom-[26px] left-[-2px] h-[86px] w-1 rounded-full bg-white" style={{ boxShadow: "0 0 4px #4da3ff, 0 0 12px #4da3ff, 0 0 22px #4da3ff" }} />
+        <SaberArt className="absolute bottom-0 left-[-4px] h-[30px] w-2" />
+      </span>
+    ),
+    magnifier: (
+      <>
+        <span className="absolute -translate-1/2 text-[13px] whitespace-nowrap text-ink-soft">the fine print, read close</span>
+        <span className="absolute top-[-4px] left-[-6px] flex size-[88px] -translate-1/2 items-center justify-center overflow-hidden rounded-full bg-preview">
+          <span className="text-[26px] whitespace-nowrap text-ink-soft">fine print</span>
+        </span>
+        <MagnifierArt className="absolute top-[-4px] left-[-6px] size-24 -translate-1/2" />
+      </>
+    ),
+    wand: (
+      <>
+        <span className="absolute top-[-6px] left-[-30px] size-24 -translate-1/2 rounded-full border-2 border-[#b07cff] opacity-50 shadow-[0_0_10px_#b07cff]" />
+        {[[-58, -30, "#ffd23f"], [-40, 18, "#ff7ad9"], [-12, -50, "#b07cff"], [-70, 6, "#ffd23f"], [-26, -20, "#ff7ad9"]].map(([x, y, c]) => (
+          <span
+            key={`${x}${y}`}
+            className="absolute size-2.5 -translate-1/2"
+            style={{ left: x, top: y, background: c as string, clipPath: "polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)" }}
+          />
+        ))}
+        <WandArt className="absolute top-[-6px] left-[-6px] size-16" />
+      </>
+    ),
+    laser: (
+      <>
+        <CatArt className="absolute top-[34px] left-[-28px] h-12 w-[72px] -translate-x-1/2 -translate-y-full" />
+        <span className="absolute top-[24px] left-[44px] size-2.5 -translate-1/2 rounded-full bg-[#ff2d2d] shadow-[0_0_6px_#ff2d2d,0_0_14px_#ff2d2d]" />
+      </>
+    ),
+    fireworks: (
+      <>
+        <span className="absolute top-[60px] h-12 w-0.5 -translate-x-1/2 rounded-full bg-linear-to-b from-transparent to-[#ffe7a8]" />
+        {Array.from({ length: 26 }, (_, i) => {
+          const a = (i / 26) * Math.PI * 2;
+          const r = 34 + (i % 3) * 12;
+          const c = ["#ff4d6d", "#ffd23f", "#3dd6ff", "#9b5cff"][i % 4];
+          return <span key={i} className="absolute size-[4px] -translate-1/2 rounded-full" style={{ left: Math.cos(a) * r, top: Math.sin(a) * r - 14, background: c, boxShadow: `0 0 6px ${c}` }} />;
+        })}
       </>
     ),
   };

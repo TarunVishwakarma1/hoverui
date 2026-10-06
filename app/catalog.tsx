@@ -3,6 +3,7 @@ import type { ComponentType, ReactNode } from "react";
 import { AstronautCursor } from "@/components/cursors/astronaut";
 import { BalloonCursor } from "@/components/cursors/balloon";
 import { BatCursor } from "@/components/cursors/bat";
+import { BlackHoleCursor } from "@/components/cursors/black-hole";
 import { BlendCursor } from "@/components/cursors/blend";
 import { BubblesCursor } from "@/components/cursors/bubbles";
 import { CandleCursor } from "@/components/cursors/candle";
@@ -17,11 +18,14 @@ import { ConfettiCursor } from "@/components/cursors/confetti";
 import { ConstellationCursor } from "@/components/cursors/constellation";
 import { DiceCursor } from "@/components/cursors/dice";
 import { DoodleCursor } from "@/components/cursors/doodle";
+import { ElementCursor } from "@/components/cursors/element";
+import { FireworksCursor } from "@/components/cursors/fireworks";
 import { FishCursor } from "@/components/cursors/fish";
 import { FlashlightCursor } from "@/components/cursors/flashlight";
 import { FlyCursor } from "@/components/cursors/fly";
 import { FocusCursor } from "@/components/cursors/focus";
 import { FrameCursor } from "@/components/cursors/frame";
+import { GalleyCursor } from "@/components/cursors/galley";
 import { GearCursor } from "@/components/cursors/gear";
 import { GhostCursor } from "@/components/cursors/ghost";
 import { GlassCursor } from "@/components/cursors/glass";
@@ -31,7 +35,9 @@ import { GooglyCursor } from "@/components/cursors/googly";
 import { JellyCursor } from "@/components/cursors/jelly";
 import { JellyfishCursor } from "@/components/cursors/jellyfish";
 import { LabelCursor } from "@/components/cursors/label";
+import { LaserCursor } from "@/components/cursors/laser";
 import { MagnetCursor } from "@/components/cursors/magnet";
+import { MagnifierCursor } from "@/components/cursors/magnifier";
 import { MatrixCursor } from "@/components/cursors/matrix";
 import { NeonCursor } from "@/components/cursors/neon";
 import { OffsetCursor } from "@/components/cursors/offset";
@@ -47,6 +53,8 @@ import { RibbonCursor } from "@/components/cursors/ribbon";
 import { RingCursor } from "@/components/cursors/ring";
 import { RippleCursor } from "@/components/cursors/ripple";
 import { RocketCursor } from "@/components/cursors/rocket";
+import { RuneCursor } from "@/components/cursors/rune";
+import { SaberCursor } from "@/components/cursors/saber";
 import { SnakeCursor } from "@/components/cursors/snake";
 import { SnowCursor } from "@/components/cursors/snow";
 import { SparkleCursor } from "@/components/cursors/sparkle";
@@ -55,9 +63,11 @@ import { SplatCursor } from "@/components/cursors/splat";
 import { StampCursor } from "@/components/cursors/stamp";
 import { SunCursor } from "@/components/cursors/sun";
 import { TooltipCursor } from "@/components/cursors/tooltip";
+import { TopCursor } from "@/components/cursors/top";
 import { TornadoCursor } from "@/components/cursors/tornado";
 import { TrailCursor } from "@/components/cursors/trail";
 import { UfoCursor } from "@/components/cursors/ufo";
+import { WandCursor } from "@/components/cursors/wand";
 import { YoyoCursor } from "@/components/cursors/yoyo";
 import { ZapCursor } from "@/components/cursors/zap";
 import registry from "@/registry.json";
@@ -124,13 +134,23 @@ const components: Record<string, ComponentType<{ className?: string }>> = {
   pixel: PixelCursor,
   sun: SunCursor,
   tornado: TornadoCursor,
+  "black-hole": BlackHoleCursor,
+  top: TopCursor,
+  rune: RuneCursor,
+  galley: GalleyCursor,
+  element: ElementCursor,
+  saber: SaberCursor,
+  magnifier: MagnifierCursor,
+  wand: WandCursor,
+  laser: LaserCursor,
+  fireworks: FireworksCursor,
 };
 
 /**
  * Cursors on this site invert what is beneath them: ink over paper, paper over ink-filled hovers.
- * The exceptions keep their own colors: Label's pill and Tooltip's tip carry words (inverted, the text under them would show
- * through), the colorful and drawn ones would turn to negatives, Flashlight's dark would become a glare, and a
- * blend on the root of Glass, Focus or Goggles would cut their lenses off from the page they see.
+ * The exceptions keep their own colors: Label's, Tooltip's and Element's pills carry words (inverted, the text under them
+ * would show through), the colorful and drawn ones would turn to negatives, Flashlight's dark would become a glare, and a
+ * blend on the root of Glass, Focus, Goggles, Magnifier, Rune or Black hole would cut their lenses, veil and warp off from the page they see.
  */
 export const cursorTone = "text-white mix-blend-difference";
 const ownColors = new Set([
@@ -165,18 +185,49 @@ const ownColors = new Set([
   "focus",
   "goggles",
   "sun",
+  "black-hole",
+  "top",
+  "rune",
+  "galley",
+  "element",
+  "saber",
+  "magnifier",
+  "wand",
+  "laser",
+  "fireworks",
 ]);
 
 /** What `className` does on a cursor, by how that cursor takes its color: the Props row on its page. */
 export function classNameDoc(name: string) {
-  if (name === "label" || name === "tooltip")
-    return `Colors the dot and ${name === "label" ? "pill" : "tip"} through currentColor, e.g. text-pink-500. The words switch to black or white to stay readable.`;
-  if (["glass", "focus", "goggles"].includes(name))
+  if (name === "label" || name === "tooltip" || name === "element")
+    return `Colors the dot and ${name === "tooltip" ? "tip" : "pill"} through currentColor, e.g. text-pink-500. The words switch to black or white to stay readable${name === "element" ? "; the tile keeps its own green" : ""}.`;
+  if (["glass", "focus", "goggles", "magnifier"].includes(name))
     return "Colors any outline and the pointer dot through currentColor, e.g. text-pink-500. Keep blend modes and filters off it: either would cut the lens off from the page it sees.";
+  if (name === "rune" || name === "black-hole")
+    return `Extra classes for the cursor's root. It draws in its own colors, set in the file; its pointer dot follows currentColor, e.g. text-pink-500. Keep blend modes and filters off it: either would cut its ${name === "rune" ? "veil off from the page it greys" : "lens off from the page it bends"}.`;
   if (ownColors.has(name))
     return "Extra classes for the cursor's root. It draws in its own colors, set in the file; any outline or pointer dot it has follows currentColor, e.g. text-pink-500. Leave mix-blend-difference off: it would turn those colors to negatives.";
   return "Colors the cursor through currentColor, e.g. text-pink-500. To read on any background, pass text-white mix-blend-difference, as this site does.";
 }
+
+/** Words people reach for when they mean a category, so a search for "spooky" or "sci-fi" finds its cursors. */
+const categoryTerms: Record<string, string> = {
+  Followers: "minimal simple follow smooth",
+  Lenses: "filter effect magnify distortion",
+  Labels: "text words hint",
+  Marks: "minimal print design editorial",
+  Colorful: "color rainbow vibrant playful",
+  Space: "sci-fi cosmos stars galaxy astronomy",
+  Halloween: "spooky scary horror october",
+  Mechanical: "machine instrument engineering tool",
+  Weird: "quirky silly funny odd",
+  Retro: "vintage 8-bit arcade old school game",
+  Weather: "sky climate storm forecast",
+  Toys: "play game kids fun",
+  Ocean: "sea water marine underwater",
+  Fantasy: "magic myth wizard medieval spell",
+  "Sci-fi": "science fiction space future robot laser",
+};
 
 /** registry.json is the source of truth; the site lists cursors in its order. */
 export const cursors = registry.items.filter((item) => item.type === "registry:component").map((item) => {
@@ -192,6 +243,16 @@ export const cursors = registry.items.filter((item) => item.type === "registry:c
     description: item.description,
     files: item.files.map((f) => f.path),
     category: item.categories[0],
+    /** Everything the gallery search matches against: the name either way it is written, the category and its kin, the description and the registry's keywords. */
+    search: [
+      item.title,
+      item.name,
+      item.name.replace(/-/g, ""),
+      item.categories[0],
+      categoryTerms[item.categories[0]],
+      item.description,
+      ...((item as { meta?: { keywords?: string[] } }).meta?.keywords ?? []),
+    ].join(" "),
     Cursor: function SiteCursor() {
       return <Base className={tone} />;
     },

@@ -20,7 +20,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "circle",
+          "outline",
+          "minimal",
+          "classic"
+        ]
+      }
     },
     {
       "name": "trail",
@@ -39,7 +47,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "dots",
+          "tail",
+          "follow",
+          "chain"
+        ]
+      }
     },
     {
       "name": "blend",
@@ -58,7 +74,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "invert",
+          "difference",
+          "negative",
+          "contrast"
+        ]
+      }
     },
     {
       "name": "label",
@@ -77,7 +101,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "hover text",
+          "text",
+          "pill",
+          "view"
+        ]
+      }
     },
     {
       "name": "register",
@@ -96,7 +128,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "crosshair",
+          "print",
+          "target",
+          "cmyk"
+        ]
+      }
     },
     {
       "name": "offset",
@@ -115,7 +155,16 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "cmyk",
+          "print",
+          "misprint",
+          "glitch",
+          "rgb"
+        ]
+      }
     },
     {
       "name": "ribbon",
@@ -134,7 +183,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "rainbow",
+          "gradient",
+          "line",
+          "draw"
+        ]
+      }
     },
     {
       "name": "confetti",
@@ -153,7 +210,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "party",
+          "celebrate",
+          "celebration",
+          "particles"
+        ]
+      }
     },
     {
       "name": "comet",
@@ -172,7 +237,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "shooting star",
+          "star",
+          "meteor",
+          "tail"
+        ]
+      }
     },
     {
       "name": "orbit",
@@ -191,7 +264,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "moon",
+          "planet",
+          "satellite"
+        ]
+      }
     },
     {
       "name": "rocket",
@@ -210,7 +290,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "spaceship",
+          "launch",
+          "flame"
+        ]
+      }
     },
     {
       "name": "astronaut",
@@ -229,7 +316,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "spaceman",
+          "cosmonaut",
+          "float",
+          "tether"
+        ]
+      }
     },
     {
       "name": "ghost",
@@ -248,7 +343,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "spooky",
+          "boo",
+          "spirit",
+          "haunted"
+        ]
+      }
     },
     {
       "name": "spider",
@@ -267,7 +370,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "web",
+          "insect",
+          "bug",
+          "creepy"
+        ]
+      }
     },
     {
       "name": "flashlight",
@@ -286,7 +397,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "torch",
+          "dark",
+          "spotlight",
+          "light"
+        ]
+      }
     },
     {
       "name": "gear",
@@ -305,7 +424,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "cog",
+          "machine",
+          "settings",
+          "engineering"
+        ]
+      }
     },
     {
       "name": "readout",
@@ -324,7 +451,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "coordinates",
+          "measure",
+          "cad",
+          "blueprint"
+        ]
+      }
     },
     {
       "name": "googly",
@@ -343,7 +478,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "eyes",
+          "funny",
+          "silly"
+        ]
+      }
     },
     {
       "name": "jelly",
@@ -362,7 +504,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "blob",
+          "goo",
+          "liquid",
+          "elastic"
+        ]
+      }
     },
     {
       "name": "frame",
@@ -381,7 +531,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "viewfinder",
+          "camera",
+          "brackets",
+          "focus"
+        ]
+      }
     },
     {
       "name": "magnet",
@@ -400,7 +558,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "magnetic button",
+          "pull",
+          "sticky",
+          "attract"
+        ]
+      }
     },
     {
       "name": "glass",
@@ -419,7 +585,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "blur",
+          "frosted",
+          "glassmorphism"
+        ]
+      }
     },
     {
       "name": "glow",
@@ -438,7 +611,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "soft light",
+          "gradient",
+          "aura",
+          "blob"
+        ]
+      }
     },
     {
       "name": "neon",
@@ -457,7 +638,16 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "glow",
+          "sign",
+          "light",
+          "80s",
+          "synthwave"
+        ]
+      }
     },
     {
       "name": "sparkle",
@@ -476,7 +666,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "stars",
+          "glitter",
+          "twinkle",
+          "magic"
+        ]
+      }
     },
     {
       "name": "splat",
@@ -495,7 +693,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "click effect",
+          "paint",
+          "ink",
+          "drip"
+        ]
+      }
     },
     {
       "name": "ufo",
@@ -514,7 +720,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "alien",
+          "saucer",
+          "abduction",
+          "beam"
+        ]
+      }
     },
     {
       "name": "constellation",
@@ -533,7 +747,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "night sky",
+          "stars",
+          "lines",
+          "connect"
+        ]
+      }
     },
     {
       "name": "bat",
@@ -552,7 +774,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "vampire",
+          "wings",
+          "night"
+        ]
+      }
     },
     {
       "name": "pumpkin",
@@ -571,7 +800,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "jack o lantern",
+          "autumn",
+          "october"
+        ]
+      }
     },
     {
       "name": "candle",
@@ -590,7 +826,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "fire",
+          "flame",
+          "wax",
+          "light"
+        ]
+      }
     },
     {
       "name": "compass",
@@ -609,7 +853,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "navigation",
+          "direction",
+          "north",
+          "needle"
+        ]
+      }
     },
     {
       "name": "clock",
@@ -628,7 +880,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "time",
+          "watch",
+          "hands"
+        ]
+      }
     },
     {
       "name": "radar",
@@ -647,7 +906,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "sonar",
+          "scan",
+          "ping",
+          "sweep"
+        ]
+      }
     },
     {
       "name": "doodle",
@@ -666,7 +933,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "hand drawn",
+          "sketch",
+          "pen",
+          "scribble"
+        ]
+      }
     },
     {
       "name": "fly",
@@ -685,7 +960,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "insect",
+          "bug",
+          "buzz"
+        ]
+      }
     },
     {
       "name": "classic",
@@ -704,7 +986,18 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "arrow",
+          "pointer",
+          "hand",
+          "hourglass",
+          "1-bit",
+          "os",
+          "desktop"
+        ]
+      }
     },
     {
       "name": "chomp",
@@ -723,7 +1016,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "arcade",
+          "eat",
+          "game",
+          "80s"
+        ]
+      }
     },
     {
       "name": "matrix",
@@ -742,7 +1043,16 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "code",
+          "hacker",
+          "rain",
+          "green",
+          "terminal"
+        ]
+      }
     },
     {
       "name": "cloud",
@@ -761,7 +1071,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "rain",
+          "drizzle",
+          "sky"
+        ]
+      }
     },
     {
       "name": "zap",
@@ -780,7 +1097,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "lightning",
+          "electric",
+          "spark",
+          "thunder"
+        ]
+      }
     },
     {
       "name": "snow",
@@ -799,7 +1124,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "winter",
+          "christmas",
+          "snowflake",
+          "holiday"
+        ]
+      }
     },
     {
       "name": "balloon",
@@ -818,7 +1151,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "party",
+          "birthday",
+          "pop",
+          "float"
+        ]
+      }
     },
     {
       "name": "yoyo",
@@ -837,7 +1178,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "toy",
+          "string",
+          "spin"
+        ]
+      }
     },
     {
       "name": "bubbles",
@@ -856,7 +1204,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "soap",
+          "water",
+          "pop",
+          "underwater"
+        ]
+      }
     },
     {
       "name": "fish",
@@ -875,7 +1231,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "goldfish",
+          "aquarium",
+          "swim"
+        ]
+      }
     },
     {
       "name": "jellyfish",
@@ -894,7 +1257,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "medusa",
+          "underwater",
+          "sting",
+          "pulse"
+        ]
+      }
     },
     {
       "name": "ripple",
@@ -913,7 +1284,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "click effect",
+          "water",
+          "wave",
+          "wake"
+        ]
+      }
     },
     {
       "name": "stamp",
@@ -932,7 +1311,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "rubber",
+          "seal",
+          "ink",
+          "approved"
+        ]
+      }
     },
     {
       "name": "caret",
@@ -951,7 +1338,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "text cursor",
+          "i-beam",
+          "typing",
+          "blink"
+        ]
+      }
     },
     {
       "name": "tooltip",
@@ -970,7 +1365,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "hint",
+          "title",
+          "popover",
+          "text"
+        ]
+      }
     },
     {
       "name": "peek",
@@ -989,7 +1392,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "link preview",
+          "url",
+          "href",
+          "destination"
+        ]
+      }
     },
     {
       "name": "focus",
@@ -1008,7 +1419,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "depth of field",
+          "blur",
+          "bokeh",
+          "camera"
+        ]
+      }
     },
     {
       "name": "goggles",
@@ -1027,7 +1446,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "night vision",
+          "green",
+          "military",
+          "filter"
+        ]
+      }
     },
     {
       "name": "dice",
@@ -1046,7 +1473,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "board game",
+          "random",
+          "game",
+          "roll"
+        ]
+      }
     },
     {
       "name": "plane",
@@ -1065,7 +1500,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "paper plane",
+          "airplane",
+          "origami"
+        ]
+      }
     },
     {
       "name": "snake",
@@ -1084,7 +1526,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "phone game",
+          "retro game",
+          "grid"
+        ]
+      }
     },
     {
       "name": "pixel",
@@ -1103,7 +1552,14 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "pixel art",
+          "8-bit",
+          "grid"
+        ]
+      }
     },
     {
       "name": "sun",
@@ -1122,7 +1578,15 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "sunshine",
+          "summer",
+          "eclipse",
+          "rays"
+        ]
+      }
     },
     {
       "name": "tornado",
@@ -1141,7 +1605,303 @@
       ],
       "registryDependencies": [
         "https://hoverui.fun/r/use-cursor.json"
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "twister",
+          "storm",
+          "wind",
+          "cyclone"
+        ]
+      }
+    },
+    {
+      "name": "black-hole",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Black hole",
+      "description": "Bends the page round it like a lens and swallows dust from your path. Swells over controls; hold, and time slows.",
+      "files": [
+        {
+          "path": "components/cursors/black-hole.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/black-hole.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "gravity",
+          "warp",
+          "distortion",
+          "lens",
+          "wormhole",
+          "physics",
+          "sci-fi"
+        ]
+      }
+    },
+    {
+      "name": "top",
+      "type": "registry:component",
+      "categories": [
+        "Toys"
+      ],
+      "title": "Top",
+      "description": "A spinning top that wobbles and teeters when you stop, but never falls. Controls sink into dream levels; a click kicks it.",
+      "files": [
+        {
+          "path": "components/cursors/top.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/top.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "spinning top",
+          "spin",
+          "dream",
+          "totem",
+          "wobble"
+        ]
+      }
+    },
+    {
+      "name": "rune",
+      "type": "registry:component",
+      "categories": [
+        "Fantasy"
+      ],
+      "title": "Rune",
+      "description": "A gold ring whose runes kindle over controls and stir when you idle. Hold to put it on: you vanish and the page greys.",
+      "files": [
+        {
+          "path": "components/cursors/rune.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/rune.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "ring",
+          "magic",
+          "fantasy",
+          "invisible",
+          "gold",
+          "medieval"
+        ]
+      }
+    },
+    {
+      "name": "galley",
+      "type": "registry:component",
+      "categories": [
+        "Ocean"
+      ],
+      "title": "Galley",
+      "description": "A Greek galley with a wake. Monsters surface round it, the Gorgon turns it to stone, sirens sing from controls.",
+      "files": [
+        {
+          "path": "components/cursors/galley.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/galley.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "ship",
+          "boat",
+          "greek",
+          "myth",
+          "mythology",
+          "monsters",
+          "medusa",
+          "cyclops",
+          "sirens"
+        ]
+      }
+    },
+    {
+      "name": "element",
+      "type": "registry:component",
+      "categories": [
+        "Labels"
+      ],
+      "title": "Element",
+      "description": "Ho, for hover. Spells a control's name in periodic-table tiles; hold to excite the atom, let go for its flame color.",
+      "files": [
+        {
+          "path": "components/cursors/element.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/element.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "periodic table",
+          "chemistry",
+          "science",
+          "atom",
+          "text"
+        ]
+      }
+    },
+    {
+      "name": "saber",
+      "type": "registry:component",
+      "categories": [
+        "Sci-fi"
+      ],
+      "title": "Saber",
+      "description": "An energy blade that ignites as you arrive and streaks as you swing. It guards over controls, clashes on click, and powers down when still.",
+      "files": [
+        {
+          "path": "components/cursors/saber.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/saber.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "sword",
+          "blade",
+          "energy",
+          "glow",
+          "space opera"
+        ]
+      }
+    },
+    {
+      "name": "magnifier",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Magnifier",
+      "description": "A magnifying glass that really enlarges the page under it. Closer over controls, closer still while you hold.",
+      "files": [
+        {
+          "path": "components/cursors/magnifier.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/magnifier.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "zoom",
+          "magnifying glass",
+          "loupe",
+          "enlarge",
+          "accessibility"
+        ]
+      }
+    },
+    {
+      "name": "wand",
+      "type": "registry:component",
+      "categories": [
+        "Fantasy"
+      ],
+      "title": "Wand",
+      "description": "Spell sparks trail the tip, which lights over controls. Click for a burst; draw a circle to cast a shield.",
+      "files": [
+        {
+          "path": "components/cursors/wand.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/wand.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "magic",
+          "wizard",
+          "spell",
+          "sparkles",
+          "witch"
+        ]
+      }
+    },
+    {
+      "name": "laser",
+      "type": "registry:component",
+      "categories": [
+        "Toys"
+      ],
+      "title": "Laser",
+      "description": "The pointer is a laser dot and a cat chases it: it creeps, wiggles and pounces, bats at controls and naps when you stop.",
+      "files": [
+        {
+          "path": "components/cursors/laser.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/laser.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "cat",
+          "kitten",
+          "pet",
+          "laser pointer",
+          "chase"
+        ]
+      }
+    },
+    {
+      "name": "fireworks",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Fireworks",
+      "description": "Hold to pack a shell, let go to launch it: a peony, a ring, a willow or a crackle in turn. Entering a control pops a ring of sparks.",
+      "files": [
+        {
+          "path": "components/cursors/fireworks.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/fireworks.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "celebration",
+          "party",
+          "new year",
+          "diwali",
+          "explosion",
+          "festival"
+        ]
+      }
     },
     {
       "name": "use-cursor",

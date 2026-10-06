@@ -8,6 +8,20 @@ Changes to the installable cursors and the `useCursor` hook are listed first in 
 
 ### Added
 
+- Five cursors, for 65 in all, each with more to it than following the pointer:
+  - Black hole (Space): bends the page round it like a gravitational lens (in Chromium browsers), and the dust of your path spirals into its disk. It swells over controls; hold, and time slows to a crawl while its light reddens.
+  - Top (Toys): a spinning top on the pointer. Stop moving and it slows, wobbles wider and teeters, but never quite falls. The hovered control sinks into dream levels, frame within frame, and a click is the kick: the top hops and lands on a fresh spin.
+  - Rune (Fantasy): a gold ring at the pointer's side. Over controls it heats and runes kindle round it; left idle it creeps closer, asking to be worn. Hold to put it on: you vanish, the page drains to grey, wraiths circle you and the dark closes in the longer you wear it.
+  - Galley (Ocean): a Greek galley rowing after the pointer with a wake behind it. Monsters surface round it: Scylla's tentacle, a sea serpent, the Cyclops, the Gorgon, whose gaze turns the ship to stone, and Charybdis's whirlpool. Sirens sing from controls and the oars lift; a click calls up a monster.
+  - Element (Labels): a periodic-table tile, Holmium for hover, its electrons circling faster as you move. Over a control it spells the name title-card style, a tile in each word; hold to excite the atom and let go to see a photon in the element's flame color.
+- Five more, for 70 in all, and two new categories, Sci-fi and Fantasy (Rune moves to Fantasy):
+  - Saber (Sci-fi): an energy blade held at the pointer. It ignites as you arrive, swings against your motion and streaks, raises a guard and burns brighter over controls, clashes in sparks on a click, and powers down when you stand still.
+  - Magnifier (Lenses): a magnifying glass that really enlarges the page under it (in Chromium browsers), closer over controls and closer still while held.
+  - Wand (Fantasy): spell sparks trail the tip, the tip lights over controls, a click casts a burst, and drawing a circle casts a shield.
+  - Laser (Toys): the pointer is a laser dot that a cat chases. It creeps up, wiggles and pounces, bats at controls, and curls up to nap when you stop.
+  - Fireworks (Colorful): hold to pack a shell and let go to launch it from the bottom of the area; it bursts at the pointer as a peony, a ring, a gold willow or a crackle, in turn. Entering a control pops a ring of sparks, and a sparkler fizzes while you stay.
+- `IDEAS.md`: the backlog of cursors to build next, open to contributors.
+- Search on the all-cursors page: find a cursor by its name, category, description or keywords ("spooky", "ship", "rain"), with whole words ranked over word starts. It sticks under the bar as you scroll, focuses on "/", clears on Escape, and keeps the search in the address (`?q=`) so it can be shared. Each registry item carries a few search keywords in `meta.keywords`.
 - Contributor credit: a cursor's registry item can carry the shadcn `author` field ("Name <https://github.com/handle>"), shown at the foot of its page as "Contributed by" with a link to the contributor, and in the page's structured data. Every cursor page ends with a "Contribute a cursor" link to CONTRIBUTING.md.
 
 ## [0.2.0] - 2026-10-02

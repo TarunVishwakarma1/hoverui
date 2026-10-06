@@ -47,6 +47,7 @@ There is no automated browser test suite yet, so every change to a cursor or to 
      "categories": ["Followers"],
      "description": "One sentence on what it does and how it reacts to hover and press.",
      "author": "Your Name <https://github.com/your-handle>",
+     "meta": { "keywords": ["moon", "planet", "satellite"] },
      "files": [
        { "path": "components/cursors/orbit.tsx", "type": "registry:component", "target": "@components/cursors/orbit.tsx" }
      ],
@@ -55,6 +56,7 @@ There is no automated browser test suite yet, so every change to a cursor or to 
    ```
 
    The order of items in `registry.json` sets the cursor numbers, and the first five appear on the home page.
+   `meta.keywords` are a few words people might search for that the title and description don't already say (a mood, a thing, a nickname); the gallery search on the site matches them.
    `author` is the shadcn registry's own field. Your cursor's page shows it as "Contributed by", linked to the URL in the angle brackets, and it travels with the installed registry item. Leave out the URL to show just your name.
    React to hover through `pointer.hover` and to press through `pointer.down`, and skip motion of its own when `pointer.reduced` is set.
 3. **Give it a preview:**

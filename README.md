@@ -125,6 +125,16 @@ npx shadcn@latest add @hover-ui/trail
 | 58 | Pixel | Retro | A pixel cursor on an 8px grid with a stepped, fading trail. Over controls it draws a blinking selection. | `npx shadcn@latest add https://hoverui.fun/r/pixel.json` |
 | 59 | Sun | Weather | A sun whose rays turn slowly. They stretch and spin over anything clickable; a press brings an eclipse. | `npx shadcn@latest add https://hoverui.fun/r/sun.json` |
 | 60 | Tornado | Weather | A twister whose funnel sways and leans behind your motion. It towers over controls and whips round on press. | `npx shadcn@latest add https://hoverui.fun/r/tornado.json` |
+| 61 | Black hole | Space | Bends the page round it like a lens and swallows dust from your path. Swells over controls; hold, and time slows. | `npx shadcn@latest add https://hoverui.fun/r/black-hole.json` |
+| 62 | Top | Toys | A spinning top that wobbles and teeters when you stop, but never falls. Controls sink into dream levels; a click kicks it. | `npx shadcn@latest add https://hoverui.fun/r/top.json` |
+| 63 | Rune | Fantasy | A gold ring whose runes kindle over controls and stir when you idle. Hold to put it on: you vanish and the page greys. | `npx shadcn@latest add https://hoverui.fun/r/rune.json` |
+| 64 | Galley | Ocean | A Greek galley with a wake. Monsters surface round it, the Gorgon turns it to stone, sirens sing from controls. | `npx shadcn@latest add https://hoverui.fun/r/galley.json` |
+| 65 | Element | Labels | Ho, for hover. Spells a control's name in periodic-table tiles; hold to excite the atom, let go for its flame color. | `npx shadcn@latest add https://hoverui.fun/r/element.json` |
+| 66 | Saber | Sci-fi | An energy blade that ignites as you arrive and streaks as you swing. It guards over controls, clashes on click, and powers down when still. | `npx shadcn@latest add https://hoverui.fun/r/saber.json` |
+| 67 | Magnifier | Lenses | A magnifying glass that really enlarges the page under it. Closer over controls, closer still while you hold. | `npx shadcn@latest add https://hoverui.fun/r/magnifier.json` |
+| 68 | Wand | Fantasy | Spell sparks trail the tip, which lights over controls. Click for a burst; draw a circle to cast a shield. | `npx shadcn@latest add https://hoverui.fun/r/wand.json` |
+| 69 | Laser | Toys | The pointer is a laser dot and a cat chases it: it creeps, wiggles and pounces, bats at controls and naps when you stop. | `npx shadcn@latest add https://hoverui.fun/r/laser.json` |
+| 70 | Fireworks | Colorful | Hold to pack a shell, let go to launch it: a peony, a ring, a willow or a crackle in turn. Entering a control pops a ring of sparks. | `npx shadcn@latest add https://hoverui.fun/r/fireworks.json` |
 
 Each cursor's page at `hoverui.fun/cursors/<name>` has the live preview, install command, usage, props and full source.
 
@@ -171,7 +181,7 @@ A cursor attaches to its parent element, so the component must be a direct child
 
 | Prop or attribute | Applies to | Description |
 | --- | --- | --- |
-| `className` | every cursor | Colors the cursor through `currentColor`, e.g. `text-pink-500`. To read on any background, pass `text-white mix-blend-difference` (not on the cursors that carry their own colors: Label, Offset, Ribbon, Confetti, Glow, Neon, Sparkle, Splat, Rocket, Astronaut, UFO, Ghost, Pumpkin, Candle, Flashlight, Compass, Radar, Googly, Classic, Chomp, Matrix, Zap, Balloon, Yo-yo, Fish, Jellyfish, Sun, Tooltip, Glass, Focus and Goggles. Inverted, they turn to negatives, Label's pill and Tooltip's tip let the text beneath show through, and a blend on Glass, Focus or Goggles cuts their lenses off from the page). |
+| `className` | every cursor | Colors the cursor through `currentColor`, e.g. `text-pink-500`. To read on any background, pass `text-white mix-blend-difference` (not on the cursors that carry their own colors: Label, Offset, Ribbon, Confetti, Glow, Neon, Sparkle, Splat, Rocket, Astronaut, UFO, Ghost, Pumpkin, Candle, Flashlight, Compass, Radar, Googly, Classic, Chomp, Matrix, Zap, Balloon, Yo-yo, Fish, Jellyfish, Sun, Tooltip, Glass, Focus, Goggles, Black hole, Top, Rune, Galley, Element, Saber, Magnifier, Wand, Laser and Fireworks. Inverted, they turn to negatives, the pills of Label and Element and Tooltip's tip let the text beneath show through, and a blend on Glass, Focus, Goggles, Magnifier, Rune or Black hole cuts their lenses, veil and warp off from the page). |
 | `data-cursor-label` | any element, read by Label | The words Label's pill shows while the pointer is over that element. |
 
 Cursors react to hover targets inside their area: `a`, `button`, `input`, `select`, `textarea`, `label`, `[role=button]` and `[data-cursor-label]`. A link wrapping the whole area (a card, say) doesn't count, so a cursor in a clickable card keeps its resting look.
@@ -180,14 +190,16 @@ Cursors react to hover targets inside their area: `a`, `button`, `input`, `selec
 
 - Cursors are drawn with `position: fixed`. Inside an ancestor that has a `transform`, `filter` or `contain` set, they are positioned against that ancestor instead of the viewport.
 - Magnet moves the control you hover by setting its inline `translate`, and hands it back when you leave. A control that sets its own `translate` will lose it while magnetized.
+- Black hole and Magnifier bend the page through an SVG displacement filter used as a `backdrop-filter`. Chromium browsers draw the warp and the zoom; elsewhere the hole and the glass show without them. Under reduced motion Black hole's warp is off; Magnifier keeps its zoom, which only follows the pointer.
+- Top's dream levels and Galley's sirens read the hovered control's box but never change the control.
 - Two cursors placed in the same element render together, but unmounting one switches the other off. Use one cursor per element for now; combining effects is what the planned Cursor Mixer is for.
 
 ## Accessibility
 
 - Cursors are `aria-hidden` and `pointer-events: none`; they never intercept a click or reach assistive technology.
 - They only switch on for a fine, hovering pointer (`(hover: hover) and (pointer: fine)`). Touch screens keep the native pointer.
-- Under `prefers-reduced-motion`, cursors snap to the pointer instead of easing, and nothing moves on its own: no trails, particles, bobbing or spinning.
-- Most cursors keep a mark on the exact pointer position; the companions (Astronaut, Ghost, Googly, Bat, Pumpkin, UFO, Fly, Fish, Jellyfish, Cloud, Balloon, Yo-yo, Dice, Plane, Snake) float, swing or chase beside an exact dot or string end. Pixel snaps to an 8px grid, so its square holds the pointer to within 8px. Blend, Label, Jelly, Spider, Chomp and Magnet ease toward it over a few frames.
+- Under `prefers-reduced-motion`, cursors snap to the pointer instead of easing, and nothing moves on its own: no trails, particles, bobbing or spinning. Black hole drops its page warp, Galley's monsters stay below, and Top no longer wobbles or hops.
+- Most cursors keep a mark on the exact pointer position; the companions (Astronaut, Ghost, Googly, Bat, Pumpkin, UFO, Fly, Fish, Jellyfish, Cloud, Balloon, Yo-yo, Dice, Plane, Snake, Black hole, Rune, Galley, Element, Laser's cat) float, swing or chase beside an exact dot or string end. Pixel snaps to an 8px grid, so its square holds the pointer to within 8px. Blend, Label, Jelly, Spider, Chomp and Magnet ease toward it over a few frames.
 - Only the main button counts as a press, so a right-click's menu never leaves a cursor stuck pressed.
 
 ## Development
