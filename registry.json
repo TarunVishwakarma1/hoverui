@@ -1904,6 +1904,270 @@
       }
     },
     {
+      "name": "droplet",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Droplet",
+      "description": "A water drop that refracts the page under it. Swells over controls; a click sends ripples through the page, bending its words.",
+      "files": [
+        {
+          "path": "components/cursors/droplet.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/droplet.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "water",
+          "drop",
+          "refraction",
+          "ripple",
+          "liquid",
+          "rain",
+          "lens"
+        ]
+      }
+    },
+    {
+      "name": "mercury",
+      "type": "registry:component",
+      "categories": [
+        "Weird"
+      ],
+      "title": "Mercury",
+      "description": "A bead of liquid metal that sloshes after you and sheds droplets when you move fast. A click bursts it; the drops roll home.",
+      "files": [
+        {
+          "path": "components/cursors/mercury.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/mercury.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "liquid metal",
+          "chrome",
+          "blob",
+          "metaball",
+          "silver",
+          "goo"
+        ]
+      }
+    },
+    {
+      "name": "halftone",
+      "type": "registry:component",
+      "categories": [
+        "Marks"
+      ],
+      "title": "Halftone",
+      "description": "A halftone dot screen round the pointer. Over controls it turns to the next ink's angle; hold to spread the ink, click to pulse.",
+      "files": [
+        {
+          "path": "components/cursors/halftone.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/halftone.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "print",
+          "dots",
+          "pattern",
+          "screen",
+          "comic",
+          "pop art",
+          "newspaper"
+        ]
+      }
+    },
+    {
+      "name": "fireflies",
+      "type": "registry:component",
+      "categories": [
+        "Nature"
+      ],
+      "title": "Fireflies",
+      "description": "A blinking swarm round the pointer. Over a control they settle along its edge and fall into step, flashing together.",
+      "files": [
+        {
+          "path": "components/cursors/fireflies.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/fireflies.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "swarm",
+          "particles",
+          "glow",
+          "night",
+          "bugs",
+          "summer",
+          "magic"
+        ]
+      }
+    },
+    {
+      "name": "leaves",
+      "type": "registry:component",
+      "categories": [
+        "Nature"
+      ],
+      "title": "Leaves",
+      "description": "Autumn leaves tumble off your path and pile up on top of controls. A click is a gust that blows them all away.",
+      "files": [
+        {
+          "path": "components/cursors/leaves.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/leaves.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "autumn",
+          "fall",
+          "october",
+          "wind",
+          "seasonal",
+          "maple"
+        ]
+      }
+    },
+    {
+      "name": "smoke",
+      "type": "registry:component",
+      "categories": [
+        "Weird"
+      ],
+      "title": "Smoke",
+      "description": "An ember with smoke curling up from it, swirling round controls. A click blows a smoke ring that rises as it widens.",
+      "files": [
+        {
+          "path": "components/cursors/smoke.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/smoke.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "incense",
+          "ember",
+          "smoke ring",
+          "fog",
+          "vapor",
+          "mist"
+        ]
+      }
+    },
+    {
+      "name": "galaxy",
+      "type": "registry:component",
+      "categories": [
+        "Space"
+      ],
+      "title": "Galaxy",
+      "description": "A spiral galaxy turning round the pointer, its arms trailing as you move. Over controls the stars trace the outline; press for a supernova.",
+      "files": [
+        {
+          "path": "components/cursors/galaxy.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/galaxy.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "stars",
+          "milky way",
+          "cosmos",
+          "spiral",
+          "particles",
+          "supernova"
+        ]
+      }
+    },
+    {
+      "name": "liquid",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Liquid",
+      "description": "A drop of liquid glass that bends the page at its rim. Over controls it flows out to wrap them in a glass pill; press to squeeze it.",
+      "files": [
+        {
+          "path": "components/cursors/liquid.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/liquid.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "liquid glass",
+          "glassmorphism",
+          "refraction",
+          "pill",
+          "glass",
+          "lens"
+        ]
+      }
+    },
+    {
+      "name": "gecko",
+      "type": "registry:component",
+      "categories": [
+        "Nature"
+      ],
+      "title": "Gecko",
+      "description": "A gecko that stalks the pointer like a bug, its feet planting and stepping as it runs. It flicks its tongue at controls; a click and it lunges.",
+      "files": [
+        {
+          "path": "components/cursors/gecko.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/gecko.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "lizard",
+          "reptile",
+          "procedural",
+          "animal",
+          "creature",
+          "pet"
+        ]
+      }
+    },
+    {
       "name": "use-cursor",
       "type": "registry:hook",
       "title": "useCursor",

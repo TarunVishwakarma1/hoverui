@@ -36,7 +36,7 @@ There is no automated browser test suite yet, so every change to a cursor or to 
 
 ## Adding a cursor
 
-1. **Write the component** in `components/cursors/<name>.tsx`. Start from the closest existing cursor.
+1. **Write the component** in `components/cursors/<name>.tsx`. Start from the closest existing cursor. The doc comment above the exported `…Cursor` function is shown on the cursor's page as "How it behaves", so write it for the person choosing a cursor: what it does, and how it answers hover and press.
 2. **Register it** in `registry.json`: `name`, `type: "registry:component"`, `title`, a one-line `description`, `categories` (reuse an existing one if it fits), your `author` credit, and the file with its target:
 
    ```json
@@ -60,10 +60,12 @@ There is no automated browser test suite yet, so every change to a cursor or to 
    `author` is the shadcn registry's own field. Your cursor's page shows it as "Contributed by", linked to the URL in the angle brackets, and it travels with the installed registry item. Leave out the URL to show just your name.
    React to hover through `pointer.hover` and to press through `pointer.down`, and skip motion of its own when `pointer.reduced` is set.
 3. **Give it a preview:**
-   - add the component to the `components` map in `app/catalog.tsx`;
+   - add a line for its file to `files` in `app/live.tsx`: the site loads every cursor through it, so a page fetches only the cursors it shows;
+   - if its `Scene` draws its art, export that art from `app/live.tsx` too (`art(() => import(...).then((file) => file.YourArt))`) and import it into `app/scenes.tsx` from `./live`;
    - add a `Scene` in `app/scenes.tsx`: the cursor drawn at rest, engaged with a small target. The generic `Specimen` uses it on the cursor's page, so a custom `Specimen` branch is optional;
    - if it carries its own colors, add it to `ownColors` so the site doesn't invert it;
-   - add any `data-*` attributes it reads to `attributes`.
+   - add any `data-*` attributes it reads to `attributes`;
+   - if it opens a new category, give the category a one-sentence lead in `categoryIntros` (it heads the category's own page) and a few words people use for it in `categoryTerms`.
 4. **Check it by hand** with `bun dev`, on its own page and in the list at `/cursors`:
    - [ ] It follows a mouse, reacts to links and buttons, and reacts to press.
    - [ ] Scrolling with the mouse held still keeps the right cursor showing.

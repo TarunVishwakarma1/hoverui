@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BlendCursor } from "@/components/cursors/blend";
 import { LabelCursor } from "@/components/cursors/label";
-import { cursorTone, featured, Specimen, Swap } from "./catalog";
-import { Arrow, Code, Install, JsonLd, Preview, CursorCredits, SITE, Stamp, Words, container, h2 } from "./ui";
+import { cursors, cursorTone, featured, Specimen, Swap } from "./catalog";
+import { Arrow, Code, GITHUB, Install, JsonLd, Preview, CursorCredits, SITE, Stamp, Words, container, h2 } from "./ui";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -28,8 +28,27 @@ export default function Home() {
 
   return (
     <main>
-      {/* Lets search engines show "hover-ui" as the site name. */}
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: "hover-ui", url: SITE }} />
+      {/* The site's name for search results, and the library itself: what it is, where its source lives, what it costs. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            { "@type": "WebSite", name: "hover-ui", url: SITE },
+            {
+              "@type": "SoftwareSourceCode",
+              name: "hover-ui",
+              description: `${cursors.length} copy-paste custom cursor components for React, installed with the shadcn CLI.`,
+              url: SITE,
+              codeRepository: GITHUB,
+              programmingLanguage: "TypeScript",
+              runtimePlatform: "React",
+              license: "https://opensource.org/licenses/MIT",
+              isAccessibleForFree: true,
+              keywords: "custom cursor, React cursor, cursor component, shadcn, Tailwind CSS, cursor animation",
+            },
+          ],
+        }}
+      />
       <section className={`${container} grid grid-cols-1 items-center gap-x-10 gap-y-16 pt-12 pb-20 lg:min-h-[calc(100dvh-4.5rem)] lg:grid-cols-12 lg:pt-16`}>
         <div className="lg:col-span-6">
           <h1 className="text-display max-w-[12ch]">Every cursor owns the element you drop it in.</h1>
@@ -51,7 +70,7 @@ export default function Home() {
         <div className="min-w-0 lg:col-span-6">
           <div className="relative">
             <Preview className="aspect-[4/5] sm:aspect-[4/3]">
-              <hero.Cursor />
+              <hero.Cursor eager />
               <Specimen name={hero.name} />
             </Preview>
             <Stamp id="seal-hero" text="Drop one in <body> · it owns the page · " className="absolute -bottom-12 -left-6 sm:-left-14" />

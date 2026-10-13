@@ -1,40 +1,84 @@
 import type { ReactNode } from "react";
-import { AstronautArt } from "@/components/cursors/astronaut";
-import { BalloonArt } from "@/components/cursors/balloon";
-import { BatArt } from "@/components/cursors/bat";
-import { BlackHoleArt } from "@/components/cursors/black-hole";
-import { CandleArt } from "@/components/cursors/candle";
-import { ChompArt } from "@/components/cursors/chomp";
-import { ClassicArt } from "@/components/cursors/classic";
-import { ClockArt } from "@/components/cursors/clock";
-import { CloudArt } from "@/components/cursors/cloud";
-import { CompassArt } from "@/components/cursors/compass";
-import { DiceArt } from "@/components/cursors/dice";
-import { DoodleArt } from "@/components/cursors/doodle";
-import { ElementArt } from "@/components/cursors/element";
-import { FishArt } from "@/components/cursors/fish";
-import { FlyArt } from "@/components/cursors/fly";
-import { CreatureArt, GalleyArt } from "@/components/cursors/galley";
-import { GearArt } from "@/components/cursors/gear";
-import { GhostArt } from "@/components/cursors/ghost";
-import { JellyfishArt } from "@/components/cursors/jellyfish";
-import { CatArt } from "@/components/cursors/laser";
-import { MagnifierArt } from "@/components/cursors/magnifier";
-import { PlaneArt } from "@/components/cursors/plane";
-import { PumpkinArt } from "@/components/cursors/pumpkin";
-import { RocketArt } from "@/components/cursors/rocket";
-import { RuneArt, RunesArt } from "@/components/cursors/rune";
-import { SaberArt } from "@/components/cursors/saber";
-import { SnowflakeArt } from "@/components/cursors/snow";
-import { SparkleArt } from "@/components/cursors/sparkle";
-import { SpiderArt } from "@/components/cursors/spider";
-import { SplatArt } from "@/components/cursors/splat";
-import { StampMark } from "@/components/cursors/stamp";
-import { SunArt } from "@/components/cursors/sun";
-import { TopArt } from "@/components/cursors/top";
-import { UfoArt } from "@/components/cursors/ufo";
-import { WandArt } from "@/components/cursors/wand";
-import { YoyoArt } from "@/components/cursors/yoyo";
+import {
+  AstronautArt,
+  BalloonArt,
+  BatArt,
+  BlackHoleArt,
+  CandleArt,
+  CatArt,
+  ChompArt,
+  ClassicArt,
+  ClockArt,
+  CloudArt,
+  CompassArt,
+  CreatureArt,
+  DiceArt,
+  DoodleArt,
+  DropletArt,
+  ElementArt,
+  FishArt,
+  FlyArt,
+  GeckoArt,
+  GalleyArt,
+  GearArt,
+  GhostArt,
+  JellyfishArt,
+  LeafArt,
+  MagnifierArt,
+  MercuryFilter,
+  PlaneArt,
+  PumpkinArt,
+  RocketArt,
+  RuneArt,
+  RunesArt,
+  SaberArt,
+  SnowflakeArt,
+  SparkleArt,
+  SpiderArt,
+  SplatArt,
+  StampMark,
+  SunArt,
+  TopArt,
+  UfoArt,
+  WandArt,
+  YoyoArt,
+} from "./live";
+
+/** Halftone's resting field: a 45° screen of dots, largest at the centre, round a clear eye. */
+const HALFTONE = (() => {
+  const dots: [number, number, number][] = [];
+  const [c, sn] = [Math.SQRT1_2, Math.SQRT1_2];
+  for (let u = -12; u <= 12; u++)
+    for (let v = -12; v <= 12; v++) {
+      const [x, y] = [(u * c - v * sn) * 7, (u * sn + v * c) * 7];
+      const d = Math.hypot(x, y);
+      const r = 3.5 * Math.max(0, 1 - d / 58) ** 0.85;
+      if (d > 7 && r > 0.25) dots.push([x, y, r]);
+    }
+  return dots;
+})();
+/** A firefly's light, as the cursor draws it. */
+const FIREFLY = { background: "#efff7a", boxShadow: "0 0 0 1px rgb(64 72 8 / 0.5), 0 0 8px 3px rgb(186 232 30 / 0.9)" };
+const METAL = "radial-gradient(circle at 38% 32%, #ffffff, #d4d8de 30%, #8a919c 66%, #3b4049)";
+const PUFF = "radial-gradient(circle, color-mix(in srgb, currentColor 24%, transparent), color-mix(in srgb, currentColor 9%, transparent) 45%, transparent 70%)";
+
+/** Galaxy's resting spiral: two arms of stars about a warm core, laid out once from a fixed seed so every render matches. */
+const GALAXY = (() => {
+  let seed = 7;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const tones = ["#e2a13a", "#e89a52", "#5b8def", "#9a6cf0", "#e0609f"];
+  return Array.from({ length: 170 }, (_, i) => {
+    const r = 58 * rand() ** 1.7;
+    const a = (i % 2) * Math.PI + Math.log(1 + r / 8) * 2.3 + (rand() - 0.5) * (0.9 - (r / 58) * 0.55) + 0.6;
+    const [ox, oy] = [Math.cos(a) * r, Math.sin(a) * r * 0.62];
+    return {
+      x: ox * Math.cos(-0.35) - oy * Math.sin(-0.35),
+      y: ox * Math.sin(-0.35) + oy * Math.cos(-0.35),
+      size: 1 + rand() * (r < 10 ? 1.6 : 1.1),
+      tone: tones[r < 7 ? 0 : r < 16 ? 1 : 2 + Math.floor(rand() * 3)],
+    };
+  });
+})();
 
 const KANA = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ0123456789";
 
@@ -638,6 +682,119 @@ export function Scene({ name }: { name: string }) {
           const c = ["#ff4d6d", "#ffd23f", "#3dd6ff", "#9b5cff"][i % 4];
           return <span key={i} className="absolute size-[4px] -translate-1/2 rounded-full" style={{ left: Math.cos(a) * r, top: Math.sin(a) * r - 14, background: c, boxShadow: `0 0 6px ${c}` }} />;
         })}
+      </>
+    ),
+    droplet: (
+      <>
+        <span className={word}>Ripple</span>
+        {[84, 136].map((d, i) => (
+          <span key={d} className="absolute -translate-1/2 rounded-full border border-ink" style={{ width: d, height: d, left: 26, top: 4, opacity: 0.4 - i * 0.2 }} />
+        ))}
+        <DropletArt className="absolute top-[4px] left-[26px] size-12 -translate-1/2" />
+      </>
+    ),
+    mercury: (
+      <>
+        <MercuryFilter id="mercury-scene" size={140} />
+        <span className="absolute top-[-70px] left-[-70px] size-[140px]" style={{ filter: "url(#mercury-scene)" }}>
+          {[
+            [60, 70, 34],
+            [84, 60, 15],
+            [104, 84, 9],
+            [28, 92, 7],
+          ].map(([x, y, d]) => (
+            <span key={x} className="absolute -translate-1/2 rounded-full" style={{ left: x, top: y, width: d, height: d, background: METAL }} />
+          ))}
+        </span>
+      </>
+    ),
+    halftone: (
+      <svg aria-hidden className="absolute size-px overflow-visible">
+        {HALFTONE.map(([x, y, r]) => (
+          <circle key={`${x},${y}`} cx={x} cy={y} r={r} fill="currentColor" />
+        ))}
+        <circle r="3.5" fill="none" stroke="currentColor" strokeWidth="1" />
+      </svg>
+    ),
+    fireflies: (
+      <>
+        <span className="absolute flex h-11 w-36 -translate-1/2 items-center justify-center border border-ink text-[15px]">Button</span>
+        {[
+          [-72, -25, 1],
+          [-30, -25, 0.35],
+          [14, -25, 1],
+          [58, -25, 0.6],
+          [75, 4, 1],
+          [40, 25, 0.35],
+          [-6, 25, 1],
+          [-52, 25, 0.6],
+          [-75, -2, 1],
+          [96, -46, 0.4],
+          [-104, 38, 0.5],
+        ].map(([x, y, o]) => (
+          <span key={`${x},${y}`} className="absolute size-1.5 -translate-1/2 rounded-full" style={{ ...FIREFLY, left: x, top: y, opacity: 0.4 + (o as number) * 0.6 }} />
+        ))}
+      </>
+    ),
+    leaves: (
+      <>
+        <span className="absolute top-[30px] flex h-11 w-36 -translate-1/2 items-center justify-center border border-ink text-[15px]">Button</span>
+        {[
+          [-40, -50, 30, 0, "#d9482b"],
+          [12, -74, -50, 0, "#f2a93b"],
+          [52, -36, 70, 0, "#ec7a22"],
+          [-28, 7, -20, 74, "#e3c04a"],
+          [6, 7, 25, 74, "#d9482b"],
+          [40, 7, -10, 74, "#b5462a"],
+        ].map(([x, y, turn, lie, color]) => (
+          <span key={`${x},${y}`} className="absolute" style={{ left: x, top: y, color: color as string, transform: `perspective(240px) rotateX(${lie}deg) rotateZ(${turn}deg)` }}>
+            <LeafArt className="absolute h-[22px] w-[13px] -translate-1/2" />
+          </span>
+        ))}
+      </>
+    ),
+    smoke: (
+      <>
+        {[
+          [0, 24, 0.5],
+          [4, 6, 0.9],
+          [-4, -14, 1.3],
+          [6, -36, 1.7],
+          [-2, -58, 2.1],
+        ].map(([x, y, scale]) => (
+          <span key={y} className="absolute size-6 -translate-1/2 rounded-full" style={{ left: x, top: y, scale: String(scale), background: PUFF }} />
+        ))}
+        <span className="absolute top-[-84px] left-[22px] h-3.5 w-14 -translate-1/2 rounded-[50%] border-[3px] border-ink/30 blur-[1.5px]" />
+        <span className="absolute top-[38px] size-2 -translate-1/2 rounded-full bg-[#ff7a2e] shadow-[0_0_6px_2px_rgb(255_120_40/0.65)]" />
+      </>
+    ),
+    galaxy: (
+      <>
+        <span className="absolute size-12 -translate-1/2 rounded-full bg-[radial-gradient(circle,rgb(226_161_58/0.55),transparent_70%)]" />
+        <svg aria-hidden className="absolute size-px overflow-visible">
+          {GALAXY.map((star, i) => (
+            <rect key={i} x={star.x - star.size / 2} y={star.y - star.size / 2} width={star.size} height={star.size} fill={star.tone} />
+          ))}
+        </svg>
+      </>
+    ),
+    liquid: (
+      <>
+        <span className="absolute flex h-11 w-36 -translate-1/2 items-center justify-center border border-ink text-[15px]">Button</span>
+        <span
+          className="absolute h-14 w-[156px] -translate-1/2 rounded-full backdrop-blur-[1.5px] backdrop-saturate-150"
+          style={{
+            background: "linear-gradient(180deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0) 38%, rgb(255 255 255 / 0) 72%, rgb(255 255 255 / 0.08))",
+            boxShadow: "inset 0 1px 0.5px rgb(255 255 255 / 0.8), inset 0 -1px 1px rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(0 0 0 / 0.07), 0 4px 14px -6px rgb(0 0 0 / 0.22)",
+          }}
+        />
+        <span className="absolute top-[4px] left-[30px] size-1 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    gecko: (
+      <>
+        <GeckoArt className="absolute h-[60px] w-[123px] -translate-1/2" />
+        <span className="absolute top-[0px] left-[64px] size-[5px] -translate-1/2 rounded-full bg-ink" />
       </>
     ),
   };

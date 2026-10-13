@@ -156,18 +156,10 @@ export function CursorSearch({ index, children }: { index: { name: string; text:
   };
 
   useEffect(() => {
-    // A sidebar category link aims at a section the search may be hiding: clear it first, so there is somewhere to go.
-    const onClick = (e: MouseEvent) => {
-      if ((e.target as Element).closest?.("a")?.getAttribute("href")?.startsWith("/cursors#")) search("");
-    };
-    addEventListener("click", onClick, true);
     // Stuck under the bar, the row takes the sheet and a rule so tiles scroll beneath it cleanly.
     const observer = new IntersectionObserver(([entry]) => setStuck(!entry.isIntersecting), { rootMargin: "-73px 0px 0px 0px" });
     if (edge.current) observer.observe(edge.current);
-    return () => {
-      removeEventListener("click", onClick, true);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   const count = shown?.size ?? index.length;
@@ -240,7 +232,9 @@ export function SearchSection({ id, title, names, children }: { id: string; titl
   return (
     <section id={id} aria-labelledby={`${id}-title`} hidden={count === 0} className="scroll-mt-40 border-t border-hairline pt-6 pb-20">
       <h2 id={`${id}-title`} className="flex items-baseline gap-3 text-[28px] leading-8 tracking-[-0.02em]">
-        {title}
+        <Link href={`/categories/${id}`} className="hover:underline hover:underline-offset-4">
+          {title}
+        </Link>
         <span className="mono-label text-ink-soft">{count}</span>
       </h2>
       {children}

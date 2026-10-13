@@ -20,11 +20,35 @@ Changes to the installable cursors and the `useCursor` hook are listed first in 
   - Wand (Fantasy): spell sparks trail the tip, the tip lights over controls, a click casts a burst, and drawing a circle casts a shield.
   - Laser (Toys): the pointer is a laser dot that a cat chases. It creeps up, wiggles and pounces, bats at controls, and curls up to nap when you stop.
   - Fireworks (Colorful): hold to pack a shell and let go to launch it from the bottom of the area; it bursts at the pointer as a peony, a ring, a gold willow or a crackle, in turn. Entering a control pops a ring of sparks, and a sparkler fizzes while you stay.
+- Six more, for 76 in all, and a Nature category, found by looking at what cursor work people admire most right now (liquid blobs, swarms, ripples through text, smoke):
+  - Droplet (Lenses): a water drop that refracts the page under it and stretches as it slides. A click sends ripples through the page itself, bending its words (in Chromium browsers).
+  - Mercury (Weird): a bead of liquid metal that sloshes after the pointer and throws off droplets when you move fast; they roll back and merge like metaballs. A click bursts it.
+  - Halftone (Marks): a printer's halftone screen round the pointer, pinned to the page. Over controls it turns to the next ink's angle and grows finer; holding spreads the ink (dot gain); a click pulses through the dots.
+  - Fireflies (Nature): a swarm that blinks on its own rhythms, then settles along a hovered control's edge and falls into step until they flash together. A click scatters them.
+  - Leaves (Nature): autumn leaves tumble off your path, turning in the air, and pile up on top of the control you hover. A click is a gust that blows them away.
+  - Smoke (Weird): an ember with smoke curling up from it, a trail as you move and a slow vortex over controls. A click blows a smoke ring.
+- Three showpieces, for 79 in all:
+  - Galaxy (Space): a spiral galaxy of 420 stars turning round the pointer, two arms about a warm core, glowing on dark pages. Its outer arms trail when you move; over controls the stars stream round the control and trace its outline; press and it goes supernova, then gathers itself back.
+  - Liquid (Lenses): a drop of liquid glass, flat in the middle and bending the page at its rim, where the colors split a little as at the edge of real glass. Over controls it flows out to wrap them in a pill, overshooting and settling like a liquid; press and it squeezes. Frosted glass where the bending isn't supported.
+  - Gecko (Nature): a lizard animated procedurally, not keyframed. Its spine bends as it turns and its feet plant and step in diagonal pairs, the trot of a real lizard. It stalks the pointer like a bug, watches it with both eyes, flicks its tongue at controls and lunges on a click.
+- A page for each kind of cursor at `/categories/<kind>` ("Halloween cursors", "Space cursors" and so on): its own lead, its cursors live, a share card and structured data. The sidebar's category names and the gallery's section headings link to them.
+- On every cursor page: a share card drawn for that cursor (its name, what it does and its install command), "How it behaves" in the component's own words where it says more than the one-line description, and "More <kind> cursors" linking its neighbours.
+- `/llms.txt`: the whole library as Markdown for language models and AI search, with every cursor, what it does and its install command.
+- A 404 page that points to the search and every kind of cursor.
 - `IDEAS.md`: the backlog of cursors to build next, open to contributors.
 - Search in the bar on every page: a field from `lg` and a button below it, reached from anywhere with "/" or ⌘K. It finds any cursor or hook by name, category, description or keywords (whole words ranked first), marks the matched part of each title, and shows the highlighted cursor live beside the results, so it can be tried, opened or copied without leaving the page. Each registry item carries a few search keywords in `meta.keywords`.
 - A filter on the all-cursors page that narrows the gallery in place; it sticks under the bar as you scroll and keeps the filter in the address (`?q=`).
 - Long source files on cursor and hook pages fold to their first screenful, with "Show all N lines" to open the rest.
 - Contributor credit: a cursor's registry item can carry the shadcn `author` field ("Name <https://github.com/handle>"), shown at the foot of its page as "Contributed by" with a link to the contributor, and in the page's structured data. Every cursor page ends with a "Contribute a cursor" link to CONTRIBUTING.md.
+
+### Changed
+
+- Pages fetch only the cursors they show. Every cursor file is now a chunk of its own: a cursor's page, the home hero and the search preview fetch theirs at once, gallery tiles when the pointer first comes near, and a page that arrives with a cursor's art drawn into its HTML keeps that drawing instead of fetching the file. Every page type now ships about 145 KB of compressed JavaScript, down from 177 KB, because none of them carries all 76 cursors any more. The cursor files are unchanged: still one file each, as `shadcn add` installs them.
+- Share cards are drawn with the site's own fonts from the repository (`assets/fonts`, SIL Open Font License), so building no longer depends on reaching Google Fonts.
+
+### Fixed
+
+- The Usage snippet on the UFO, Yo-yo and Black hole pages imported components that don't exist (`UFOCursor`, `Yo-yoCursor`, `Black holeCursor`); every page now reads the name from the cursor's own source.
 
 ## [0.2.0] - 2026-10-02
 

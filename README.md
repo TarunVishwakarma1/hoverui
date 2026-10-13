@@ -135,6 +135,15 @@ npx shadcn@latest add @hover-ui/trail
 | 68 | Wand | Fantasy | Spell sparks trail the tip, which lights over controls. Click for a burst; draw a circle to cast a shield. | `npx shadcn@latest add https://hoverui.fun/r/wand.json` |
 | 69 | Laser | Toys | The pointer is a laser dot and a cat chases it: it creeps, wiggles and pounces, bats at controls and naps when you stop. | `npx shadcn@latest add https://hoverui.fun/r/laser.json` |
 | 70 | Fireworks | Colorful | Hold to pack a shell, let go to launch it: a peony, a ring, a willow or a crackle in turn. Entering a control pops a ring of sparks. | `npx shadcn@latest add https://hoverui.fun/r/fireworks.json` |
+| 71 | Droplet | Lenses | A water drop that refracts the page under it. Swells over controls; a click sends ripples through the page, bending its words. | `npx shadcn@latest add https://hoverui.fun/r/droplet.json` |
+| 72 | Mercury | Weird | A bead of liquid metal that sloshes after you and sheds droplets when you move fast. A click bursts it; the drops roll home. | `npx shadcn@latest add https://hoverui.fun/r/mercury.json` |
+| 73 | Halftone | Marks | A halftone dot screen round the pointer. Over controls it turns to the next ink's angle; hold to spread the ink, click to pulse. | `npx shadcn@latest add https://hoverui.fun/r/halftone.json` |
+| 74 | Fireflies | Nature | A blinking swarm round the pointer. Over a control they settle along its edge and fall into step, flashing together. | `npx shadcn@latest add https://hoverui.fun/r/fireflies.json` |
+| 75 | Leaves | Nature | Autumn leaves tumble off your path and pile up on top of controls. A click is a gust that blows them all away. | `npx shadcn@latest add https://hoverui.fun/r/leaves.json` |
+| 76 | Smoke | Weird | An ember with smoke curling up from it, swirling round controls. A click blows a smoke ring that rises as it widens. | `npx shadcn@latest add https://hoverui.fun/r/smoke.json` |
+| 77 | Galaxy | Space | A spiral galaxy turning round the pointer, its arms trailing as you move. Over controls the stars trace the outline; press for a supernova. | `npx shadcn@latest add https://hoverui.fun/r/galaxy.json` |
+| 78 | Liquid | Lenses | A drop of liquid glass that bends the page at its rim. Over controls it flows out to wrap them in a glass pill; press to squeeze it. | `npx shadcn@latest add https://hoverui.fun/r/liquid.json` |
+| 79 | Gecko | Nature | A gecko that stalks the pointer like a bug, its feet planting and stepping as it runs. It flicks its tongue at controls; a click and it lunges. | `npx shadcn@latest add https://hoverui.fun/r/gecko.json` |
 
 Each cursor's page at `hoverui.fun/cursors/<name>` has the live preview, install command, usage, props and full source.
 
@@ -181,7 +190,7 @@ A cursor attaches to its parent element, so the component must be a direct child
 
 | Prop or attribute | Applies to | Description |
 | --- | --- | --- |
-| `className` | every cursor | Colors the cursor through `currentColor`, e.g. `text-pink-500`. To read on any background, pass `text-white mix-blend-difference` (not on the cursors that carry their own colors: Label, Offset, Ribbon, Confetti, Glow, Neon, Sparkle, Splat, Rocket, Astronaut, UFO, Ghost, Pumpkin, Candle, Flashlight, Compass, Radar, Googly, Classic, Chomp, Matrix, Zap, Balloon, Yo-yo, Fish, Jellyfish, Sun, Tooltip, Glass, Focus, Goggles, Black hole, Top, Rune, Galley, Element, Saber, Magnifier, Wand, Laser and Fireworks. Inverted, they turn to negatives, the pills of Label and Element and Tooltip's tip let the text beneath show through, and a blend on Glass, Focus, Goggles, Magnifier, Rune or Black hole cuts their lenses, veil and warp off from the page). |
+| `className` | every cursor | Colors the cursor through `currentColor`, e.g. `text-pink-500`. To read on any background, pass `text-white mix-blend-difference` (not on the cursors that carry their own colors: Label, Offset, Ribbon, Confetti, Glow, Neon, Sparkle, Splat, Rocket, Astronaut, UFO, Ghost, Pumpkin, Candle, Flashlight, Compass, Radar, Googly, Classic, Chomp, Matrix, Zap, Balloon, Yo-yo, Fish, Jellyfish, Sun, Tooltip, Glass, Focus, Goggles, Black hole, Top, Rune, Galley, Element, Saber, Magnifier, Wand, Laser, Fireworks, Droplet, Mercury, Fireflies, Leaves, Smoke, Galaxy, Liquid and Gecko. Inverted, they turn to negatives, the pills of Label and Element and Tooltip's tip let the text beneath show through, and a blend on Glass, Focus, Goggles, Magnifier, Droplet, Liquid, Rune or Black hole cuts their lenses, veil and warp off from the page). |
 | `data-cursor-label` | any element, read by Label | The words Label's pill shows while the pointer is over that element. |
 
 Cursors react to hover targets inside their area: `a`, `button`, `input`, `select`, `textarea`, `label`, `[role=button]` and `[data-cursor-label]`. A link wrapping the whole area (a card, say) doesn't count, so a cursor in a clickable card keeps its resting look.
@@ -190,7 +199,7 @@ Cursors react to hover targets inside their area: `a`, `button`, `input`, `selec
 
 - Cursors are drawn with `position: fixed`. Inside an ancestor that has a `transform`, `filter` or `contain` set, they are positioned against that ancestor instead of the viewport.
 - Magnet moves the control you hover by setting its inline `translate`, and hands it back when you leave. A control that sets its own `translate` will lose it while magnetized.
-- Black hole and Magnifier bend the page through an SVG displacement filter used as a `backdrop-filter`. Chromium browsers draw the warp and the zoom; elsewhere the hole and the glass show without them. Under reduced motion Black hole's warp is off; Magnifier keeps its zoom, which only follows the pointer.
+- Black hole, Magnifier, Droplet and Liquid bend the page through an SVG displacement filter used as a `backdrop-filter`. Chromium browsers draw the warp, the zoom, the ripples and the bending glass; elsewhere the hole, the lens and the drop show without them, and Liquid falls back to frosted glass. Under reduced motion Black hole's warp is off; Magnifier keeps its zoom, which only follows the pointer.
 - Top's dream levels and Galley's sirens read the hovered control's box but never change the control.
 - Two cursors placed in the same element render together, but unmounting one switches the other off. Use one cursor per element for now; combining effects is what the planned Cursor Mixer is for.
 

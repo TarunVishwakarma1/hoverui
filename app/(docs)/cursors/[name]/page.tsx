@@ -3,8 +3,8 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { attributes, classNameDoc, cursors, getCursor, Specimen } from "../../../catalog";
-import { Arrow, Code, GITHUB, Install, JsonLd, Preview, Row, SITE, Words, siteOpenGraph } from "../../../ui";
+import { attributes, categories, classNameDoc, cursors, getCursor, Specimen } from "../../../catalog";
+import { Arrow, Code, GITHUB, Install, JsonLd, Preview, Row, SITE, Words, ogFields } from "../../../ui";
 
 export const dynamicParams = false;
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps<"/cursors/[name]">)
   const title = `${cursor.title} cursor for React`;
   const description = `${cursor.description} A copy-paste React cursor component, installed with the shadcn CLI.`;
   const url = `/cursors/${cursor.name}`;
-  return { title, description, alternates: { canonical: url }, openGraph: { ...siteOpenGraph, title, description, url } };
+  return { title, description, alternates: { canonical: url }, openGraph: { ...ogFields, title, description, url } };
 }
 
 export default async function CursorPage({ params }: PageProps<"/cursors/[name]">) {
@@ -35,7 +35,20 @@ export default async function CursorPage({ params }: PageProps<"/cursors/[name]"
   const i = cursors.indexOf(cursor);
   const prev = cursors[(i - 1 + cursors.length) % cursors.length];
   const next = cursors[(i + 1) % cursors.length];
-  const component = `${cursor.title}Cursor`;
+  // Read from the source: titles like "Black hole" or "UFO" are not the component's name.
+  const source = files[0].code;
+  const component = /export function (\w+Cursor)\b/.exec(source)?.[1] ?? `${cursor.title}Cursor`;
+  // The component's own doc comment says what it does at more length than the registry line: shown when it does.
+  const doc = /\/\*\*((?:[^*]|\*(?!\/))*)\*\/\s*export function \w+Cursor\b/.exec(source)?.[1];
+  const behaviour = doc
+    ?.split("\n")
+    .map((line) => line.replace(/^\s*\*\s?/, ""))
+    .join(" ")
+    .replace(/`/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const kin = categories.find((c) => c.name === cursor.category)!;
+  const others = kin.cursors.filter((c) => c !== cursor);
   const usage = `import { ${component} } from "@/components/cursors/${cursor.name}";
 
 export function Section() {
@@ -67,6 +80,8 @@ export function Section() {
                 programmingLanguage: "TypeScript",
                 runtimePlatform: "React",
                 license: "https://opensource.org/licenses/MIT",
+                isAccessibleForFree: true,
+                keywords: [cursor.title, cursor.category, "custom cursor", "React", ...cursor.keywords].join(", "),
                 codeRepository: GITHUB,
                 ...(cursor.author && { author: { "@type": "Person", name: cursor.author.name, url: cursor.author.url } }),
               },
@@ -104,7 +119,7 @@ export function Section() {
 
           <section className="xl:col-span-12">
             <Preview className="aspect-[4/5] sm:aspect-[16/10] xl:aspect-[2/1]">
-              <cursor.Cursor />
+              <cursor.Cursor eager />
               <Specimen name={cursor.name} />
             </Preview>
             <dl className="mt-8 grid grid-cols-2 gap-x-6 border-t border-hairline sm:grid-cols-4">
@@ -130,6 +145,14 @@ export function Section() {
             </dl>
           </section>
         </div>
+
+        {behaviour && behaviour.length > cursor.description.length + 10 && (
+          <Row title="How it behaves">
+            <p className="max-w-[62ch] text-ink-soft">
+              <Words text={behaviour} />
+            </p>
+          </Row>
+        )}
 
         <Row title="Usage">
           <Code title="Any element" code={usage} />
@@ -161,6 +184,26 @@ export function Section() {
             hook, which has its own source and API.
           </p>
         </Row>
+
+        {others.length > 0 && (
+          <Row title={`More ${cursor.category.toLowerCase()} cursors`}>
+            <ul className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
+              {others.map((c) => (
+                <li key={c.name}>
+                  <Link href={`/cursors/${c.name}`} className="group block">
+                    <span className="text-[17px] leading-6 group-hover:underline group-hover:underline-offset-4">{c.title}</span>
+                    <span className="mt-1 block text-[15px] leading-[22px] text-ink-soft">
+                      <Words text={c.description} />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link href={`/categories/${kin.id}`} className="-my-0.5 flex items-center gap-2 self-start py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+              All {cursor.category.toLowerCase()} cursors <Arrow />
+            </Link>
+          </Row>
+        )}
 
         {/* The credit line: who made this cursor, if someone other than the maintainer did, and the way in for the next one. */}
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-t border-hairline py-8">

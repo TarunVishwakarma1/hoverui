@@ -15,6 +15,8 @@ type Entry = {
   description: string;
   href: string;
   words: string[];
+  /** The description's own words: a match there says more than one in the keywords. */
+  says: string[];
   hook?: boolean;
 };
 
@@ -27,6 +29,7 @@ const ENTRIES: Entry[] = [
     description: c.description,
     href: `/cursors/${c.name}`,
     words: searchWords(c.search),
+    says: searchWords(c.description),
   })),
   ...hooks.map((h) => ({
     name: h.name,
@@ -35,6 +38,7 @@ const ENTRIES: Entry[] = [
     description: h.description,
     href: `/hooks/${h.name}`,
     words: searchWords(`${h.title} ${h.name} hook hooks engine custom cursor api ${h.description}`),
+    says: searchWords(h.description),
     hook: true,
   })),
 ];
@@ -78,19 +82,17 @@ export default function SearchPanel({
   const router = useRouter();
   const list = useRef<HTMLDivElement>(null);
   const terms = useMemo(() => searchWords(query), [query]);
-  // Typing ranks the matches: a title that starts with the search first, then a title word that does, then the rest.
+  // Typing ranks the matches: a title that starts with the search, then a title word that does, then a cursor whose
+  // description says it, then one that only lists it as a keyword or a kind.
   const results = useMemo(() => {
     if (!terms.length) return ENTRIES;
     const first = terms[0];
-    const rank = (e: Entry) =>
-      e.title.toLowerCase().startsWith(query.trim().toLowerCase())
-        ? 0
-        : e.title
-              .toLowerCase()
-              .split(/\s+/)
-              .some((w) => w.startsWith(first))
-          ? 1
-          : 2;
+    const rank = (e: Entry) => {
+      const title = e.title.toLowerCase();
+      if (title.startsWith(query.trim().toLowerCase())) return 0;
+      if (title.split(/\s+/).some((w) => w.startsWith(first))) return 1;
+      return terms.every((t) => e.says.some((w) => w.startsWith(t))) ? 2 : 3;
+    };
     return searchFind(ENTRIES, terms)
       .map((name) => BY_NAME.get(name)!)
       .sort((a, b) => rank(a) - rank(b));
@@ -198,7 +200,7 @@ export default function SearchPanel({
             <aside aria-label={`${current.title} preview`} className="hidden min-h-0 flex-col gap-5 overflow-y-auto border-l border-hairline p-9 md:flex">
               {cursor ? (
                 <Preview className="aspect-[4/3] shrink-0" touchNote={false}>
-                  <cursor.Cursor />
+                  <cursor.Cursor eager />
                   <Scene name={cursor.name} />
                 </Preview>
               ) : (

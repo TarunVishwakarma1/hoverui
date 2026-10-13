@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { categories, cursors, Swap } from "../../catalog";
-import { Scene } from "../../scenes";
-import { JsonLd, Preview, SITE, Words, siteOpenGraph } from "../../ui";
+import { CursorTile, JsonLd, SITE, siteOpenGraph } from "../../ui";
 import { CursorSearch, SearchItem, SearchSection } from "../../client";
 
 const title = "All React cursor components";
@@ -62,19 +60,7 @@ export default function CursorsIndex() {
             <ul className="mt-12 grid grid-cols-1 gap-x-16 gap-y-20 sm:grid-cols-2 xl:grid-cols-3">
               {group.cursors.map((c) => (
                 <SearchItem key={c.name} name={c.name}>
-                  {/* The preview is the cursor's area: hover to wear it, click to open its page. */}
-                  <Link href={`/cursors/${c.name}`} data-cursor-label={`Open ${c.title}`} className="group block">
-                    <Preview className="aspect-[4/3]" touchNote={false}>
-                      <c.Cursor />
-                      <Scene name={c.name} />
-                    </Preview>
-                    <span className="mt-8 block border-t border-hairline pt-3 text-[22px] leading-7 tracking-[-0.01em] group-hover:underline group-hover:underline-offset-4">
-                      {c.title}
-                    </span>
-                    <span className="mt-2 block max-w-[52ch] text-[15px] leading-[22px] text-ink-soft">
-                      <Words text={c.description} />
-                    </span>
-                  </Link>
+                  <CursorTile cursor={c} />
                 </SearchItem>
               ))}
             </ul>

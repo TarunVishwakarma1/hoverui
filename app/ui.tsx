@@ -3,18 +3,19 @@ import { Fragment, type ReactNode } from "react";
 import { CopyButton, Fold, InstallLink, NavLink, SiteSearch, ThemeToggle } from "./client";
 import registry from "@/registry.json";
 import type { CursorData } from "./catalog";
+import { Scene } from "./scenes";
 
 export const SITE = registry.homepage;
 export const GITHUB = "https://github.com/TarunVishwakarma1/hoverui";
 
 /**
- * Open Graph fields every page shares. A page that sets its own openGraph replaces the layout's whole
- * object, so the share card is listed here rather than as an app/opengraph-image file only the root would get.
+ * Open Graph fields every page shares. A page that sets its own openGraph replaces the layout's whole object, so they
+ * are spread into each. Cursor and category pages take `ogFields` alone: their share card is drawn for them
+ * (opengraph-image.tsx beside the page), and an image listed here would win over it.
  */
+export const ogFields = { type: "website", siteName: "hover-ui", locale: "en_US" } as const;
 export const siteOpenGraph = {
-  type: "website",
-  siteName: "hover-ui",
-  locale: "en_US",
+  ...ogFields,
   images: { url: "/og.png", width: 1200, height: 630, alt: "hover-ui: cursor components for React. Every cursor owns the element you drop it in." },
 } as const;
 
@@ -156,6 +157,22 @@ export function Code({ title, code }: { title: string; code: string }) {
         </pre>
       </Fold>
     </figure>
+  );
+}
+
+/** A gallery tile: the preview is the cursor's area, so hovering wears the cursor; clicking opens its page. */
+export function CursorTile({ cursor }: { cursor: CursorData }) {
+  return (
+    <Link href={`/cursors/${cursor.name}`} data-cursor-label={`Open ${cursor.title}`} className="group block">
+      <Preview className="aspect-[4/3]" touchNote={false}>
+        <cursor.Cursor />
+        <Scene name={cursor.name} />
+      </Preview>
+      <span className="mt-8 block border-t border-hairline pt-3 text-[22px] leading-7 tracking-[-0.01em] group-hover:underline group-hover:underline-offset-4">{cursor.title}</span>
+      <span className="mt-2 block max-w-[52ch] text-[15px] leading-[22px] text-ink-soft">
+        <Words text={cursor.description} />
+      </span>
+    </Link>
   );
 }
 

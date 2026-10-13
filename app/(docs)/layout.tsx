@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { categories, hooks } from "../catalog";
 import { NavLink } from "../client";
@@ -16,9 +15,9 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
           </NavLink>
           {categories.map((group) => (
             <div key={group.name} className="mt-8">
-              <Link href={`/cursors#${group.id}`} className="mono-label text-ink-soft hover:text-ink">
+              <NavLink href={`/categories/${group.id}`} className="mono-label text-ink-soft hover:text-ink aria-[current=page]:text-ink aria-[current=page]:underline aria-[current=page]:underline-offset-[6px]">
                 {group.name}
-              </Link>
+              </NavLink>
               <ul className="mt-3 flex flex-col gap-1.5">
                 {group.cursors.map((c) => (
                   <li key={c.name}>

@@ -18,7 +18,7 @@ Want to build one? Pick an unticked idea, follow [CONTRIBUTING.md](CONTRIBUTING.
 These reuse Black hole's technique: an SVG displacement map applied as a `backdrop-filter`.
 
 - [x] **Magnifier**: a real magnifying glass that enlarges the page under it.
-- [ ] **Droplet**: a water drop that refracts the page; clicks splash ripples that bend the text.
+- [x] **Droplet**: a water drop that refracts the page; clicks splash ripples that bend the text.
 - [ ] **Glitch**: an RGB split and sliced displacement of the page under the pointer, harder over controls.
 - [ ] **Heat**: shimmering heat haze above a flame; the page wavers like a desert road.
 
@@ -43,8 +43,25 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 
 - [x] **Fireworks**: clicks launch a shell that bursts; hold for a bigger one.
 - [ ] **Lighthouse**: a sweeping beam that locks onto controls, with fog drifting through it.
-- [ ] **Fireflies**: a swarm that follows you and settles on controls; brighter in dark mode.
+- [x] **Fireflies**: a swarm that follows you and settles on controls; brighter in dark mode.
 - [ ] **Vinyl**: a spinning record whose needle drops over controls; dragging scratches it.
 - [ ] **Polaroid**: clicks flash and drop a photo frame that slowly develops.
 - [ ] **Lantern**: festival lanterns (Diwali, Lunar New Year) that rise and drift off on each click.
 - [ ] **Fountain pen**: writes your path in ink of varying width and underlines controls.
+
+## Materials and nature
+
+- [x] **Mercury**: a bead of liquid metal that sheds droplets when you move fast; a click bursts it and the drops roll home.
+- [x] **Halftone**: a printer's halftone screen round the pointer that turns its angle over controls and spreads its ink while held.
+- [x] **Leaves**: autumn leaves that tumble off your path and pile up on buttons; a click is a gust.
+- [x] **Smoke**: an ember with curling smoke; a click blows a smoke ring.
+- [ ] **Ink in water**: a drop of ink blooming into clouds where you click, slowly diffusing.
+- [ ] **Sand**: grains that pour from the pointer and pile into dunes along the bottom of the area.
+
+## Showpieces
+
+- [x] **Galaxy**: a spiral galaxy turning round the pointer; its stars trace a hovered control's outline and go supernova on press.
+- [x] **Liquid**: a drop of liquid glass that bends the page at its rim and flows out to wrap a hovered control.
+- [x] **Gecko**: a procedurally animated lizard that stalks the pointer, steps in diagonal pairs and flicks its tongue at controls.
+- [ ] **Fluid**: dye in a real fluid simulation, stirred by the pointer and splashed by clicks (WebGL).
+- [ ] **Cloth**: a flag of real cloth hanging from the pointer, waving the hovered control's name.

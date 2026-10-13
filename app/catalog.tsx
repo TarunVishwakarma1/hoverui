@@ -1,156 +1,14 @@
 import Link from "next/link";
-import type { ComponentType, ReactNode } from "react";
-import { AstronautCursor } from "@/components/cursors/astronaut";
-import { BalloonCursor } from "@/components/cursors/balloon";
-import { BatCursor } from "@/components/cursors/bat";
-import { BlackHoleCursor } from "@/components/cursors/black-hole";
-import { BlendCursor } from "@/components/cursors/blend";
-import { BubblesCursor } from "@/components/cursors/bubbles";
-import { CandleCursor } from "@/components/cursors/candle";
-import { CaretCursor } from "@/components/cursors/caret";
-import { ChompCursor } from "@/components/cursors/chomp";
-import { ClassicCursor } from "@/components/cursors/classic";
-import { ClockCursor } from "@/components/cursors/clock";
-import { CloudCursor } from "@/components/cursors/cloud";
-import { CometCursor } from "@/components/cursors/comet";
-import { CompassCursor } from "@/components/cursors/compass";
-import { ConfettiCursor } from "@/components/cursors/confetti";
-import { ConstellationCursor } from "@/components/cursors/constellation";
-import { DiceCursor } from "@/components/cursors/dice";
-import { DoodleCursor } from "@/components/cursors/doodle";
-import { ElementCursor } from "@/components/cursors/element";
-import { FireworksCursor } from "@/components/cursors/fireworks";
-import { FishCursor } from "@/components/cursors/fish";
-import { FlashlightCursor } from "@/components/cursors/flashlight";
-import { FlyCursor } from "@/components/cursors/fly";
-import { FocusCursor } from "@/components/cursors/focus";
-import { FrameCursor } from "@/components/cursors/frame";
-import { GalleyCursor } from "@/components/cursors/galley";
-import { GearCursor } from "@/components/cursors/gear";
-import { GhostCursor } from "@/components/cursors/ghost";
-import { GlassCursor } from "@/components/cursors/glass";
-import { GlowCursor } from "@/components/cursors/glow";
-import { GogglesCursor } from "@/components/cursors/goggles";
-import { GooglyCursor } from "@/components/cursors/googly";
-import { JellyCursor } from "@/components/cursors/jelly";
-import { JellyfishCursor } from "@/components/cursors/jellyfish";
-import { LabelCursor } from "@/components/cursors/label";
-import { LaserCursor } from "@/components/cursors/laser";
-import { MagnetCursor } from "@/components/cursors/magnet";
-import { MagnifierCursor } from "@/components/cursors/magnifier";
-import { MatrixCursor } from "@/components/cursors/matrix";
-import { NeonCursor } from "@/components/cursors/neon";
-import { OffsetCursor } from "@/components/cursors/offset";
-import { OrbitCursor } from "@/components/cursors/orbit";
-import { PeekCursor } from "@/components/cursors/peek";
-import { PixelCursor } from "@/components/cursors/pixel";
-import { PlaneCursor } from "@/components/cursors/plane";
-import { PumpkinCursor } from "@/components/cursors/pumpkin";
-import { RadarCursor } from "@/components/cursors/radar";
-import { ReadoutCursor } from "@/components/cursors/readout";
-import { RegisterCursor } from "@/components/cursors/register";
-import { RibbonCursor } from "@/components/cursors/ribbon";
-import { RingCursor } from "@/components/cursors/ring";
-import { RippleCursor } from "@/components/cursors/ripple";
-import { RocketCursor } from "@/components/cursors/rocket";
-import { RuneCursor } from "@/components/cursors/rune";
-import { SaberCursor } from "@/components/cursors/saber";
-import { SnakeCursor } from "@/components/cursors/snake";
-import { SnowCursor } from "@/components/cursors/snow";
-import { SparkleCursor } from "@/components/cursors/sparkle";
-import { SpiderCursor } from "@/components/cursors/spider";
-import { SplatCursor } from "@/components/cursors/splat";
-import { StampCursor } from "@/components/cursors/stamp";
-import { SunCursor } from "@/components/cursors/sun";
-import { TooltipCursor } from "@/components/cursors/tooltip";
-import { TopCursor } from "@/components/cursors/top";
-import { TornadoCursor } from "@/components/cursors/tornado";
-import { TrailCursor } from "@/components/cursors/trail";
-import { UfoCursor } from "@/components/cursors/ufo";
-import { WandCursor } from "@/components/cursors/wand";
-import { YoyoCursor } from "@/components/cursors/yoyo";
-import { ZapCursor } from "@/components/cursors/zap";
+import type { ReactNode } from "react";
 import registry from "@/registry.json";
+import { LiveCursor } from "./live";
 import { Scene } from "./scenes";
-
-const components: Record<string, ComponentType<{ className?: string }>> = {
-  ring: RingCursor,
-  trail: TrailCursor,
-  blend: BlendCursor,
-  label: LabelCursor,
-  register: RegisterCursor,
-  offset: OffsetCursor,
-  ribbon: RibbonCursor,
-  confetti: ConfettiCursor,
-  comet: CometCursor,
-  orbit: OrbitCursor,
-  rocket: RocketCursor,
-  astronaut: AstronautCursor,
-  ghost: GhostCursor,
-  spider: SpiderCursor,
-  flashlight: FlashlightCursor,
-  gear: GearCursor,
-  readout: ReadoutCursor,
-  googly: GooglyCursor,
-  jelly: JellyCursor,
-  frame: FrameCursor,
-  magnet: MagnetCursor,
-  glass: GlassCursor,
-  glow: GlowCursor,
-  neon: NeonCursor,
-  sparkle: SparkleCursor,
-  splat: SplatCursor,
-  ufo: UfoCursor,
-  constellation: ConstellationCursor,
-  bat: BatCursor,
-  pumpkin: PumpkinCursor,
-  candle: CandleCursor,
-  compass: CompassCursor,
-  clock: ClockCursor,
-  radar: RadarCursor,
-  doodle: DoodleCursor,
-  fly: FlyCursor,
-  classic: ClassicCursor,
-  chomp: ChompCursor,
-  matrix: MatrixCursor,
-  cloud: CloudCursor,
-  zap: ZapCursor,
-  snow: SnowCursor,
-  balloon: BalloonCursor,
-  yoyo: YoyoCursor,
-  bubbles: BubblesCursor,
-  fish: FishCursor,
-  jellyfish: JellyfishCursor,
-  ripple: RippleCursor,
-  stamp: StampCursor,
-  caret: CaretCursor,
-  tooltip: TooltipCursor,
-  peek: PeekCursor,
-  focus: FocusCursor,
-  goggles: GogglesCursor,
-  dice: DiceCursor,
-  plane: PlaneCursor,
-  snake: SnakeCursor,
-  pixel: PixelCursor,
-  sun: SunCursor,
-  tornado: TornadoCursor,
-  "black-hole": BlackHoleCursor,
-  top: TopCursor,
-  rune: RuneCursor,
-  galley: GalleyCursor,
-  element: ElementCursor,
-  saber: SaberCursor,
-  magnifier: MagnifierCursor,
-  wand: WandCursor,
-  laser: LaserCursor,
-  fireworks: FireworksCursor,
-};
 
 /**
  * Cursors on this site invert what is beneath them: ink over paper, paper over ink-filled hovers.
  * The exceptions keep their own colors: Label's, Tooltip's and Element's pills carry words (inverted, the text under them
  * would show through), the colorful and drawn ones would turn to negatives, Flashlight's dark would become a glare, and a
- * blend on the root of Glass, Focus, Goggles, Magnifier, Rune or Black hole would cut their lenses, veil and warp off from the page they see.
+ * blend on the root of Glass, Focus, Goggles, Magnifier, Droplet, Liquid, Rune or Black hole would cut their lenses, veil and warp off from the page they see.
  */
 export const cursorTone = "text-white mix-blend-difference";
 const ownColors = new Set([
@@ -195,13 +53,21 @@ const ownColors = new Set([
   "wand",
   "laser",
   "fireworks",
+  "droplet",
+  "mercury",
+  "fireflies",
+  "leaves",
+  "smoke",
+  "galaxy",
+  "liquid",
+  "gecko",
 ]);
 
 /** What `className` does on a cursor, by how that cursor takes its color: the Props row on its page. */
 export function classNameDoc(name: string) {
   if (name === "label" || name === "tooltip" || name === "element")
     return `Colors the dot and ${name === "tooltip" ? "tip" : "pill"} through currentColor, e.g. text-pink-500. The words switch to black or white to stay readable${name === "element" ? "; the tile keeps its own green" : ""}.`;
-  if (["glass", "focus", "goggles", "magnifier"].includes(name))
+  if (["glass", "focus", "goggles", "magnifier", "droplet", "liquid"].includes(name))
     return "Colors any outline and the pointer dot through currentColor, e.g. text-pink-500. Keep blend modes and filters off it: either would cut the lens off from the page it sees.";
   if (name === "rune" || name === "black-hole")
     return `Extra classes for the cursor's root. It draws in its own colors, set in the file; its pointer dot follows currentColor, e.g. text-pink-500. Keep blend modes and filters off it: either would cut its ${name === "rune" ? "veil off from the page it greys" : "lens off from the page it bends"}.`;
@@ -227,11 +93,11 @@ const categoryTerms: Record<string, string> = {
   Ocean: "sea water marine underwater",
   Fantasy: "magic myth wizard medieval spell",
   "Sci-fi": "science fiction space future robot laser",
+  Nature: "outdoors seasons wildlife garden forest",
 };
 
 /** registry.json is the source of truth; the site lists cursors in its order. */
 export const cursors = registry.items.filter((item) => item.type === "registry:component").map((item) => {
-  const Base = components[item.name];
   const tone = ownColors.has(item.name) ? undefined : cursorTone;
   // A contributor's credit: the registry's own `author` field, written "Name <https://github.com/handle>".
   // The maintainer's cursors leave it out, so they carry no credit line.
@@ -243,6 +109,7 @@ export const cursors = registry.items.filter((item) => item.type === "registry:c
     description: item.description,
     files: item.files.map((f) => f.path),
     category: item.categories[0],
+    keywords: (item as { meta?: { keywords?: string[] } }).meta?.keywords ?? [],
     /** Everything the gallery search matches against: the name either way it is written, the category and its kin, the description and the registry's keywords. */
     search: [
       item.title,
@@ -253,20 +120,44 @@ export const cursors = registry.items.filter((item) => item.type === "registry:c
       item.description,
       ...((item as { meta?: { keywords?: string[] } }).meta?.keywords ?? []),
     ].join(" "),
-    Cursor: function SiteCursor() {
-      return <Base className={tone} />;
+    /** The live cursor, fetched on its own (`app/live.tsx`): eager where it is the point of the page, otherwise on approach. */
+    Cursor: function SiteCursor({ eager }: { eager?: boolean }) {
+      return <LiveCursor name={item.name} className={tone} eager={eager} />;
     },
   };
 });
 
 export type CursorData = (typeof cursors)[number];
 
-/** Cursors grouped by their registry category, both in registry order: the all-cursors page and the sidebar. */
+/** Each category in a sentence: the lead on its own page, and its description for search engines. */
+const categoryIntros: Record<string, string> = {
+  Followers: "Cursors that stay close to the pointer: a ring, a trail, a magnet. Quiet enough for any site, exact enough to work with.",
+  Lenses: "Cursors that change the page beneath them: they invert it, frost it, focus it, magnify it, refract it like a drop of water or bend it like liquid glass.",
+  Labels: "Cursors that read the page: a pill with a label, a tooltip from a control's own name, a link's destination, a tile from the periodic table.",
+  Marks: "Printer's and editor's marks as cursors: a registration mark, viewfinder corners, a rubber stamp, a text caret and a halftone screen.",
+  Colorful: "Cursors that bring color: misregistered inks, a rainbow ribbon, confetti, neon, sparkles, paint splats and fireworks.",
+  Space: "Space cursors: a comet, an orbiting moon, a rocket, an astronaut on a tether, a UFO, constellations, a spiral galaxy and a black hole that bends the page.",
+  Halloween: "Spooky cursors for October: a ghost, a spider on its thread, a flashlight in the dark, a bat, a jack-o'-lantern and a candle flame.",
+  Mechanical: "Instruments as cursors: a gear, a drafting readout, a compass needle, a clock on your visitor's own time and a radar sweep.",
+  Weird: "Cursors with a sense of humor: googly eyes, a jelly blob, a boiling doodle, a fly, a bead of liquid metal and a curl of smoke.",
+  Retro: "Cursors from old screens: the 1-bit desktop arrow, an arcade chomper, falling green code, the phone snake and a pixel trail.",
+  Weather: "Weather cursors: a rain cloud, lightning, snowflakes, a sun that turns into an eclipse and a tornado.",
+  Toys: "Toy cursors: a balloon on a string, a yo-yo, dice, a paper plane, a spinning top and a laser dot that a cat chases.",
+  Ocean: "Underwater cursors: bubbles, a goldfish, a jellyfish, ripples, and a Greek galley rowing among sea monsters.",
+  Fantasy: "Cursors from myth and magic: a ring of runes that makes you vanish and a wand that casts spells.",
+  "Sci-fi": "Science-fiction cursors: an energy saber that ignites, swings, clashes and powers down.",
+  Nature: "Cursors from outdoors: a swarm of fireflies that blink in step, autumn leaves that pile up on buttons and a gecko that stalks the pointer.",
+};
+
+/** Cursors grouped by their registry category, both in registry order: the all-cursors page, the sidebar and each category's page. */
 export const categories = [...new Set(cursors.map((p) => p.category))].map((name) => ({
   name,
   id: name.toLowerCase(),
+  intro: categoryIntros[name] ?? `${name} cursor components for React.`,
   cursors: cursors.filter((p) => p.category === name),
 }));
+
+export const getCategory = (id: string) => categories.find((c) => c.id === id);
 
 /** The home page shows the first few; /cursors shows them all. */
 export const featured = cursors.slice(0, 5);
