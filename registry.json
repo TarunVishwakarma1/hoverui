@@ -2168,6 +2168,159 @@
       }
     },
     {
+      "name": "coin",
+      "type": "registry:component",
+      "categories": [
+        "Retro"
+      ],
+      "title": "Coin",
+      "description": "An arcade coin on the pointer. Every click pops a spinning coin with a \"+1\" and keeps score; over a control a \"?\" block hangs above it and the click bumps it.",
+      "files": [
+        {
+          "path": "components/cursors/coin.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/coin.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "arcade",
+          "game",
+          "score",
+          "points",
+          "platformer",
+          "gold",
+          "8-bit"
+        ]
+      }
+    },
+    {
+      "name": "lantern",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Lantern",
+      "description": "A paper sky lantern held above the pointer. Click to let it go and it rises, sways and drifts off while the next one lights; hold to send them up one after another.",
+      "files": [
+        {
+          "path": "components/cursors/lantern.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/lantern.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "sky lantern",
+          "festival",
+          "diwali",
+          "lunar new year",
+          "celebration",
+          "lights",
+          "paper",
+          "glow"
+        ]
+      }
+    },
+    {
+      "name": "dragon",
+      "type": "registry:component",
+      "categories": [
+        "Fantasy"
+      ],
+      "title": "Dragon",
+      "description": "A little dragon flying at the pointer's shoulder. Over a control it breathes embers and the control glows hot; a click and it breathes fire, leaving a scorch mark.",
+      "files": [
+        {
+          "path": "components/cursors/dragon.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/dragon.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "fire",
+          "flame",
+          "wings",
+          "flying",
+          "creature",
+          "myth",
+          "pet"
+        ]
+      }
+    },
+    {
+      "name": "sand",
+      "type": "registry:component",
+      "categories": [
+        "Nature"
+      ],
+      "title": "Sand",
+      "description": "Sand pours from the pointer and piles into dunes along the bottom and on top of every control, in bands of color like sand art. Hold to pour a stream.",
+      "files": [
+        {
+          "path": "components/cursors/sand.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/sand.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "falling sand",
+          "grains",
+          "dunes",
+          "sand art",
+          "physics",
+          "pixel",
+          "desert",
+          "particles"
+        ]
+      }
+    },
+    {
+      "name": "fluid",
+      "type": "registry:component",
+      "categories": [
+        "Colorful"
+      ],
+      "title": "Fluid",
+      "description": "Dye in a real fluid simulation, stirred by the pointer: the swirls keep curling after you stop, a click splashes a ring of color, and controls send up plumes of it.",
+      "files": [
+        {
+          "path": "components/cursors/fluid.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/fluid.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "fluid simulation",
+          "webgl",
+          "ink",
+          "dye",
+          "liquid",
+          "swirl",
+          "navier-stokes",
+          "rainbow"
+        ]
+      }
+    },
+    {
       "name": "use-cursor",
       "type": "registry:hook",
       "title": "useCursor",

@@ -9,9 +9,9 @@ export type Pointer = {
   target: Element | null;
   /** The clickable element under the pointer (anything matching `INTERACTIVE`) inside this cursor's area, for hover effects. */
   hover: Element | null;
-  /** Per-frame smoothing: `pos += (p.x - pos) * p.ease(speed)`. Frame-rate independent; 1 (snap) on enter and under reduced motion. */
+  /** Per-frame smoothing: `pos += (p.x - pos) * p.ease(speed)`. Frame-rate independent; 1 (snap) on a cursor's first frame and under reduced motion. */
   ease: (speed: number) => number;
-  /** Seconds since the last frame (0 on the frame the pointer enters), for time-based motion. */
+  /** Seconds since the last frame (0 on the frame the pointer enters, and on a cursor's first frame), for time-based motion. */
   dt: number;
   /** The visitor prefers reduced motion: skip anything that moves on its own. */
   reduced: boolean;
@@ -24,10 +24,96 @@ export const cursorRoot =
 /** Things a cursor should react to on hover. */
 export const INTERACTIVE = "a,button,input,select,textarea,label,[role=button],[data-cursor-label]";
 
+type Cursor = { el: HTMLElement; fresh: boolean; frame(p: Pointer, el: HTMLElement): void };
+type Area = { cursors: Cursor[]; active: () => boolean; close: () => void };
+
+/** Every cursor area on the page and the cursors in it. Cursors in one element share it: one pointer, one loop. */
+const areas = new Map<HTMLElement, Area>();
+
+/** Makes `area` a cursor area: hides the native cursor there and, while a mouse is inside, runs one loop calling each of `cursors` in turn. */
+function open(area: HTMLElement, cursors: Cursor[]): Area {
+  if (!document.getElementById("hover-ui-cursor")) {
+    const style = document.createElement("style");
+    style.id = "hover-ui-cursor";
+    style.textContent = "[data-cursor-area],[data-cursor-area] *{cursor:none!important}";
+    document.head.append(style);
+  }
+  area.setAttribute("data-cursor-area", "");
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let raf = 0;
+  let last = 0;
+  let snap = true;
+  const p: Pointer = {
+    x: 0,
+    y: 0,
+    down: false,
+    target: null,
+    hover: null,
+    ease: (speed) => (!p.dt || reduced ? 1 : 1 - Math.exp(-speed * p.dt)),
+    dt: 0,
+    reduced,
+  };
+
+  const tick = (t: number) => {
+    const dt = Math.min((t - last) / 1000, 0.1);
+    last = t;
+    // In the order they mounted. A cursor that joined since the last frame gets a first frame of its own, to set itself up.
+    for (const cursor of cursors) {
+      p.dt = snap || cursor.fresh ? 0 : dt;
+      cursor.fresh = false;
+      cursor.frame(p, cursor.el);
+    }
+    snap = false;
+    raf = requestAnimationFrame(tick);
+  };
+  const setActive = (on: boolean) => {
+    if (on === !!raf) return;
+    for (const cursor of cursors) cursor.el.toggleAttribute("data-active", on);
+    cancelAnimationFrame(raf);
+    raf = on ? requestAnimationFrame(tick) : 0;
+    snap = true;
+  };
+
+  const ac = new AbortController();
+  const opts = { signal: ac.signal };
+  const track = (e: PointerEvent) => {
+    // A touch on a laptop's screen is not the mouse: leave the cursor where the mouse left it.
+    if (e.pointerType === "touch") return;
+    p.x = e.clientX;
+    p.y = e.clientY;
+    p.target = e.target as Element;
+    // A link wrapping the whole area (a card, say) is not something to hover inside it.
+    const hit = p.target.closest(INTERACTIVE);
+    p.hover = hit && hit !== area && area.contains(hit) ? hit : null;
+    setActive(p.target.closest("[data-cursor-area]") === area);
+  };
+  area.addEventListener("pointermove", track, opts);
+  // Scrolling under a still pointer fires no pointermove, only boundary events: without this the
+  // old area deactivates on pointerleave and nothing takes over, leaving no cursor at all.
+  area.addEventListener("pointerover", track, opts);
+  area.addEventListener("pointerleave", () => setActive(false), opts);
+  // The main button only: a right-click opens a menu that swallows its pointerup.
+  area.addEventListener("pointerdown", (e) => (p.down = e.button === 0), opts);
+  window.addEventListener("pointerup", () => (p.down = false), opts);
+  window.addEventListener("blur", () => (p.down = false), opts);
+
+  return {
+    cursors,
+    active: () => !!raf,
+    close: () => {
+      ac.abort();
+      setActive(false);
+      area.removeAttribute("data-cursor-area");
+    },
+  };
+}
+
 /**
  * Turns the parent of the returned ref's element into a cursor area: hides the native cursor
  * there and calls `frame` every animation frame while a mouse is inside.
- * Put a cursor in <body> for a global one; nested areas take over from outer ones.
+ * Put a cursor in <body> for a global one; nested areas take over from outer ones. Several cursors
+ * in one element share it, drawn in the order they mounted, and each can come and go on its own.
  * Note: position:fixed breaks under a transformed/filtered ancestor; portal to body if that bites.
  */
 export function useCursor<T extends HTMLElement = HTMLDivElement>(frame: (p: Pointer, el: T) => void) {
@@ -39,73 +125,19 @@ export function useCursor<T extends HTMLElement = HTMLDivElement>(frame: (p: Poi
     const area = el?.parentElement;
     if (!el || !area || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    if (!document.getElementById("hover-ui-cursor")) {
-      const style = document.createElement("style");
-      style.id = "hover-ui-cursor";
-      style.textContent = "[data-cursor-area],[data-cursor-area] *{cursor:none!important}";
-      document.head.append(style);
-    }
-    area.setAttribute("data-cursor-area", "");
-
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let raf = 0;
-    let last = 0;
-    let dt = 0;
-    let snap = true;
-    const p: Pointer = {
-      x: 0,
-      y: 0,
-      down: false,
-      target: null,
-      hover: null,
-      ease: (speed) => (snap || reduced ? 1 : 1 - Math.exp(-speed * dt)),
-      dt: 0,
-      reduced,
-    };
-
-    const tick = (t: number) => {
-      dt = Math.min((t - last) / 1000, 0.1);
-      last = t;
-      p.dt = snap ? 0 : dt;
-      onFrame(p, el);
-      snap = false;
-      raf = requestAnimationFrame(tick);
-    };
-    const setActive = (on: boolean) => {
-      if (on === !!raf) return;
-      el.toggleAttribute("data-active", on);
-      cancelAnimationFrame(raf);
-      raf = on ? requestAnimationFrame(tick) : 0;
-      snap = true;
-    };
-
-    const ac = new AbortController();
-    const opts = { signal: ac.signal };
-    const track = (e: PointerEvent) => {
-      // A touch on a laptop's screen is not the mouse: leave the cursor where the mouse left it.
-      if (e.pointerType === "touch") return;
-      p.x = e.clientX;
-      p.y = e.clientY;
-      p.target = e.target as Element;
-      // A link wrapping the whole area (a card, say) is not something to hover inside it.
-      const hit = p.target.closest(INTERACTIVE);
-      p.hover = hit && hit !== area && area.contains(hit) ? hit : null;
-      setActive(p.target.closest("[data-cursor-area]") === area);
-    };
-    area.addEventListener("pointermove", track, opts);
-    // Scrolling under a still pointer fires no pointermove, only boundary events: without this the
-    // old area deactivates on pointerleave and nothing takes over, leaving no cursor at all.
-    area.addEventListener("pointerover", track, opts);
-    area.addEventListener("pointerleave", () => setActive(false), opts);
-    // The main button only: a right-click opens a menu that swallows its pointerup.
-    area.addEventListener("pointerdown", (e) => (p.down = e.button === 0), opts);
-    window.addEventListener("pointerup", () => (p.down = false), opts);
-    window.addEventListener("blur", () => (p.down = false), opts);
+    // The first cursor in an element opens the area; the last to leave closes it.
+    let shared = areas.get(area);
+    if (!shared) areas.set(area, (shared = open(area, [])));
+    const cursor: Cursor = { el, fresh: true, frame: (p) => onFrame(p, el) };
+    shared.cursors.push(cursor);
+    el.toggleAttribute("data-active", shared.active());
 
     return () => {
-      ac.abort();
-      setActive(false);
-      area.removeAttribute("data-cursor-area");
+      shared.cursors.splice(shared.cursors.indexOf(cursor), 1);
+      el.removeAttribute("data-active");
+      if (shared.cursors.length) return;
+      shared.close();
+      areas.delete(area);
     };
   }, []);
 

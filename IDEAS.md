@@ -25,7 +25,7 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 ## Fantasy and myth
 
 - [x] **Wand**: spell sparks trail the tip. Draw a circle to cast a shield; click to cast a spark.
-- [ ] **Dragon**: a small dragon flies beside you; clicks breathe fire and leave fading scorch marks.
+- [x] **Dragon**: a small dragon flies beside you; clicks breathe fire and leave fading scorch marks.
 - [ ] **Bow**: hold to draw, release to fire an arrow that sticks into the hovered control and wobbles.
 - [ ] **Fairy**: pixie dust trails behind; controls get sprinkled and glow.
 - [ ] **Rewind**: an hourglass. Press and your last two seconds of movement replay backwards as a ghost.
@@ -33,7 +33,7 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 ## Games
 
 - [x] **Laser**: the pointer is a laser dot and a cat chases it, pounces on clicks and naps when you stop.
-- [ ] **Coin**: each click pops a spinning coin with "+1" and a running score.
+- [x] **Coin**: each click pops a spinning coin with "+1" and a running score.
 - [ ] **Blocks**: a falling block piece that snaps onto controls, which flash like a cleared line.
 - [ ] **Scope**: a crosshair that locks onto controls; clicks show hit markers and damage numbers.
 - [ ] **Loot**: controls glow by rarity and show an item card with made-up stats.
@@ -46,7 +46,7 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 - [x] **Fireflies**: a swarm that follows you and settles on controls; brighter in dark mode.
 - [ ] **Vinyl**: a spinning record whose needle drops over controls; dragging scratches it.
 - [ ] **Polaroid**: clicks flash and drop a photo frame that slowly develops.
-- [ ] **Lantern**: festival lanterns (Diwali, Lunar New Year) that rise and drift off on each click.
+- [x] **Lantern**: festival lanterns (Diwali, Lunar New Year) that rise and drift off on each click.
 - [ ] **Fountain pen**: writes your path in ink of varying width and underlines controls.
 
 ## Materials and nature
@@ -56,12 +56,12 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 - [x] **Leaves**: autumn leaves that tumble off your path and pile up on buttons; a click is a gust.
 - [x] **Smoke**: an ember with curling smoke; a click blows a smoke ring.
 - [ ] **Ink in water**: a drop of ink blooming into clouds where you click, slowly diffusing.
-- [ ] **Sand**: grains that pour from the pointer and pile into dunes along the bottom of the area.
+- [x] **Sand**: grains that pour from the pointer and pile into dunes along the bottom of the area.
 
 ## Showpieces
 
 - [x] **Galaxy**: a spiral galaxy turning round the pointer; its stars trace a hovered control's outline and go supernova on press.
 - [x] **Liquid**: a drop of liquid glass that bends the page at its rim and flows out to wrap a hovered control.
 - [x] **Gecko**: a procedurally animated lizard that stalks the pointer, steps in diagonal pairs and flicks its tongue at controls.
-- [ ] **Fluid**: dye in a real fluid simulation, stirred by the pointer and splashed by clicks (WebGL).
+- [x] **Fluid**: dye in a real fluid simulation, stirred by the pointer and splashed by clicks (WebGL).
 - [ ] **Cloth**: a flag of real cloth hanging from the pointer, waving the hovered control's name.

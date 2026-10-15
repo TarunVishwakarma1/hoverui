@@ -130,6 +130,7 @@ export default function Home() {
               ["In <body>", "The whole page wears it."],
               ["In an element", "Only that element does. Leave it and the outer cursor takes back over."],
               ["Nested", "The innermost cursor wins."],
+              ["Several in one element", "They share it, drawn in the order they mount, and each can come and go on its own."],
               ["Touch, reduced motion", "Touch keeps the native pointer. Reduced motion snaps into place instead of trailing."],
             ].map(([term, def]) => (
               <div key={term} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">

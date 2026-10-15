@@ -4,16 +4,19 @@ import {
   BalloonArt,
   BatArt,
   BlackHoleArt,
+  BlockArt,
   CandleArt,
   CatArt,
   ChompArt,
   ClassicArt,
   ClockArt,
   CloudArt,
+  CoinArt,
   CompassArt,
   CreatureArt,
   DiceArt,
   DoodleArt,
+  DragonArt,
   DropletArt,
   ElementArt,
   FishArt,
@@ -23,6 +26,7 @@ import {
   GearArt,
   GhostArt,
   JellyfishArt,
+  LanternArt,
   LeafArt,
   MagnifierArt,
   MercuryFilter,
@@ -79,6 +83,21 @@ const GALAXY = (() => {
     };
   });
 })();
+
+/** Sand's resting pile on a button: 3px grains in sand-art bands, settled at the slope the cursor's sand settles at. */
+const DUNE = ["#f26b5b", "#f6b24a", "#3fae9f", "#5b8def", "#9f7ae0"].flatMap((fill, band) =>
+  Array.from({ length: 27 }, (_, i) => {
+    const [x, height] = [(i - 13) * 3, 14 - Math.abs(i - 13)];
+    const [lo, hi] = [band * 3, Math.min(height, band * 3 + 3)];
+    return hi > lo ? [{ x, y: -hi * 3, h: (hi - lo) * 3, fill }] : [];
+  }).flat(),
+);
+/** Fluid's resting swirl: a stroke of dye curling into an eddy, older dye wider and fainter, its color turning through the rainbow. */
+const SWIRL = Array.from({ length: 28 }, (_, i) => {
+  const t = i / 27;
+  const [a, r] = [t * Math.PI * 3.2 + 2.4, 70 * (1 - t) ** 1.1 + 5];
+  return { x: 18 + Math.cos(a) * r, y: -4 + Math.sin(a) * r * 0.75, size: 16 + t * 14, color: `hsl(${200 + t * 150} 90% 58%)`, opacity: 0.9 - t * 0.45 };
+});
 
 const KANA = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ0123456789";
 
@@ -795,6 +814,82 @@ export function Scene({ name }: { name: string }) {
       <>
         <GeckoArt className="absolute h-[60px] w-[123px] -translate-1/2" />
         <span className="absolute top-[0px] left-[64px] size-[5px] -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    coin: (
+      <>
+        <span className="absolute top-[34px] flex h-11 w-36 -translate-1/2 items-center justify-center border border-ink text-[15px]">Button</span>
+        <BlockArt className="absolute top-[-6px] size-6 -translate-1/2" />
+        <CoinArt className="absolute top-[-44px] size-6 -translate-1/2 scale-x-40" />
+        <span className="absolute top-[-70px] -translate-1/2 font-mono text-[13px] font-bold">+1</span>
+        <CoinArt className="absolute top-[26px] left-[40px] size-5 -translate-1/2" />
+        <span className="absolute top-[34px] left-[52px] font-mono text-[13px] font-bold">×7</span>
+      </>
+    ),
+    lantern: (
+      <>
+        {[
+          [-64, -50, 0.6, "#ff5f6d"],
+          [40, -74, 0.5, "#ffb347"],
+          [-20, -86, 0.42, "#ff8a3d"],
+          [72, -22, 0.75, "#f7598f"],
+          [-50, 8, 0.85, "#ffb347"],
+        ].map(([x, y, k, color]) => (
+          <span key={x} className="absolute" style={{ left: x, top: y, scale: String(k), filter: "drop-shadow(0 0 6px rgb(255 150 50 / 0.75))" }}>
+            <LanternArt color={color as string} className="absolute h-10 w-8 -translate-1/2" />
+          </span>
+        ))}
+        <span className="absolute top-[10px] left-[18px]" style={{ filter: "drop-shadow(0 0 8px rgb(255 150 50 / 0.85))" }}>
+          <LanternArt className="absolute h-10 w-8 -translate-1/2" />
+        </span>
+        <span className="absolute top-[46px] left-[18px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    dragon: (
+      <>
+        <span className="absolute top-[40px] left-[46px] size-12 -translate-1/2 rounded-full bg-[radial-gradient(circle,rgb(50_30_20/0.5),rgb(50_30_20/0.22)_40%,transparent_70%)]" />
+        {[0.14, 0.28, 0.42, 0.56, 0.7, 0.84].map((t) => (
+          <span
+            key={t}
+            className="absolute -translate-1/2 rounded-full bg-[radial-gradient(circle,#fff6c8,#ffb02e_40%,rgb(255_80_20/0)_72%)]"
+            style={{ left: -6.6 + t * 52.6, top: -28 + t * 68 - Math.sin(t * Math.PI) * 12, width: 8 + t * 18, height: 8 + t * 18 }}
+          />
+        ))}
+        <DragonArt className="absolute top-[-22px] left-[-40px] h-12 w-[72px] -translate-1/2" />
+        <span className="absolute top-[40px] left-[46px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    sand: (
+      <>
+        <span className="absolute top-[34px] flex h-11 w-36 -translate-1/2 items-center justify-center border border-ink text-[15px]">Button</span>
+        <svg aria-hidden className="absolute top-[12px] size-px overflow-visible" shapeRendering="crispEdges">
+          {DUNE.map((cell) => (
+            <rect key={`${cell.x},${cell.y}`} x={cell.x - 1.5} y={cell.y} width="3" height={cell.h} fill={cell.fill} />
+          ))}
+          {[
+            [0, -80],
+            [-3, -72],
+            [0, -66],
+            [3, -59],
+            [0, -53],
+            [-3, -48],
+          ].map(([x, y]) => (
+            <rect key={y} x={x - 1.5} y={y} width="3" height="3" fill="#9f7ae0" />
+          ))}
+        </svg>
+        <span className="absolute top-[-76px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    fluid: (
+      <>
+        {SWIRL.map((blob, i) => (
+          <span
+            key={i}
+            className="absolute -translate-1/2 rounded-full blur-[6px]"
+            style={{ left: blob.x, top: blob.y, width: blob.size, height: blob.size, background: blob.color, opacity: blob.opacity }}
+          />
+        ))}
+        <span className="absolute size-1.5 -translate-1/2 rounded-full bg-ink" style={{ left: SWIRL[0].x, top: SWIRL[0].y }} />
       </>
     ),
   };

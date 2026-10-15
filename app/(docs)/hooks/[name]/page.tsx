@@ -43,13 +43,13 @@ export function DotCursor({ className = "" }: { className?: string }) {
 }`;
 
 const api: [string, string][] = [
-  ["useCursor(frame)", "Returns a ref for your cursor's root element. That element's parent becomes the cursor area: the native cursor hides there, and frame(pointer, element) runs every animation frame while a mouse is inside."],
+  ["useCursor(frame)", "Returns a ref for your cursor's root element. That element's parent becomes the cursor area: the native cursor hides there, and frame(pointer, element) runs every animation frame while a mouse is inside. Several cursors in one element share it: one pointer, one loop, called in the order they mounted."],
   ["pointer.x, pointer.y", "The pointer position in viewport pixels."],
   ["pointer.down", "True while the main mouse button is held."],
   ["pointer.target", "The element under the pointer."],
   ["pointer.hover", "The clickable element under the pointer (anything matching INTERACTIVE) inside the cursor's area, or null: if (pointer.hover) grow(). A link wrapping the whole area doesn't count."],
-  ["pointer.ease(speed)", "A frame-rate independent smoothing factor: pos += (pointer.x - pos) * pointer.ease(12). Returns 1 on entry and under reduced motion, so cursors snap instead of trailing."],
-  ["pointer.dt", "Seconds since the last frame, for springs, particles and anything time-based. 0 on the frame the pointer enters."],
+  ["pointer.ease(speed)", "A frame-rate independent smoothing factor: pos += (pointer.x - pos) * pointer.ease(12). Returns 1 on entry, on a cursor's first frame and under reduced motion, so cursors snap instead of trailing."],
+  ["pointer.dt", "Seconds since the last frame, for springs, particles and anything time-based. 0 on the frame the pointer enters, and on a cursor's first frame: set things up when it is 0."],
   ["pointer.reduced", "True when the visitor prefers reduced motion: skip anything that moves on its own, like bobbing, spinning or trails."],
   ["cursorRoot", "Tailwind classes for the root: fixed, pointer-events-none, hidden until the pointer is inside the area."],
   ["INTERACTIVE", "The selector cursors treat as hover targets."],

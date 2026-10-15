@@ -61,6 +61,11 @@ const ownColors = new Set([
   "galaxy",
   "liquid",
   "gecko",
+  "coin",
+  "lantern",
+  "dragon",
+  "sand",
+  "fluid",
 ]);
 
 /** What `className` does on a cursor, by how that cursor takes its color: the Props row on its page. */
@@ -135,18 +140,18 @@ const categoryIntros: Record<string, string> = {
   Lenses: "Cursors that change the page beneath them: they invert it, frost it, focus it, magnify it, refract it like a drop of water or bend it like liquid glass.",
   Labels: "Cursors that read the page: a pill with a label, a tooltip from a control's own name, a link's destination, a tile from the periodic table.",
   Marks: "Printer's and editor's marks as cursors: a registration mark, viewfinder corners, a rubber stamp, a text caret and a halftone screen.",
-  Colorful: "Cursors that bring color: misregistered inks, a rainbow ribbon, confetti, neon, sparkles, paint splats and fireworks.",
+  Colorful: "Cursors that bring color: misregistered inks, a rainbow ribbon, confetti, neon, sparkles, paint splats, fireworks, sky lanterns and dye in a real fluid.",
   Space: "Space cursors: a comet, an orbiting moon, a rocket, an astronaut on a tether, a UFO, constellations, a spiral galaxy and a black hole that bends the page.",
   Halloween: "Spooky cursors for October: a ghost, a spider on its thread, a flashlight in the dark, a bat, a jack-o'-lantern and a candle flame.",
   Mechanical: "Instruments as cursors: a gear, a drafting readout, a compass needle, a clock on your visitor's own time and a radar sweep.",
   Weird: "Cursors with a sense of humor: googly eyes, a jelly blob, a boiling doodle, a fly, a bead of liquid metal and a curl of smoke.",
-  Retro: "Cursors from old screens: the 1-bit desktop arrow, an arcade chomper, falling green code, the phone snake and a pixel trail.",
+  Retro: "Cursors from old screens: the 1-bit desktop arrow, an arcade chomper, falling green code, the phone snake, a pixel trail and an arcade coin.",
   Weather: "Weather cursors: a rain cloud, lightning, snowflakes, a sun that turns into an eclipse and a tornado.",
   Toys: "Toy cursors: a balloon on a string, a yo-yo, dice, a paper plane, a spinning top and a laser dot that a cat chases.",
   Ocean: "Underwater cursors: bubbles, a goldfish, a jellyfish, ripples, and a Greek galley rowing among sea monsters.",
-  Fantasy: "Cursors from myth and magic: a ring of runes that makes you vanish and a wand that casts spells.",
+  Fantasy: "Cursors from myth and magic: a ring of runes that makes you vanish, a wand that casts spells and a little dragon that breathes fire.",
   "Sci-fi": "Science-fiction cursors: an energy saber that ignites, swings, clashes and powers down.",
-  Nature: "Cursors from outdoors: a swarm of fireflies that blink in step, autumn leaves that pile up on buttons and a gecko that stalks the pointer.",
+  Nature: "Cursors from outdoors: a swarm of fireflies that blink in step, autumn leaves that pile up on buttons, a gecko that stalks the pointer and sand that pours into dunes.",
 };
 
 /** Cursors grouped by their registry category, both in registry order: the all-cursors page, the sidebar and each category's page. */

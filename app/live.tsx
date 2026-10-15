@@ -22,18 +22,21 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   classic: () => import("@/components/cursors/classic"),
   clock: () => import("@/components/cursors/clock"),
   cloud: () => import("@/components/cursors/cloud"),
+  coin: () => import("@/components/cursors/coin"),
   comet: () => import("@/components/cursors/comet"),
   compass: () => import("@/components/cursors/compass"),
   confetti: () => import("@/components/cursors/confetti"),
   constellation: () => import("@/components/cursors/constellation"),
   dice: () => import("@/components/cursors/dice"),
   doodle: () => import("@/components/cursors/doodle"),
+  dragon: () => import("@/components/cursors/dragon"),
   droplet: () => import("@/components/cursors/droplet"),
   element: () => import("@/components/cursors/element"),
   fireflies: () => import("@/components/cursors/fireflies"),
   fireworks: () => import("@/components/cursors/fireworks"),
   fish: () => import("@/components/cursors/fish"),
   flashlight: () => import("@/components/cursors/flashlight"),
+  fluid: () => import("@/components/cursors/fluid"),
   fly: () => import("@/components/cursors/fly"),
   focus: () => import("@/components/cursors/focus"),
   frame: () => import("@/components/cursors/frame"),
@@ -50,6 +53,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   jelly: () => import("@/components/cursors/jelly"),
   jellyfish: () => import("@/components/cursors/jellyfish"),
   label: () => import("@/components/cursors/label"),
+  lantern: () => import("@/components/cursors/lantern"),
   laser: () => import("@/components/cursors/laser"),
   leaves: () => import("@/components/cursors/leaves"),
   liquid: () => import("@/components/cursors/liquid"),
@@ -73,6 +77,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   rocket: () => import("@/components/cursors/rocket"),
   rune: () => import("@/components/cursors/rune"),
   saber: () => import("@/components/cursors/saber"),
+  sand: () => import("@/components/cursors/sand"),
   smoke: () => import("@/components/cursors/smoke"),
   snake: () => import("@/components/cursors/snake"),
   snow: () => import("@/components/cursors/snow"),
@@ -143,16 +148,19 @@ export const AstronautArt = art(() => import("@/components/cursors/astronaut").t
 export const BalloonArt = art(() => import("@/components/cursors/balloon").then((file) => file.BalloonArt));
 export const BatArt = art(() => import("@/components/cursors/bat").then((file) => file.BatArt));
 export const BlackHoleArt = art(() => import("@/components/cursors/black-hole").then((file) => file.BlackHoleArt));
+export const BlockArt = art(() => import("@/components/cursors/coin").then((file) => file.BlockArt));
 export const CandleArt = art(() => import("@/components/cursors/candle").then((file) => file.CandleArt));
 export const CatArt = art(() => import("@/components/cursors/laser").then((file) => file.CatArt));
 export const ChompArt = art(() => import("@/components/cursors/chomp").then((file) => file.ChompArt));
 export const ClassicArt = art(() => import("@/components/cursors/classic").then((file) => file.ClassicArt));
 export const ClockArt = art(() => import("@/components/cursors/clock").then((file) => file.ClockArt));
 export const CloudArt = art(() => import("@/components/cursors/cloud").then((file) => file.CloudArt));
+export const CoinArt = art(() => import("@/components/cursors/coin").then((file) => file.CoinArt));
 export const CompassArt = art(() => import("@/components/cursors/compass").then((file) => file.CompassArt));
 export const CreatureArt = art(() => import("@/components/cursors/galley").then((file) => file.CreatureArt));
 export const DiceArt = art(() => import("@/components/cursors/dice").then((file) => file.DiceArt));
 export const DoodleArt = art(() => import("@/components/cursors/doodle").then((file) => file.DoodleArt));
+export const DragonArt = art(() => import("@/components/cursors/dragon").then((file) => file.DragonArt));
 export const DropletArt = art(() => import("@/components/cursors/droplet").then((file) => file.DropletArt));
 export const ElementArt = art(() => import("@/components/cursors/element").then((file) => file.ElementArt));
 export const FishArt = art(() => import("@/components/cursors/fish").then((file) => file.FishArt));
@@ -162,6 +170,7 @@ export const GearArt = art(() => import("@/components/cursors/gear").then((file)
 export const GeckoArt = art(() => import("@/components/cursors/gecko").then((file) => file.GeckoArt));
 export const GhostArt = art(() => import("@/components/cursors/ghost").then((file) => file.GhostArt));
 export const JellyfishArt = art(() => import("@/components/cursors/jellyfish").then((file) => file.JellyfishArt));
+export const LanternArt = art(() => import("@/components/cursors/lantern").then((file) => file.LanternArt));
 export const LeafArt = art(() => import("@/components/cursors/leaves").then((file) => file.LeafArt));
 export const MagnifierArt = art(() => import("@/components/cursors/magnifier").then((file) => file.MagnifierArt));
 export const MercuryFilter = art(() => import("@/components/cursors/mercury").then((file) => file.MercuryFilter));

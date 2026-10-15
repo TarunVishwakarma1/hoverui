@@ -4,14 +4,21 @@ import { useRef } from "react";
 import { cursorRoot, useCursor } from "@/hooks/use-cursor";
 
 /** A dot that morphs into a pill showing the hovered element's `data-cursor-label`. */
-export function LabelCursor({ className = "" }: { className?: string }) {
+export function LabelCursor({
+  className = "",
+  speed = 20,
+}: {
+  className?: string;
+  /** How quickly the dot and pill catch up with the pointer; lower trails further behind. */
+  speed?: number;
+}) {
   const pos = useRef({ x: 0, y: 0 });
   const ref = useCursor((p, el) => {
     const c = pos.current;
     const group = el.firstChild as HTMLElement;
     const label = p.target?.closest<HTMLElement>("[data-cursor-label]")?.dataset.cursorLabel;
-    c.x += (p.x - c.x) * p.ease(20);
-    c.y += (p.y - c.y) * p.ease(20);
+    c.x += (p.x - c.x) * p.ease(speed);
+    c.y += (p.y - c.y) * p.ease(speed);
     group.style.transform = `translate(${c.x}px, ${c.y}px)`;
     // Keep the old text while the pill scales out.
     if (label) group.querySelector("span")!.textContent = label;

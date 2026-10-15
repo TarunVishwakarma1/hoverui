@@ -59,10 +59,13 @@ export function Section() {
     </section>
   );
 }`;
-  const props: [string, string][] = [
-    ["className", classNameDoc(cursor.name)],
-    ...(attributes[cursor.name] ?? []),
-  ];
+  // Props past className, read from the component's signature: each one's doc comment and its default.
+  const signature = /export function \w+Cursor\(\{([^}]*)\}: \{([^}]*)\}\)/.exec(source);
+  const defaults = Object.fromEntries([...(signature?.[1] ?? "").matchAll(/(\w+) = ([^,\n]+)/g)].map(([, name, value]) => [name, value.trim()]));
+  const tuning = [...(signature?.[2] ?? "").matchAll(/\/\*\*((?:[^*]|\*(?!\/))*)\*\/\s*(\w+)\?:/g)].map(
+    ([, said, name]): [string, string] => [name, `${said.replace(/\s*\*?\s*\n\s*\*?\s*/g, " ").trim()} Default ${defaults[name]}.`],
+  );
+  const props: [string, string][] = [["className", classNameDoc(cursor.name)], ...tuning, ...(attributes[cursor.name] ?? [])];
 
   const url = `${SITE}/cursors/${cursor.name}`;
 
