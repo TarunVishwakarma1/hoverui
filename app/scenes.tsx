@@ -30,6 +30,7 @@ import {
   LeafArt,
   MagnifierArt,
   MercuryFilter,
+  NibArt,
   PlaneArt,
   PumpkinArt,
   RocketArt,
@@ -98,6 +99,31 @@ const SWIRL = Array.from({ length: 28 }, (_, i) => {
   const [a, r] = [t * Math.PI * 3.2 + 2.4, 70 * (1 - t) ** 1.1 + 5];
   return { x: 18 + Math.cos(a) * r, y: -4 + Math.sin(a) * r * 0.75, size: 16 + t * 14, color: `hsl(${200 + t * 150} 90% 58%)`, opacity: 0.9 - t * 0.45 };
 });
+
+/** A rim of light, standing 3px off a control's edge: the light painted on a box, masked to a ring as wide as its padding (Rimlight's own mask). */
+const RIM = "linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)";
+/** Pen's resting flourish: a looping stroke laid down by the same broad nib, held at 40°, older ink lighter. */
+const INK = (() => {
+  const edge = [Math.cos((-40 * Math.PI) / 180) * 4.6, Math.sin((-40 * Math.PI) / 180) * 4.6];
+  const at = (t: number) => [-84 + 150 * t + 20 * Math.sin(Math.PI * 5 * t), 6 - 20 * Math.cos(Math.PI * 5 * t) * (0.35 + 0.5 * t)];
+  const steps = 120;
+  const chunks = [0.3, 0.5, 0.72, 1].map((opacity) => ({ opacity, d: "" }));
+  for (let i = 1; i <= steps; i++) {
+    const [[ax, ay], [bx, by]] = [at((i - 1) / steps), at(i / steps)];
+    // Each band wound the same way, so where the loops cross they add up instead of cutting a hole.
+    let quad = [
+      [ax - edge[0], ay - edge[1]],
+      [ax + edge[0], ay + edge[1]],
+      [bx + edge[0], by + edge[1]],
+      [bx - edge[0], by - edge[1]],
+    ];
+    const area = quad.reduce((sum, [x, y], j) => sum + x * quad[(j + 1) % 4][1] - quad[(j + 1) % 4][0] * y, 0);
+    if (area < 0) quad = quad.reverse();
+    chunks[Math.min(3, Math.floor(((i - 1) / steps) * 4))].d += `M${quad.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}Z`;
+  }
+  const [ex, ey] = at(1);
+  return { chunks, line: Array.from({ length: steps + 1 }, (_, i) => at(i / steps).map((v) => v.toFixed(1)).join(" ")).join("L"), tip: [ex, ey] };
+})();
 
 const KANA = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ0123456789";
 
@@ -890,6 +916,89 @@ export function Scene({ name }: { name: string }) {
           />
         ))}
         <span className="absolute size-1.5 -translate-1/2 rounded-full bg-ink" style={{ left: SWIRL[0].x, top: SWIRL[0].y }} />
+      </>
+    ),
+    rimlight: (
+      <>
+        {(
+          [
+            [-28, -22, 144, 44, "Button"],
+            [52, 38, 96, 36, "Link"],
+          ] as const
+        ).map(([x, y, w, h, label]) => (
+          <span key={label} className="absolute -translate-1/2" style={{ left: x, top: y, width: w, height: h }}>
+            <span className="absolute inset-0 flex items-center justify-center border border-hairline text-[15px]">{label}</span>
+            <span className="absolute -inset-[3px] p-[1.5px]" style={{ mask: RIM, background: `radial-gradient(150px circle at ${57 - (x - w / 2)}px ${11 - (y - h / 2)}px, currentColor, transparent)` }} />
+          </span>
+        ))}
+        <span className="absolute top-[8px] left-[54px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    glitch: (
+      <span className="absolute h-[68px] w-[184px] -translate-1/2 overflow-hidden" style={{ background: "repeating-linear-gradient(transparent 0 2px, color-mix(in srgb, currentColor 12%, transparent) 2px 3px)" }}>
+        {[
+          ["text-[#ff2bd6] opacity-80", "-3px 0"],
+          ["text-[#00c8ff] opacity-80", "3px 0"],
+          ["text-ink", "0 0"],
+        ].map(([tone, shift]) => (
+          <span key={shift} className={`absolute inset-0 flex items-center justify-center text-[36px] tracking-[-0.02em] ${tone}`} style={{ translate: shift }}>
+            Signal
+          </span>
+        ))}
+        {[
+          ["inset(22% 0 62% 0)", "8px 0"],
+          ["inset(58% 0 28% 0)", "-6px 0"],
+        ].map(([band, shift]) => (
+          <span key={band} className="absolute inset-0 flex items-center justify-center bg-preview text-[36px] tracking-[-0.02em] text-ink" style={{ clipPath: band, translate: shift }}>
+            Signal
+          </span>
+        ))}
+        <span className="absolute top-[12px] left-[118px] h-[3px] w-12 bg-[#00f0ff] opacity-80" />
+        <span className="absolute top-[50px] left-[18px] h-[2px] w-9 bg-[#ff2bd6] opacity-80" />
+        <span className="absolute top-[36px] left-[118px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </span>
+    ),
+    cipher: (
+      <>
+        {[
+          ["#", -104, -46, 0.3],
+          ["/", -86, -36, 0.5],
+          ["1", -68, -28, 0.75],
+        ].map(([glyph, x, y, o]) => (
+          <span key={glyph} className="absolute -translate-1/2 font-mono text-[13px]" style={{ left: x, top: y, opacity: o }}>
+            {glyph}
+          </span>
+        ))}
+        <span className="absolute top-[-18px] left-[-50px] h-3.5 w-2 -translate-1/2 bg-ink" />
+        <span className="absolute top-[-4px] left-[-38px] flex items-center gap-1.5 rounded-sm bg-ink px-2.5 py-1.5 font-mono text-[13px] leading-4 whitespace-pre text-paper">
+          <span className="opacity-60">›</span>Open d{"<]#"}
+        </span>
+      </>
+    ),
+    thread: (
+      <>
+        <svg aria-hidden viewBox="-50 -50 100 100" className="absolute size-[100px] -translate-1/2 -rotate-12 overflow-visible">
+          <path id="thread-ring" d="M0 -30a30 30 0 1 1 0 60a30 30 0 1 1 0-60" fill="none" />
+          <text className="fill-current text-[15px] font-medium">
+            <textPath href="#thread-ring" textLength={188} lengthAdjust="spacing">
+              follow the thread ·
+            </textPath>
+          </text>
+        </svg>
+        <span className="absolute size-1.5 -translate-1/2 rounded-full bg-ink" />
+      </>
+    ),
+    pen: (
+      <>
+        <svg aria-hidden className="absolute size-px overflow-visible">
+          {INK.chunks.map((chunk) => (
+            <path key={chunk.opacity} d={chunk.d} fill="currentColor" opacity={chunk.opacity} />
+          ))}
+          <path d={`M${INK.line}`} fill="none" stroke="currentColor" strokeWidth="0.9" opacity="0.6" />
+        </svg>
+        <span className="absolute rotate-[35deg]" style={{ left: INK.tip[0], top: INK.tip[1] }}>
+          <NibArt className="absolute top-[-34.4px] left-[-9.6px] h-[35.2px] w-[19.2px]" />
+        </span>
       </>
     ),
   };

@@ -6,9 +6,9 @@ import { Scene } from "./scenes";
 
 /**
  * Cursors on this site invert what is beneath them: ink over paper, paper over ink-filled hovers.
- * The exceptions keep their own colors: Label's, Tooltip's and Element's pills carry words (inverted, the text under them
+ * The exceptions keep their own colors: Label's, Tooltip's, Element's and Cipher's pills carry words (inverted, the text under them
  * would show through), the colorful and drawn ones would turn to negatives, Flashlight's dark would become a glare, and a
- * blend on the root of Glass, Focus, Goggles, Magnifier, Droplet, Liquid, Rune or Black hole would cut their lenses, veil and warp off from the page they see.
+ * blend on the root of Glass, Focus, Goggles, Magnifier, Droplet, Liquid, Glitch, Rune or Black hole would cut their lenses, veil and warp off from the page they see.
  */
 export const cursorTone = "text-white mix-blend-difference";
 const ownColors = new Set([
@@ -66,13 +66,15 @@ const ownColors = new Set([
   "dragon",
   "sand",
   "fluid",
+  "glitch",
+  "cipher",
 ]);
 
 /** What `className` does on a cursor, by how that cursor takes its color: the Props row on its page. */
 export function classNameDoc(name: string) {
-  if (name === "label" || name === "tooltip" || name === "element")
-    return `Colors the dot and ${name === "tooltip" ? "tip" : "pill"} through currentColor, e.g. text-pink-500. The words switch to black or white to stay readable${name === "element" ? "; the tile keeps its own green" : ""}.`;
-  if (["glass", "focus", "goggles", "magnifier", "droplet", "liquid"].includes(name))
+  if (name === "label" || name === "tooltip" || name === "element" || name === "cipher")
+    return `Colors the ${name === "cipher" ? "block" : "dot"} and ${name === "tooltip" ? "tip" : name === "cipher" ? "tag" : "pill"} through currentColor, e.g. text-pink-500. The words switch to black or white to stay readable${name === "element" ? "; the tile keeps its own green" : ""}.`;
+  if (["glass", "focus", "goggles", "magnifier", "droplet", "liquid", "glitch"].includes(name))
     return "Colors any outline and the pointer dot through currentColor, e.g. text-pink-500. Keep blend modes and filters off it: either would cut the lens off from the page it sees.";
   if (name === "rune" || name === "black-hole")
     return `Extra classes for the cursor's root. It draws in its own colors, set in the file; its pointer dot follows currentColor, e.g. text-pink-500. Keep blend modes and filters off it: either would cut its ${name === "rune" ? "veil off from the page it greys" : "lens off from the page it bends"}.`;
@@ -136,10 +138,10 @@ export type CursorData = (typeof cursors)[number];
 
 /** Each category in a sentence: the lead on its own page, and its description for search engines. */
 const categoryIntros: Record<string, string> = {
-  Followers: "Cursors that stay close to the pointer: a ring, a trail, a magnet. Quiet enough for any site, exact enough to work with.",
-  Lenses: "Cursors that change the page beneath them: they invert it, frost it, focus it, magnify it, refract it like a drop of water or bend it like liquid glass.",
-  Labels: "Cursors that read the page: a pill with a label, a tooltip from a control's own name, a link's destination, a tile from the periodic table.",
-  Marks: "Printer's and editor's marks as cursors: a registration mark, viewfinder corners, a rubber stamp, a text caret and a halftone screen.",
+  Followers: "Cursors that stay close to the pointer: a ring, a trail, a magnet, a light that catches the edges of the controls nearby. Quiet enough for any site, exact enough to work with.",
+  Lenses: "Cursors that change the page beneath them: they invert it, frost it, focus it, magnify it, refract it like a drop of water, bend it like liquid glass or break it up like a glitching signal.",
+  Labels: "Cursors that read the page: a pill with a label, a tooltip from a control's own name, a link's destination, a tile from the periodic table, a name decoding out of scrambled glyphs and your own words on a thread.",
+  Marks: "Printer's and editor's marks as cursors: a registration mark, viewfinder corners, a rubber stamp, a text caret, a halftone screen and a fountain pen.",
   Colorful: "Cursors that bring color: misregistered inks, a rainbow ribbon, confetti, neon, sparkles, paint splats, fireworks, sky lanterns and dye in a real fluid.",
   Space: "Space cursors: a comet, an orbiting moon, a rocket, an astronaut on a tether, a UFO, constellations, a spiral galaxy and a black hole that bends the page.",
   Halloween: "Spooky cursors for October: a ghost, a spider on its thread, a flashlight in the dark, a bat, a jack-o'-lantern and a candle flame.",
@@ -279,6 +281,30 @@ export function Specimen({ name }: { name: string }) {
           <button type="button" className="btn-primary">Over ink</button>
           <button type="button" className="btn-secondary">Over a rule</button>
         </div>
+      </div>
+    );
+
+  // Rimlight needs edges to catch wherever the pointer goes: a grid of cards, one lit at rest.
+  if (name === "rimlight")
+    return (
+      <div className="grid h-full grid-cols-2 content-center gap-4 p-6 sm:grid-cols-3 sm:gap-5 sm:p-8">
+        {cursors.slice(0, 6).map((p, i) => (
+          <Link key={p.name} href={`/cursors/${p.name}`} className="relative flex min-h-24 flex-col justify-between gap-6 border border-hairline p-4">
+            <span className="mono-label text-ink-soft">{p.category}</span>
+            <span className="text-[clamp(1.25rem,2.2vw,1.75rem)] leading-none tracking-[-0.02em]">{p.title}</span>
+            {i === 1 && (
+              <>
+                <span
+                  data-resting
+                  aria-hidden
+                  className={`${rest} -inset-[3px] p-[1.5px]`}
+                  style={{ mask: "linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)", background: "radial-gradient(180px circle at 96% 4%, currentColor, transparent)" }}
+                />
+                <span data-resting aria-hidden className={`${rest} -top-3 -right-3 size-1.5 rounded-full bg-ink`} />
+              </>
+            )}
+          </Link>
+        ))}
       </div>
     );
 

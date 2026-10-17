@@ -2321,6 +2321,161 @@
       }
     },
     {
+      "name": "rimlight",
+      "type": "registry:component",
+      "categories": [
+        "Followers"
+      ],
+      "title": "Rimlight",
+      "description": "A light that catches the edges of the controls near the pointer, brighter the closer they are. The hovered one lights all round; a click sends a ring of light out.",
+      "files": [
+        {
+          "path": "components/cursors/rimlight.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/rimlight.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "spotlight",
+          "border glow",
+          "edge light",
+          "cards",
+          "glow",
+          "light",
+          "hover effect",
+          "minimal"
+        ]
+      }
+    },
+    {
+      "name": "glitch",
+      "type": "registry:component",
+      "categories": [
+        "Lenses"
+      ],
+      "title": "Glitch",
+      "description": "A small window that splits the page beneath into red, green and blue and slices it sideways in fits. It frames controls and glitches harder; a click throws a burst.",
+      "files": [
+        {
+          "path": "components/cursors/glitch.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/glitch.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "rgb split",
+          "chromatic aberration",
+          "distortion",
+          "cyberpunk",
+          "digital",
+          "vhs",
+          "error",
+          "lens"
+        ]
+      }
+    },
+    {
+      "name": "cipher",
+      "type": "registry:component",
+      "categories": [
+        "Labels"
+      ],
+      "title": "Cipher",
+      "description": "A terminal block cursor that spills code as it moves. Over a control its name decodes out of scrambled glyphs, letter by letter; a click scrambles it again.",
+      "files": [
+        {
+          "path": "components/cursors/cipher.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/cipher.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "text scramble",
+          "decode",
+          "hacker",
+          "terminal",
+          "code",
+          "glyphs",
+          "developer",
+          "typing"
+        ]
+      }
+    },
+    {
+      "name": "thread",
+      "type": "registry:component",
+      "categories": [
+        "Labels"
+      ],
+      "title": "Thread",
+      "description": "Your own words on a thread: a ring turning round the pointer that unspools along your path as you move and wraps a control in its name. A click scatters the letters.",
+      "files": [
+        {
+          "path": "components/cursors/thread.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/thread.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "circular text",
+          "rotating text",
+          "text trail",
+          "badge",
+          "typography",
+          "words",
+          "custom text",
+          "marquee"
+        ]
+      }
+    },
+    {
+      "name": "pen",
+      "type": "registry:component",
+      "categories": [
+        "Marks"
+      ],
+      "title": "Pen",
+      "description": "A fountain pen that writes your path in ink, thick and thin as the nib turns, fading as it dries. It underlines controls with a flourish; a click leaves a blot.",
+      "files": [
+        {
+          "path": "components/cursors/pen.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/pen.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "fountain pen",
+          "ink",
+          "calligraphy",
+          "handwriting",
+          "signature",
+          "nib",
+          "drawing",
+          "editorial"
+        ]
+      }
+    },
+    {
       "name": "use-cursor",
       "type": "registry:hook",
       "title": "useCursor",

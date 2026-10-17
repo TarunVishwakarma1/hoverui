@@ -19,7 +19,7 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 
 - [x] **Magnifier**: a real magnifying glass that enlarges the page under it.
 - [x] **Droplet**: a water drop that refracts the page; clicks splash ripples that bend the text.
-- [ ] **Glitch**: an RGB split and sliced displacement of the page under the pointer, harder over controls.
+- [x] **Glitch**: an RGB split and sliced displacement of the page under the pointer, harder over controls.
 - [ ] **Heat**: shimmering heat haze above a flame; the page wavers like a desert road.
 
 ## Fantasy and myth
@@ -47,7 +47,7 @@ These reuse Black hole's technique: an SVG displacement map applied as a `backdr
 - [ ] **Vinyl**: a spinning record whose needle drops over controls; dragging scratches it.
 - [ ] **Polaroid**: clicks flash and drop a photo frame that slowly develops.
 - [x] **Lantern**: festival lanterns (Diwali, Lunar New Year) that rise and drift off on each click.
-- [ ] **Fountain pen**: writes your path in ink of varying width and underlines controls.
+- [x] **Fountain pen**: writes your path in ink of varying width and underlines controls. Shipped as Pen.
 
 ## Materials and nature
 

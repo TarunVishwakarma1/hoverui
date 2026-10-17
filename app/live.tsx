@@ -19,6 +19,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   candle: () => import("@/components/cursors/candle"),
   caret: () => import("@/components/cursors/caret"),
   chomp: () => import("@/components/cursors/chomp"),
+  cipher: () => import("@/components/cursors/cipher"),
   classic: () => import("@/components/cursors/classic"),
   clock: () => import("@/components/cursors/clock"),
   cloud: () => import("@/components/cursors/cloud"),
@@ -46,6 +47,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   gecko: () => import("@/components/cursors/gecko"),
   ghost: () => import("@/components/cursors/ghost"),
   glass: () => import("@/components/cursors/glass"),
+  glitch: () => import("@/components/cursors/glitch"),
   glow: () => import("@/components/cursors/glow"),
   goggles: () => import("@/components/cursors/goggles"),
   googly: () => import("@/components/cursors/googly"),
@@ -65,6 +67,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   offset: () => import("@/components/cursors/offset"),
   orbit: () => import("@/components/cursors/orbit"),
   peek: () => import("@/components/cursors/peek"),
+  pen: () => import("@/components/cursors/pen"),
   pixel: () => import("@/components/cursors/pixel"),
   plane: () => import("@/components/cursors/plane"),
   pumpkin: () => import("@/components/cursors/pumpkin"),
@@ -72,6 +75,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   readout: () => import("@/components/cursors/readout"),
   register: () => import("@/components/cursors/register"),
   ribbon: () => import("@/components/cursors/ribbon"),
+  rimlight: () => import("@/components/cursors/rimlight"),
   ring: () => import("@/components/cursors/ring"),
   ripple: () => import("@/components/cursors/ripple"),
   rocket: () => import("@/components/cursors/rocket"),
@@ -86,6 +90,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   splat: () => import("@/components/cursors/splat"),
   stamp: () => import("@/components/cursors/stamp"),
   sun: () => import("@/components/cursors/sun"),
+  thread: () => import("@/components/cursors/thread"),
   tooltip: () => import("@/components/cursors/tooltip"),
   top: () => import("@/components/cursors/top"),
   tornado: () => import("@/components/cursors/tornado"),
@@ -174,6 +179,7 @@ export const LanternArt = art(() => import("@/components/cursors/lantern").then(
 export const LeafArt = art(() => import("@/components/cursors/leaves").then((file) => file.LeafArt));
 export const MagnifierArt = art(() => import("@/components/cursors/magnifier").then((file) => file.MagnifierArt));
 export const MercuryFilter = art(() => import("@/components/cursors/mercury").then((file) => file.MercuryFilter));
+export const NibArt = art(() => import("@/components/cursors/pen").then((file) => file.NibArt));
 export const PlaneArt = art(() => import("@/components/cursors/plane").then((file) => file.PlaneArt));
 export const PumpkinArt = art(() => import("@/components/cursors/pumpkin").then((file) => file.PumpkinArt));
 export const RocketArt = art(() => import("@/components/cursors/rocket").then((file) => file.RocketArt));
