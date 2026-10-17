@@ -125,6 +125,51 @@ const INK = (() => {
   return { chunks, line: Array.from({ length: steps + 1 }, (_, i) => at(i / steps).map((v) => v.toFixed(1)).join(" ")).join("L"), tip: [ex, ey] };
 })();
 
+/** Plasma's resting globe: filaments from its core to the glass, and arcs from the glass onto a button's edge and to the pointer. */
+const PLASMA = (() => {
+  let seed = 11;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647 - 0.5;
+  const [gx, gy, r] = [-50, -24, 24];
+  // A jagged arc from one point to another, by midpoint displacement.
+  const jag = (x0: number, y0: number, x1: number, y1: number, rough: number) => {
+    let points = [
+      [x0, y0],
+      [x1, y1],
+    ];
+    let amp = Math.hypot(x1 - x0, y1 - y0) * rough;
+    for (let level = 0; level < 4; level++, amp *= 0.5)
+      points = points.flatMap(([x, y], i) => {
+        if (!i) return [[x, y]];
+        const [px, py] = points[i - 1];
+        const [length, off] = [Math.hypot(x - px, y - py) || 1, rand() * amp];
+        return [
+          [(px + x) / 2 - ((y - py) / length) * off, (py + y) / 2 + ((x - px) / length) * off],
+          [x, y],
+        ];
+      });
+    return `M${points.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}`;
+  };
+  const from = (x: number, y: number) => {
+    const a = Math.atan2(y - gy, x - gx);
+    return [gx + Math.cos(a) * r * 0.92, gy + Math.sin(a) * r * 0.92] as const;
+  };
+  const filaments = [0.5, 1.5, 2.6, 3.5, 4.4, 5.4].map((a, i) => {
+    const points = Array.from({ length: 9 }, (_, k) => {
+      const f = k / 8;
+      const bend = Math.sin(Math.PI * f) * r * 0.2 * Math.sin(k * 1.3 + i * 2.1);
+      return [gx + Math.cos(a) * r * f - Math.sin(a) * bend, gy + Math.sin(a) * r * f + Math.cos(a) * bend];
+    });
+    return { d: `M${points.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}`, end: points[8] };
+  });
+  const arcs = [
+    [-20, 22],
+    [-12, 10],
+    [2, 10],
+    [16, 30],
+  ].map(([x, y], i) => jag(...from(x, y), x, y, i === 3 ? 0.14 : 0.22));
+  return { gx, gy, r, filaments, arcs };
+})();
+
 const KANA = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ0123456789";
 
 /**
@@ -935,7 +980,7 @@ export function Scene({ name }: { name: string }) {
       </>
     ),
     glitch: (
-      <span className="absolute h-[68px] w-[184px] -translate-1/2 overflow-hidden" style={{ background: "repeating-linear-gradient(transparent 0 2px, color-mix(in srgb, currentColor 12%, transparent) 2px 3px)" }}>
+      <span className="absolute h-[80px] w-[200px] -translate-1/2 overflow-hidden" style={{ mask: "radial-gradient(closest-side, #000 62%, transparent)" }}>
         {[
           ["text-[#ff2bd6] opacity-80", "-3px 0"],
           ["text-[#00c8ff] opacity-80", "3px 0"],
@@ -953,9 +998,15 @@ export function Scene({ name }: { name: string }) {
             Signal
           </span>
         ))}
-        <span className="absolute top-[12px] left-[118px] h-[3px] w-12 bg-[#00f0ff] opacity-80" />
-        <span className="absolute top-[50px] left-[18px] h-[2px] w-9 bg-[#ff2bd6] opacity-80" />
-        <span className="absolute top-[36px] left-[118px] size-1.5 -translate-1/2 rounded-full bg-ink" />
+        <span className="absolute top-[22px] left-[112px] h-[2px] w-12 bg-[#00f0ff] opacity-80" />
+        <span className="absolute top-[56px] left-[44px] h-px w-10 bg-[#ff2bd6] opacity-80" />
+        {[
+          ["bg-[#ff2bd6]", 115],
+          ["bg-[#00e5ff]", 121],
+          ["bg-ink", 118],
+        ].map(([tone, x]) => (
+          <span key={tone} className={`absolute top-[40px] size-[5px] -translate-1/2 ${tone}`} style={{ left: x }} />
+        ))}
       </span>
     ),
     cipher: (
@@ -999,6 +1050,49 @@ export function Scene({ name }: { name: string }) {
         <span className="absolute rotate-[35deg]" style={{ left: INK.tip[0], top: INK.tip[1] }}>
           <NibArt className="absolute top-[-34.4px] left-[-9.6px] h-[35.2px] w-[19.2px]" />
         </span>
+      </>
+    ),
+    plasma: (
+      <>
+        <span
+          className="absolute top-[30px] left-[40px] flex h-10 w-[120px] -translate-1/2 items-center justify-center border border-ink text-[15px]"
+          style={{ boxShadow: "0 0 0 1px rgb(200 120 255 / 0.8), 0 0 12px 2px rgb(150 80 255 / 0.5)" }}
+        >
+          Button
+        </span>
+        <svg aria-hidden className="absolute size-px overflow-visible">
+          <defs>
+            <radialGradient id="plasma-glass" cx="0.35" cy="0.3" r="0.75">
+              <stop offset="0" stopColor="#2b1350" />
+              <stop offset="1" stopColor="#0b0618" />
+            </radialGradient>
+            <radialGradient id="plasma-core">
+              <stop offset="0" stopColor="#fff" />
+              <stop offset="0.4" stopColor="rgb(255 150 255 / 0.85)" />
+              <stop offset="1" stopColor="rgb(160 70 255 / 0)" />
+            </radialGradient>
+          </defs>
+          {PLASMA.arcs.map((d) => (
+            <g key={d} fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d={d} stroke="rgb(150 70 255 / 0.25)" strokeWidth="5" />
+              <path d={d} stroke="rgb(200 80 255 / 0.8)" strokeWidth="2" />
+              <path d={d} stroke="#7a2cff" strokeWidth="0.9" />
+            </g>
+          ))}
+          <circle cx={PLASMA.gx} cy={PLASMA.gy} r={PLASMA.r} fill="url(#plasma-glass)" />
+          {PLASMA.filaments.map(({ d, end }) => (
+            <g key={d} fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d={d} stroke="rgb(140 70 255 / 0.3)" strokeWidth="3.5" />
+              <path d={d} stroke="rgb(214 110 255 / 0.75)" strokeWidth="1.5" />
+              <path d={d} stroke="rgb(255 236 255 / 0.95)" strokeWidth="0.6" />
+              <circle cx={end[0]} cy={end[1]} r="2" fill="rgb(255 220 255 / 0.85)" />
+            </g>
+          ))}
+          <circle cx={PLASMA.gx} cy={PLASMA.gy} r={PLASMA.r * 0.4} fill="url(#plasma-core)" />
+          <circle cx={PLASMA.gx} cy={PLASMA.gy} r={PLASMA.r - 0.5} fill="none" stroke="rgb(255 255 255 / 0.28)" />
+          <ellipse cx={PLASMA.gx - 9} cy={PLASMA.gy - 11} rx="6" ry="4" fill="rgb(255 255 255 / 0.35)" transform={`rotate(-35 ${PLASMA.gx - 9} ${PLASMA.gy - 11})`} />
+          <circle cx="16" cy="30" r="2.4" fill="#c04dff" />
+        </svg>
       </>
     ),
   };

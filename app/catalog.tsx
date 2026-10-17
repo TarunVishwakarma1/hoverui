@@ -68,6 +68,7 @@ const ownColors = new Set([
   "fluid",
   "glitch",
   "cipher",
+  "plasma",
 ]);
 
 /** What `className` does on a cursor, by how that cursor takes its color: the Props row on its page. */
@@ -152,7 +153,7 @@ const categoryIntros: Record<string, string> = {
   Toys: "Toy cursors: a balloon on a string, a yo-yo, dice, a paper plane, a spinning top and a laser dot that a cat chases.",
   Ocean: "Underwater cursors: bubbles, a goldfish, a jellyfish, ripples, and a Greek galley rowing among sea monsters.",
   Fantasy: "Cursors from myth and magic: a ring of runes that makes you vanish, a wand that casts spells and a little dragon that breathes fire.",
-  "Sci-fi": "Science-fiction cursors: an energy saber that ignites, swings, clashes and powers down.",
+  "Sci-fi": "Science-fiction cursors: an energy saber that ignites, swings, clashes and powers down, and a plasma globe whose arcs leap onto the controls you hover.",
   Nature: "Cursors from outdoors: a swarm of fireflies that blink in step, autumn leaves that pile up on buttons, a gecko that stalks the pointer and sand that pours into dunes.",
 };
 

@@ -2358,7 +2358,7 @@
         "Lenses"
       ],
       "title": "Glitch",
-      "description": "A small window that splits the page beneath into red, green and blue and slices it sideways in fits. It frames controls and glitches harder; a click throws a burst.",
+      "description": "The page round the pointer splits into red, green and blue and tears sideways in fits, with no frame. It takes over controls and glitches harder; a click throws a burst.",
       "files": [
         {
           "path": "components/cursors/glitch.tsx",
@@ -2472,6 +2472,37 @@
           "nib",
           "drawing",
           "editorial"
+        ]
+      }
+    },
+    {
+      "name": "plasma",
+      "type": "registry:component",
+      "categories": [
+        "Sci-fi"
+      ],
+      "title": "Plasma",
+      "description": "A plasma globe at the pointer's shoulder, one filament always reaching for the pointer. Over a control its arcs leap onto the edges; hold to charge, let go to discharge.",
+      "files": [
+        {
+          "path": "components/cursors/plasma.tsx",
+          "type": "registry:component",
+          "target": "@components/cursors/plasma.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "https://hoverui.fun/r/use-cursor.json"
+      ],
+      "meta": {
+        "keywords": [
+          "plasma ball",
+          "tesla",
+          "lightning",
+          "electric",
+          "arcs",
+          "energy",
+          "glow",
+          "neon"
         ]
       }
     },

@@ -70,6 +70,7 @@ const files: Record<string, () => Promise<Record<string, unknown>>> = {
   pen: () => import("@/components/cursors/pen"),
   pixel: () => import("@/components/cursors/pixel"),
   plane: () => import("@/components/cursors/plane"),
+  plasma: () => import("@/components/cursors/plasma"),
   pumpkin: () => import("@/components/cursors/pumpkin"),
   radar: () => import("@/components/cursors/radar"),
   readout: () => import("@/components/cursors/readout"),
