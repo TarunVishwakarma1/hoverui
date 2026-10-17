@@ -154,7 +154,7 @@ npx shadcn@latest add @hover-ui/trail
 | 87 | Cipher | Labels | A terminal block cursor that spills code as it moves. Over a control its name decodes out of scrambled glyphs; a click scrambles it again. | `npx shadcn@latest add https://hoverui.fun/r/cipher.json` |
 | 88 | Thread | Labels | Your own words in a ring turning round the pointer. They unspool behind you as you move and wrap a control in its name; a click scatters them. | `npx shadcn@latest add https://hoverui.fun/r/thread.json` |
 | 89 | Pen | Marks | A fountain pen that writes your path in ink, thick and thin as the nib turns, fading as it dries. It underlines controls; a click leaves a blot. | `npx shadcn@latest add https://hoverui.fun/r/pen.json` |
-| 90 | Plasma | Sci-fi | A plasma globe at the pointer's shoulder, one filament always reaching for the pointer. Arcs leap onto controls; hold to charge, let go to discharge. | `npx shadcn@latest add https://hoverui.fun/r/plasma.json` |
+| 90 | Plasma | Sci-fi | Live current at the pointer: a white-hot spark in writhing plasma with a jagged electric tail. Current crawls round controls; hold to charge, let go to discharge. | `npx shadcn@latest add https://hoverui.fun/r/plasma.json` |
 
 Each cursor's page at `hoverui.fun/cursors/<name>` has the live preview, install command, usage, props and full source.
 
@@ -220,7 +220,7 @@ Cursors react to hover targets inside their area: `a`, `button`, `input`, `selec
 
 - Cursors are `aria-hidden` and `pointer-events: none`; they never intercept a click or reach assistive technology.
 - They only switch on for a fine, hovering pointer (`(hover: hover) and (pointer: fine)`). Touch screens keep the native pointer.
-- Under `prefers-reduced-motion`, cursors snap to the pointer instead of easing, and nothing moves on its own: no trails, particles, bobbing or spinning. Black hole drops its page warp, Galley's monsters stay below, Top no longer wobbles or hops, Glitch holds a steady color split without its fits, Thread stays a still ring, Pen writes no trail but still underlines controls, Plasma's filaments hold still and it never discharges, and Sand and Fluid, which are nothing but motion, show only their pointer dot.
+- Under `prefers-reduced-motion`, cursors snap to the pointer instead of easing, and nothing moves on its own: no trails, particles, bobbing or spinning. Black hole drops its page warp, Galley's monsters stay below, Top no longer wobbles or hops, Glitch holds a steady color split without its fits, Thread stays a still ring, Pen writes no trail but still underlines controls, Plasma's tendrils hold still, it leaves no tail and never discharges, and Sand and Fluid, which are nothing but motion, show only their pointer dot.
 - Most cursors keep a mark on the exact pointer position; the companions (Astronaut, Ghost, Googly, Bat, Pumpkin, UFO, Fly, Fish, Jellyfish, Cloud, Balloon, Yo-yo, Dice, Plane, Snake, Black hole, Rune, Galley, Element, Laser's cat) float, swing or chase beside an exact dot or string end. Pixel snaps to an 8px grid, so its square holds the pointer to within 8px. Blend, Label, Jelly, Spider, Chomp and Magnet ease toward it over a few frames.
 - Only the main button counts as a press, so a right-click's menu never leaves a cursor stuck pressed.
 

@@ -125,49 +125,48 @@ const INK = (() => {
   return { chunks, line: Array.from({ length: steps + 1 }, (_, i) => at(i / steps).map((v) => v.toFixed(1)).join(" ")).join("L"), tip: [ex, ey] };
 })();
 
-/** Plasma's resting globe: filaments from its core to the glass, and arcs from the glass onto a button's edge and to the pointer. */
+/** Plasma at rest: the spark on a button, its tendrils, the tail it came in on, and current crawling round the button's edge. */
 const PLASMA = (() => {
   let seed = 11;
   const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647 - 0.5;
-  const [gx, gy, r] = [-50, -24, 24];
-  // A jagged arc from one point to another, by midpoint displacement.
-  const jag = (x0: number, y0: number, x1: number, y1: number, rough: number) => {
-    let points = [
-      [x0, y0],
-      [x1, y1],
-    ];
-    let amp = Math.hypot(x1 - x0, y1 - y0) * rough;
-    for (let level = 0; level < 4; level++, amp *= 0.5)
-      points = points.flatMap(([x, y], i) => {
-        if (!i) return [[x, y]];
-        const [px, py] = points[i - 1];
-        const [length, off] = [Math.hypot(x - px, y - py) || 1, rand() * amp];
-        return [
-          [(px + x) / 2 - ((y - py) / length) * off, (py + y) / 2 + ((x - px) / length) * off],
-          [x, y],
-        ];
-      });
-    return `M${points.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}`;
-  };
-  const from = (x: number, y: number) => {
-    const a = Math.atan2(y - gy, x - gx);
-    return [gx + Math.cos(a) * r * 0.92, gy + Math.sin(a) * r * 0.92] as const;
-  };
-  const filaments = [0.5, 1.5, 2.6, 3.5, 4.4, 5.4].map((a, i) => {
-    const points = Array.from({ length: 9 }, (_, k) => {
-      const f = k / 8;
-      const bend = Math.sin(Math.PI * f) * r * 0.2 * Math.sin(k * 1.3 + i * 2.1);
-      return [gx + Math.cos(a) * r * f - Math.sin(a) * bend, gy + Math.sin(a) * r * f + Math.cos(a) * bend];
-    });
-    return { d: `M${points.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}`, end: points[8] };
-  });
-  const arcs = [
-    [-20, 22],
-    [-12, 10],
-    [2, 10],
-    [16, 30],
-  ].map(([x, y], i) => jag(...from(x, y), x, y, i === 3 ? 0.14 : 0.22));
-  return { gx, gy, r, filaments, arcs };
+  const path = (points: number[][]) => `M${points.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}`;
+  const [sx, sy] = [-22, 20];
+  const [l, t, r, b] = [-56, 8, 96, 52];
+  // The button's edge, walked clockwise in small steps, each pushed in or out a little: two strands of current.
+  const around = 2 * (r - l + (b - t));
+  const strands = [0, 1].map(() =>
+    path(
+      Array.from({ length: 61 }, (_, i) => {
+        let at = (i / 60) * around;
+        const off = i % 60 ? rand() * 4 : 0;
+        if (at < r - l) return [l + at, t - off];
+        if ((at -= r - l) < b - t) return [r + off, t + at];
+        if ((at -= b - t) < r - l) return [r - at, b + off];
+        return [l - off, b - (at - (r - l))];
+      }),
+    ),
+  );
+  // The surge, along the top edge nearest the spark.
+  const surge = path(Array.from({ length: 11 }, (_, i) => [sx - 30 + i * 6, t + (i % 10 ? rand() * 5 : 0)]));
+  // The tail: a jagged run along the path in, fading.
+  const tail = Array.from({ length: 4 }, (_, c) =>
+    path(
+      Array.from({ length: 7 }, (_, i) => {
+        const f = (c * 6 + i) / 24;
+        return [-120 + (sx + 120) * f + rand() * 6, -60 + (sy + 60) * f ** 1.3 + rand() * 6];
+      }),
+    ),
+  );
+  const tendrils = [0.3, 1.4, 2.4, 3.3, 4.3, 5.4].map((a, i) =>
+    path(
+      Array.from({ length: 6 }, (_, k) => {
+        const [f, length] = [k / 5, 11 + (i % 3) * 4];
+        const bend = Math.sin(Math.PI * f) * length * 0.25 * Math.sin(k * 1.4 + i * 2.1);
+        return [sx + Math.cos(a) * length * f - Math.sin(a) * bend, sy + Math.sin(a) * length * f + Math.cos(a) * bend];
+      }),
+    ),
+  );
+  return { sx, sy, l, t, r, b, strands, surge, tail, tendrils };
 })();
 
 const KANA = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ0123456789";
@@ -1054,44 +1053,29 @@ export function Scene({ name }: { name: string }) {
     ),
     plasma: (
       <>
-        <span
-          className="absolute top-[30px] left-[40px] flex h-10 w-[120px] -translate-1/2 items-center justify-center border border-ink text-[15px]"
-          style={{ boxShadow: "0 0 0 1px rgb(200 120 255 / 0.8), 0 0 12px 2px rgb(150 80 255 / 0.5)" }}
-        >
+        <span className="absolute flex items-center justify-center border border-ink text-[15px]" style={{ left: PLASMA.l, top: PLASMA.t, width: PLASMA.r - PLASMA.l, height: PLASMA.b - PLASMA.t }}>
           Button
         </span>
         <svg aria-hidden className="absolute size-px overflow-visible">
           <defs>
-            <radialGradient id="plasma-glass" cx="0.35" cy="0.3" r="0.75">
-              <stop offset="0" stopColor="#2b1350" />
-              <stop offset="1" stopColor="#0b0618" />
-            </radialGradient>
-            <radialGradient id="plasma-core">
+            <radialGradient id="plasma-spark">
               <stop offset="0" stopColor="#fff" />
-              <stop offset="0.4" stopColor="rgb(255 150 255 / 0.85)" />
+              <stop offset="0.3" stopColor="rgb(214 110 255 / 0.9)" />
               <stop offset="1" stopColor="rgb(160 70 255 / 0)" />
             </radialGradient>
           </defs>
-          {PLASMA.arcs.map((d) => (
-            <g key={d} fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d={d} stroke="rgb(150 70 255 / 0.25)" strokeWidth="5" />
-              <path d={d} stroke="rgb(200 80 255 / 0.8)" strokeWidth="2" />
-              <path d={d} stroke="#7a2cff" strokeWidth="0.9" />
-            </g>
-          ))}
-          <circle cx={PLASMA.gx} cy={PLASMA.gy} r={PLASMA.r} fill="url(#plasma-glass)" />
-          {PLASMA.filaments.map(({ d, end }) => (
-            <g key={d} fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d={d} stroke="rgb(140 70 255 / 0.3)" strokeWidth="3.5" />
-              <path d={d} stroke="rgb(214 110 255 / 0.75)" strokeWidth="1.5" />
-              <path d={d} stroke="rgb(255 236 255 / 0.95)" strokeWidth="0.6" />
-              <circle cx={end[0]} cy={end[1]} r="2" fill="rgb(255 220 255 / 0.85)" />
-            </g>
-          ))}
-          <circle cx={PLASMA.gx} cy={PLASMA.gy} r={PLASMA.r * 0.4} fill="url(#plasma-core)" />
-          <circle cx={PLASMA.gx} cy={PLASMA.gy} r={PLASMA.r - 0.5} fill="none" stroke="rgb(255 255 255 / 0.28)" />
-          <ellipse cx={PLASMA.gx - 9} cy={PLASMA.gy - 11} rx="6" ry="4" fill="rgb(255 255 255 / 0.35)" transform={`rotate(-35 ${PLASMA.gx - 9} ${PLASMA.gy - 11})`} />
-          <circle cx="16" cy="30" r="2.4" fill="#c04dff" />
+          {[...PLASMA.strands, PLASMA.surge, ...PLASMA.tail, ...PLASMA.tendrils].map((d, i) => {
+            const faint = i < 2 ? 0.55 : i > 2 && i < 7 ? 0.3 + (i - 3) * 0.2 : 1;
+            return (
+              <g key={d} fill="none" strokeLinecap="round" strokeLinejoin="round" opacity={faint}>
+                <path d={d} stroke="rgb(150 70 255 / 0.25)" strokeWidth="5" />
+                <path d={d} stroke="rgb(200 80 255 / 0.85)" strokeWidth="2" />
+                <path d={d} stroke="#7a2cff" strokeWidth="0.9" />
+              </g>
+            );
+          })}
+          <circle cx={PLASMA.sx} cy={PLASMA.sy} r="14" fill="url(#plasma-spark)" />
+          <circle cx={PLASMA.sx} cy={PLASMA.sy} r="2" fill="#7a2cff" />
         </svg>
       </>
     ),

@@ -2482,7 +2482,7 @@
         "Sci-fi"
       ],
       "title": "Plasma",
-      "description": "A plasma globe at the pointer's shoulder, one filament always reaching for the pointer. Over a control its arcs leap onto the edges; hold to charge, let go to discharge.",
+      "description": "Live current at the pointer: a white-hot spark in writhing plasma with a jagged tail. Current crawls round controls; hold to charge, let go to discharge.",
       "files": [
         {
           "path": "components/cursors/plasma.tsx",
@@ -2495,13 +2495,13 @@
       ],
       "meta": {
         "keywords": [
-          "plasma ball",
-          "tesla",
-          "lightning",
           "electric",
-          "arcs",
+          "lightning",
+          "plasma",
+          "current",
+          "tesla",
+          "spark",
           "energy",
-          "glow",
           "neon"
         ]
       }
