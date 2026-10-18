@@ -10,13 +10,13 @@ web
 
 Design engineers: frontend developers building marketing sites, portfolios and landing pages in React + Tailwind who want a signature cursor without hand-rolling pointer tracking, smoothing, touch fallbacks and reduced-motion handling. They browse to pick a cursor, feel it live, then copy one install command.
 
-Cursor Mixer subscribers (planned): those same React + Tailwind developers; no-code site builders on Framer and Webflow, who need a mix as a script embed rather than React code; and agencies and teams reusing mixes across client sites.
+Cursor Mixer subscribers: those same React + Tailwind developers; no-code site builders on Framer and Webflow, who need a mix as a script embed rather than React code; and agencies and teams reusing mixes across client sites.
 
 ## Product Purpose
 
 hover-ui is a free, open-source (MIT) library of custom cursor components for React, distributed as a shadcn registry. Success: a visitor finds a cursor they like, tries it with their own pointer on the site, and has it running in their project with one `npx shadcn add` command, owning the source.
 
-A paid **Cursor Mixer** is planned: subscribers mix and match the effects of different cursors, tune them, and take the result to their site. It ships separately from the open core. Its groundwork in the core is under way: several cursors can share one element, and cursors are gaining tuning props.
+A paid **Cursor Mixer**, live at https://mixer.hoverui.fun since October 2026: people build a cursor of their own on a canvas or in code, decide how it behaves on each mouse action (moving, hovering a control, pressing, releasing, clicking, dragging, resting), and take it to their site. It ships separately from the open core, from the private `hover-ui-mixer` repository. This site sends people there as the way on from the library: "Build your own in the Mixer".
 
 ## Positioning
 
@@ -42,13 +42,13 @@ Cursors only, and scoped by placement: drop a cursor inside any element and it o
 - Some cursors lean on browser features with fallbacks: the lenses that bend the page (Black hole, Magnifier, Droplet, Liquid, Glitch) need Chromium's SVG `backdrop-filter` and show without the bending elsewhere; Fluid needs WebGL2 and shows only its dot without it.
 - Stack: Next.js 16 (App Router), React 19.2, Tailwind v4, Bun.
 - Repository: https://github.com/TarunVishwakarma1/hoverui (linked from the sticky bar from `sm`, the docs, and each cursor page's structured data).
-- Cursor Mixer, decided: a hosted mixer at `mixer.hoverui.fun`, in its own private repository and Vercel project, for subscribers. React users install their mixes from a token-authenticated shadcn registry; no-code builders need theirs as a script embed. Billed monthly through Stripe. Open: the price, the launch date, and how teams share mixes. Do not show the Mixer, prices or a waitlist on the site until it ships.
+- Cursor Mixer, live: `https://mixer.hoverui.fun`, its own private repository (`hover-ui-mixer`) and Vercel project, with Supabase accounts. React users install a mix with one shadcn command, which brings the `hoverui-mixer` npm package that runs it; a Pro cursor carries a signed license naming the subscriber's sites and keeps working for good. No-code builders take a script embed. Billed monthly through Razorpay in rupees: Individual ₹200, Pro ₹500, Premium ₹1,500 (Pro's and Premium's seats and workspaces aren't built yet). Free exports small mixes (up to 3 layers of dot, ring and shape; hover and pressed states; press and release with a pop); every paid plan unlocks everything else, the code window and the embed; anyone can try Pro parts in the preview. This site links to it from the bar's "Mixer" token, the home page's "Build your own in the Mixer" section, the all-cursors intro, each cursor page's "More" row and the footer. Open: how teams share mixes.
 
 ## Brand Commitments
 
 - Name: hover-ui. Domain: hoverui.fun.
 - License: everything in this repository (cursors, hook, registry, site) is MIT, recorded in `LICENSE`. Contributions are MIT too.
-- Paid tier: the Cursor Mixer, planned, under a separate commercial license, distributed outside this repository. It never changes the license of the open core.
+- Paid tier: the Cursor Mixer, under a separate commercial license, distributed outside this repository. It never changes the license of the open core.
 - Cursor names stay generic: no trademarked film, game or franchise names. The reference lives in the behaviour, never in the name.
 
 ## Evidence on Hand

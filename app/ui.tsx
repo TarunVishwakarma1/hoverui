@@ -7,6 +7,8 @@ import { Scene } from "./scenes";
 
 export const SITE = registry.homepage;
 export const GITHUB = "https://github.com/TarunVishwakarma1/hoverui";
+/** The paid companion, where people build a cursor of their own from layers. */
+export const MIXER = "https://mixer.hoverui.fun";
 
 /**
  * Open Graph fields every page shares. A page that sets its own openGraph replaces the layout's whole object, so they
@@ -212,6 +214,9 @@ export function SiteBar() {
           <Link href="/#placement" className="mono-label hidden py-1 text-ink-soft hover:text-ink sm:inline">
             Placement
           </Link>
+          <a href={MIXER} className="mono-label hidden py-1 text-ink-soft hover:text-ink sm:inline">
+            Mixer
+          </a>
           <a href={GITHUB} className="mono-label hidden py-1 text-ink-soft hover:text-ink sm:inline">
             GitHub
           </a>
@@ -233,6 +238,9 @@ export function Footer() {
         <p className="text-display lg:col-span-7">Start with the one you&apos;re wearing.</p>
         <div className="flex flex-col gap-6 self-end lg:col-span-5">
           <Install name="register" />
+          <a href={MIXER} className="-my-0.5 flex items-center gap-2 self-start py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+            Or build your own in the Mixer <Arrow to="out" />
+          </a>
           <p className="mono-label text-ink-soft">hover-ui · MIT license · Set in Host Grotesk and Fragment Mono</p>
         </div>
       </div>

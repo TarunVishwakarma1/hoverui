@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { attributes, categories, classNameDoc, cursors, getCursor, Specimen } from "../../../catalog";
-import { Arrow, Code, GITHUB, Install, JsonLd, Preview, Row, SITE, Words, ogFields } from "../../../ui";
+import { Arrow, Code, GITHUB, Install, JsonLd, MIXER, Preview, Row, SITE, Words, ogFields } from "../../../ui";
 
 export const dynamicParams = false;
 
@@ -202,9 +202,14 @@ export function Section() {
                 </li>
               ))}
             </ul>
-            <Link href={`/categories/${kin.id}`} className="-my-0.5 flex items-center gap-2 self-start py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
-              All {cursor.category.toLowerCase()} cursors <Arrow />
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
+              <Link href={`/categories/${kin.id}`} className="-my-0.5 flex items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+                All {cursor.category.toLowerCase()} cursors <Arrow />
+              </Link>
+              <a href={MIXER} className="-my-0.5 flex items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+                Or build your own in the Mixer <Arrow to="out" />
+              </a>
+            </div>
           </Row>
         )}
 

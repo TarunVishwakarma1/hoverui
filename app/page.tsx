@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BlendCursor } from "@/components/cursors/blend";
 import { LabelCursor } from "@/components/cursors/label";
+import { RingCursor } from "@/components/cursors/ring";
+import { TrailCursor } from "@/components/cursors/trail";
 import { cursors, cursorTone, featured, Specimen, Swap } from "./catalog";
-import { Arrow, Code, GITHUB, Install, JsonLd, Preview, CursorCredits, SITE, Stamp, Words, container, h2 } from "./ui";
+import { Arrow, Code, GITHUB, Install, JsonLd, MIXER, Preview, CursorCredits, SITE, Stamp, Words, container, h2 } from "./ui";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -161,6 +163,77 @@ export default function Home() {
                   </Link>
                 </div>
               </Preview>
+            </div>
+          </Preview>
+        </div>
+      </section>
+
+      {/* The way on from the library: a cursor of your own, built from layers in the Mixer. The preview wears two of the
+          library's cursors in one element, which is what a mix is. */}
+      <section id="mixer" className={`${container} grid scroll-mt-24 grid-cols-1 gap-x-16 gap-y-16 border-t border-hairline pt-20 pb-32 lg:grid-cols-12`}>
+        <div className="flex flex-col gap-10 lg:col-span-5">
+          <h2 className={h2}>Build your own in the Mixer.</h2>
+          <p className="max-w-[40ch] text-ink-soft">
+            Stack dots, rings, shapes, words, trails, glows and lenses. Give each its own look when people hover, press and drag, and choose what happens when they click or
+            come to rest.
+          </p>
+          <dl className="divide-y divide-hairline border-y border-hairline">
+            {[
+              ["Build", "On a canvas or in code, tried live on a stand-in page as you go."],
+              ["For React", "One shadcn command, and it's a component in your project."],
+              ["Anywhere else", "One script tag on Framer, Webflow or any HTML page."],
+              ["Price", "Free to build and preview. Pro, for every layer and the script tag, from ₹200 a month."],
+            ].map(([term, def]) => (
+              <div key={term} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt className="font-mono text-[13px] leading-6">{term}</dt>
+                <dd className="text-ink-soft">{def}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a href={MIXER} className="btn-secondary">
+              Open the Mixer <Arrow to="out" />
+            </a>
+            <span className="mono-label text-ink-soft">mixer.hoverui.fun</span>
+          </div>
+        </div>
+
+        <div className="min-w-0 lg:order-first lg:col-span-7">
+          <Preview className="aspect-[4/5] sm:aspect-[4/3]">
+            <TrailCursor className={cursorTone} />
+            <RingCursor className={cursorTone} />
+            <div className="flex h-full flex-col justify-between gap-8 p-6 sm:p-8">
+              <p className="max-w-[30ch] text-ink-soft">
+                <Swap
+                  mouse="This area wears two cursors at once: Trail, with Ring over it. The Mixer builds yours the same way, a layer at a time."
+                  touch="With a mouse, this area wears two cursors at once: Trail, with Ring over it. The Mixer builds yours the same way, a layer at a time."
+                />
+              </p>
+              <div className="flex flex-col gap-6">
+                {/* The two layers, listed top first the way the Mixer lists them. */}
+                <div className="w-full max-w-xs">
+                  <p className="mono-label text-ink-soft">Layers</p>
+                  <ul className="mt-3 divide-y divide-hairline border-y border-hairline text-[17px] leading-6">
+                    <li className="flex items-center gap-3 py-2.5">
+                      <svg viewBox="0 0 16 16" aria-hidden className="size-4 shrink-0">
+                        <circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" strokeWidth="1.25" />
+                      </svg>
+                      Ring
+                    </li>
+                    <li className="flex items-center gap-3 py-2.5">
+                      <svg viewBox="0 0 16 16" aria-hidden className="size-4 shrink-0" fill="currentColor">
+                        <circle cx="12.5" cy="8" r="2" />
+                        <circle cx="7.5" cy="8" r="1.5" />
+                        <circle cx="3.5" cy="8" r="1" />
+                      </svg>
+                      Trail
+                    </li>
+                  </ul>
+                </div>
+                <a href={MIXER} className="btn-secondary self-start">
+                  Make one like this <Arrow to="out" />
+                </a>
+              </div>
             </div>
           </Preview>
         </div>

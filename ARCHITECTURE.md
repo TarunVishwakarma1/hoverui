@@ -116,14 +116,15 @@ A blocking inline script in `app/layout.tsx` sets `data-theme` before first pain
 
 The site's visual world is recorded in `DESIGN.md` (tokens, type, components, rules) and its product truth in `PRODUCT.md`. Both are maintained with the impeccable design skill; its working files live in `.impeccable/` (gitignored).
 
-## The Cursor Mixer (planned)
+## The Cursor Mixer
 
-The Cursor Mixer will let paying users combine the effects of different cursors, for example a Trail with a Label pill and a Blend disc, and tune them. It is not built yet, and it will not live in this repository.
+The Cursor Mixer lets paying users build a cursor of their own, on a canvas or in code, and decide how it behaves on every mouse action. It is live at `https://mixer.hoverui.fun`, built from the private `hover-ui-mixer` repository, and will not live in this repository. The site links to it as the way on from the library ("Build your own in the Mixer"): the bar, the end of the home page, the all-cursors intro, each cursor page's "More" row and the footer.
 
-What it needs from the open core:
+How it meets the open core:
 
-- **Shared areas.** Done: several cursors share one element and unmount independently (see Sharing above).
-- **One loop per area.** Done: one `requestAnimationFrame` loop and one pointer per area, calling each cursor's frame in the order they mounted. The `frame(pointer, element)` contract lets an effect be a plain function, which is the unit a mixer composes.
-- **Effect parameters.** Started: speeds, sizes and scales that were constants become typed props with the old values as defaults, so a mixer can edit them and export the result. Ring, Trail, Blend and Label have them (`size`, `speed`, `swell`, `length`), and every cursor added since is written with its own (Rimlight's `radius`, Thread's `text`, Cipher's `glyphs`), each with a doc comment the cursor's page lists. The same names carry across cursors, so one control can tune several.
+- **One engine, plain data.** A cursor made in the Mixer is a mix: layers (dot, ring, shape, and in Pro label, emoji, trail, glow, lens), the look each has in every state (moving, hover, pressed, dragging) and the actions each event runs (press, release, click, double-click, reaching and leaving a control, arriving, resting). The Mixer's engine runs a mix with the `useCursor` hook's area logic carried over without React (the same `data-cursor-area` marking and shared style), inside the `hoverui-mixer` npm package that every Mixer install brings, so a Mixer cursor owns its element the way every hover-ui cursor does.
+- **Shared areas.** Done: several cursors share one element and unmount independently (see Sharing above), so a Mixer cursor sits beside library cursors.
+- **One loop per area.** Done: one `requestAnimationFrame` loop and one pointer per area, calling each cursor's frame in the order they mounted.
+- **Effect parameters.** Started: speeds, sizes and scales that were constants become typed props with the old values as defaults. Ring, Trail, Blend and Label have them (`size`, `speed`, `swell`, `length`), and every cursor added since is written with its own (Rimlight's `radius`, Thread's `text`, Cipher's `glyphs`), each with a doc comment the cursor's page lists.
 
-Licensing boundary: the core stays MIT in this repository. The Mixer (its UI, effect presets and any composition runtime beyond what the core needs) ships separately under a commercial license. Decided: the Mixer is a hosted page on hoverui.fun, unlocked for subscribers, that previews a mix live and exports it; subscribers install their mixes from a token-authenticated shadcn registry, the same `npx shadcn add` flow as the free cursors. Billing is a monthly subscription through Stripe. Core improvements the Mixer depends on, like shared areas, are made here, in the open, under MIT.
+Licensing boundary: the core stays MIT in this repository. The Mixer (its editor, its engine and presets, its registry and embed) ships separately under a commercial license. Live: a hosted mixer at `mixer.hoverui.fun`. A mix installs with the same `npx shadcn add` flow as the free cursors, which adds its file and the `hoverui-mixer` package (scrambled, under that commercial license); a Pro cursor carries a license signed for the subscriber's sites and keeps working for good. Sites without React take a script embed. Billing is a monthly subscription through Razorpay, with a free tier for small mixes. Core improvements the Mixer depends on, like shared areas, are made here, in the open, under MIT.
