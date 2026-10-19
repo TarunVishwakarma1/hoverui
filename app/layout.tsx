@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fragment_Mono, Host_Grotesk } from "next/font/google";
 import { RegisterCursor } from "@/components/cursors/register";
+import { Analytics } from "./analytics";
 import { cursorTone } from "./catalog";
 import { Footer, SITE, SiteBar, siteOpenGraph } from "./ui";
 import "./globals.css";
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         {/* The site wears Register (05); every preview below hands off to its own cursor. */}
         <RegisterCursor className={cursorTone} />
+        <Analytics />
       </body>
     </html>
   );

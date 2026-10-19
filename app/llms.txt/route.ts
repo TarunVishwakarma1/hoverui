@@ -34,7 +34,8 @@ export function GET() {
     "",
     `- [All cursors](${site}/cursors): every cursor live, searchable by name, mood or thing`,
     `- [Source on GitHub](https://github.com/TarunVishwakarma1/hoverui): the registry, every cursor and the site`,
-    "- [hover-ui Mixer](https://mixer.hoverui.fun): build a cursor of your own from layers, on a canvas or in code, and take it to a site with one shadcn command or one script tag. Free to build and preview; Pro from ₹200 a month",
+    "- [hover-ui Mixer](https://mixer.hoverui.fun): build a cursor of your own from layers, on a canvas or in code, and take it to a site with one shadcn command or one script tag. Free to build and preview; paid plans from ₹200 a month",
+    "- [hover-ui Mixer gallery](https://mixer.hoverui.fun/gallery): cursors people made in the Mixer and shared, to try and to open as their own",
     "",
   ].join("\n");
   return new Response(text, { headers: { "content-type": "text/markdown; charset=utf-8" } });

@@ -5,7 +5,7 @@ import { LabelCursor } from "@/components/cursors/label";
 import { RingCursor } from "@/components/cursors/ring";
 import { TrailCursor } from "@/components/cursors/trail";
 import { cursors, cursorTone, featured, Specimen, Swap } from "./catalog";
-import { Arrow, Code, GITHUB, Install, JsonLd, MIXER, Preview, CursorCredits, SITE, Stamp, Words, container, h2 } from "./ui";
+import { Arrow, Code, GALLERY, GITHUB, Install, JsonLd, MIXER, Preview, CursorCredits, SITE, Stamp, Words, container, h2 } from "./ui";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -182,7 +182,7 @@ export default function Home() {
               ["Build", "On a canvas or in code, tried live on a stand-in page as you go."],
               ["For React", "One shadcn command, and it's a component in your project."],
               ["Anywhere else", "One script tag on Framer, Webflow or any HTML page."],
-              ["Price", "Free to build and preview. Pro, for every layer and the script tag, from ₹200 a month."],
+              ["Price", "Free to build and preview. Paid plans from ₹200 a month: the script tag on all of them, and more layers and effects as they go up."],
             ].map(([term, def]) => (
               <div key={term} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
                 <dt className="font-mono text-[13px] leading-6">{term}</dt>
@@ -190,11 +190,16 @@ export default function Home() {
               </div>
             ))}
           </dl>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a href={MIXER} className="btn-secondary">
-              Open the Mixer <Arrow to="out" />
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a href={MIXER} className="btn-secondary">
+                Open the Mixer <Arrow to="out" />
+              </a>
+              <span className="mono-label text-ink-soft">mixer.hoverui.fun</span>
+            </div>
+            <a href={GALLERY} className="-my-0.5 flex w-fit items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+              Or start from one people made, in its gallery <Arrow to="out" />
             </a>
-            <span className="mono-label text-ink-soft">mixer.hoverui.fun</span>
           </div>
         </div>
 

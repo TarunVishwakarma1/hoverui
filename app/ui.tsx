@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
+import { CookieChoices } from "./analytics";
 import { CopyButton, Fold, InstallLink, NavLink, SiteSearch, ThemeToggle } from "./client";
 import registry from "@/registry.json";
 import type { CursorData } from "./catalog";
@@ -9,6 +10,8 @@ export const SITE = registry.homepage;
 export const GITHUB = "https://github.com/TarunVishwakarma1/hoverui";
 /** The paid companion, where people build a cursor of their own from layers. */
 export const MIXER = "https://mixer.hoverui.fun";
+/** The Mixer's gallery: cursors people made there and shared, to try and to open as their own. */
+export const GALLERY = `${MIXER}/gallery`;
 
 /**
  * Open Graph fields every page shares. A page that sets its own openGraph replaces the layout's whole object, so they
@@ -241,7 +244,10 @@ export function Footer() {
           <a href={MIXER} className="-my-0.5 flex items-center gap-2 self-start py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
             Or build your own in the Mixer <Arrow to="out" />
           </a>
-          <p className="mono-label text-ink-soft">hover-ui · MIT license · Set in Host Grotesk and Fragment Mono</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <p className="mono-label text-ink-soft">hover-ui · MIT license · Set in Host Grotesk and Fragment Mono</p>
+            <CookieChoices className="mono-label text-ink-soft hover:text-ink" />
+          </div>
         </div>
       </div>
     </footer>

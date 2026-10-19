@@ -112,13 +112,17 @@ A blocking inline script in `app/layout.tsx` sets `data-theme` before first pain
   - `SoftwareSourceCode` and a `BreadcrumbList` on each cursor page.
 - **Internal links:** the sticky bar, the gallery and the sidebar link every cursor page from every other.
 
+### Analytics
+
+Google Analytics, only with a visitor's OK (`app/analytics.tsx`): with `NEXT_PUBLIC_GA_ID` set, a small bar asks once and nothing loads before Allow; without it there is no bar. The ID is the Mixer's, and the answer is a `consent_analytics` cookie on hoverui.fun that the Mixer reads too, so a visitor is asked once and a visit that goes on into the Mixer counts as one. "Cookie choices" in the footer asks again. The Mixer's privacy policy (`mixer.hoverui.fun/privacy`) covers it.
+
 ### Design system
 
 The site's visual world is recorded in `DESIGN.md` (tokens, type, components, rules) and its product truth in `PRODUCT.md`. Both are maintained with the impeccable design skill; its working files live in `.impeccable/` (gitignored).
 
 ## The Cursor Mixer
 
-The Cursor Mixer lets paying users build a cursor of their own, on a canvas or in code, and decide how it behaves on every mouse action. It is live at `https://mixer.hoverui.fun`, built from the private `hover-ui-mixer` repository, and will not live in this repository. The site links to it as the way on from the library ("Build your own in the Mixer"): the bar, the end of the home page, the all-cursors intro, each cursor page's "More" row and the footer.
+The Cursor Mixer lets paying users build a cursor of their own, on a canvas or in code, and decide how it behaves on every mouse action. It is live at `https://mixer.hoverui.fun`, built from the private `hover-ui-mixer` repository, and will not live in this repository. The site links to it as the way on from the library ("Build your own in the Mixer"): the bar, the end of the home page, the all-cursors intro, each cursor page's "More" row and the footer. Its gallery, of cursors people made there and shared, is linked from the end of the home page and the all-cursors intro.
 
 How it meets the open core:
 

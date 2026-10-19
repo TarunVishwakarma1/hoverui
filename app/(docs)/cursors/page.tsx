@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { categories, cursors, Swap } from "../../catalog";
-import { Arrow, CursorTile, JsonLd, MIXER, SITE, siteOpenGraph } from "../../ui";
+import { Arrow, CursorTile, GALLERY, JsonLd, MIXER, SITE, siteOpenGraph } from "../../ui";
 import { CursorSearch, SearchItem, SearchSection } from "../../client";
 
 const title = "All React cursor components";
@@ -52,9 +52,14 @@ export default function CursorsIndex() {
             touch="Open any cursor for its install command and source; with a mouse, each preview wears its own cursor."
           />
         </p>
-        <a href={MIXER} className="-my-0.5 mt-6 flex w-fit items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
-          None quite yours? Build your own in the Mixer <Arrow to="out" />
-        </a>
+        <div className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-3">
+          <a href={MIXER} className="-my-0.5 flex items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+            None quite yours? Build your own in the Mixer <Arrow to="out" />
+          </a>
+          <a href={GALLERY} className="-my-0.5 flex items-center gap-2 py-0.5 text-[15px] leading-5 hover:underline hover:underline-offset-4">
+            Or start from one people made, in its gallery <Arrow to="out" />
+          </a>
+        </div>
       </header>
 
       <CursorSearch index={cursors.map((c) => ({ name: c.name, text: c.search }))}>
