@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 /*
  * Google Analytics, only with a visitor's OK, asked the way the Mixer asks and counted under the Mixer's ID, so a visit
@@ -40,6 +40,16 @@ export function choose(choice: Choice) {
 export function Analytics() {
   // On the server, and in the first render, undecided-but-silent: the bar only shows once the browser has said.
   const choice = useSyncExternalStore(subscribe, read, () => "denied" as Choice);
+  // Allowed: following any link into the Mixer counts as open_mixer, the step from the library to the paid side.
+  useEffect(() => {
+    if (!ID || choice !== "granted") return;
+    const clicked = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href^="https://mixer.hoverui.fun"]') as HTMLAnchorElement | null;
+      if (link) (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.("event", "open_mixer", { link_url: link.href, link_text: link.textContent?.trim().slice(0, 100) });
+    };
+    document.addEventListener("click", clicked, true);
+    return () => document.removeEventListener("click", clicked, true);
+  }, [choice]);
   if (!ID) return null;
   if (choice === "granted")
     return (
